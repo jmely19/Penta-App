@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PENTA - Our Lessons</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Fredoka+One&display=swap');
+        body { font-family: 'Poppins', sans-serif; }
+        .modal-content { animation: slide-up 0.3s ease-out; }
+        @keyframes slide-up {
+            from { transform: translateY(20px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+        .nav-link {
+            font-size: 1.1rem;
+            text-align: left;
+        }
+        .completed-badge {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background-color: #10b981;
+            color: white;
+            border-radius: 9999px;
+            padding: 4px 12px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            z-index: 10;
+        }
+    </style>
+</head>
+<body class="bg-gray-100">
+    <!-- NAVEGACIÓN CONSISTENTE PARA USUARIO LOGUEADO -->
+    <nav class="bg-white shadow-md sticky top-0 z-50">
+        <div class="container mx-auto px-6 py-3">
+            <div class="flex items-center justify-between">
+                <!-- Logo -->
+                <a href="index.html" class="flex items-center">
+                    <svg class="h-10 w-10 mr-2" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                        <polygon points="50,5 90,35 80,85 20,85 10,35" fill="#1e40af" />
+                        <text x="50" y="60" font-size="30" font-weight="bold" text-anchor="middle" fill="white">P</text>
+                    </svg>
+                    <span class="text-2xl font-bold text-gray-800">PENTA</span>
+                </a>
+                
+                <!-- Enlaces de navegación -->
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="index.html" class="nav-link text-gray-800 hover:text-orange-500 font-medium">Home</a>
+                    <a href="our-lessons.html" class="nav-link text-orange-500 border-b-2 border-orange-500 font-medium">Our lessons</a>
+                    <a href="profile.html" class="nav-link text-gray-800 hover:text-orange-500 font-medium">Profile</a>
+                    <a href="contact.html" class="nav-link text-gray-800 hover:text-orange-500 font-medium">Contact us</a>
+                </div>
+                <!-- Cerrar Sesión -->
+                <div class="hidden md:flex">
+                    <a href="sign.up.html" class="bg-gray-200 text-gray-700 px-4 py-2 rounded-full hover:bg-gray-300 transition duration-300 text-sm font-semibold">Cerrar Sesión</a>
+                </div>
+                
+                <button class="md:hidden focus:outline-none">
+                    <i class="fas fa-bars text-gray-800 text-xl"></i>
+                </button>
+            </div>
+        </div>
+    </nav>
+    <!-- CONTENIDO PRINCIPAL: MÓDULOS DE APRENDIZAJE -->
+    <main>
+        <section id="modulos" class="py-16" style="background-color: #05052b;">
+            <div class="container mx-auto px-6">
+                <h2 class="text-3xl lg:text-4xl font-bold text-center mb-16 text-white">Our Learning Modules</h2>
+                
+                <!-- TEMA: PRESUPUESTO -->
+                <div id="presupuesto" class="mb-20">
+                    <h3 class="text-2xl font-bold text-white mb-8 text-center">
+                        <span class="bg-blue-800 px-8 py-3 rounded-lg shadow-lg">Budget</span>
+                    </h3>
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                        <!-- Lección 1 -->
+                        <div class="bg-white rounded-xl shadow-lg overflow-hidden transition-transform duration-300 hover:scale-105 hover:shadow-2xl flex flex-col relative" data-lesson-id="presupuesto-1">
+                            <div class="completed-badge hidden">Completed</div>
+                            <div class="relative">
+                                <img class="w-full h-48 object-cover" src="images/Leccion 1- Tema 1.avif" alt="[Imagen de una calculadora y dinero]">
+                            </div>
+                            <div class="p-6 flex-grow flex flex-col">
+                                <h4 class="text-xl font-bold text-gray-800 mb-2">Lesson 1</h4>
+                                <p class="text-gray-600 flex-grow">Know where your money goes: The truth behind every expense.</p>
+                                <button class="start-lesson-btn w-full mt-4 bg-orange-500 text-white py-2 rounded-full font-bold hover:bg-orange-600 transition">Start</button>
+                            </div>
+                        </div>
+                        <!-- Lección 2 -->
+                        <div class="bg-white rounded-xl shadow-lg overflow-hidden transition-transform duration-300 hover:scale-105 hover:shadow-2xl flex flex-col relative" data-lesson-id="presupuesto-2">
+                            <div class="completed-badge hidden">Completed</div>
+                            <div class="relative">
+                                <img class="w-full h-48 object-cover" src="images/Leccion 2-Tema1.png" alt="[Imagen de dos caminos en un bosque]">
+                            </div>
+                            <div class="p-6 flex-grow flex flex-col">
+                                <h4 class="text-xl font-bold text-gray-800 mb-2">Lesson 2</h4>
+                                <p class="text-gray-600 flex-grow">Needs vs. Wants: The Art of Conscious Choice.</p>
+                                <button class="start-lesson-btn w-full mt-4 bg-orange-500 text-white py-2 rounded-full font-bold hover:bg-orange-600 transition">Start</button>
+                            </div>
+                        </div>
+                        <!-- Lección 3 -->
+                        <div class="bg-white rounded-xl shadow-lg overflow-hidden transition-transform duration-300 hover:scale-105 hover:shadow-2xl flex flex-col relative" data-lesson-id="presupuesto-3">
+                            <div class="completed-badge hidden">Completed</div>
+                            <div class="relative">
+                                <img class="w-full h-48 object-cover" src="https://images.unsplash.com/photo-1549488344-cbb6c34cf08b?fit=crop&w=800&q=80" alt="[Imagen de un mapa y una brújula]">
+                            </div>
+                            <div class="p-6 flex-grow flex flex-col">
+                                <h4 class="text-xl font-bold text-gray-800 mb-2">Lesson 3</h4>
+                                <p class="text-gray-600 flex-grow">A budget is a map: Navigating your expenses and making choices.</p>
+                                <button class="start-lesson-btn w-full mt-4 bg-orange-500 text-white py-2 rounded-full font-bold hover:bg-orange-600 transition">Start</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- TEMA: AHORRO -->
+                <div id="ahorro" class="mb-20">
+                    <h3 class="text-2xl font-bold text-white mb-8 text-center">
+                        <span class="bg-orange-500 px-8 py-3 rounded-lg shadow-lg">Savings</span>
+                    </h3>
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                        <!-- Lección 1 -->
+                        <div class="bg-white rounded-xl shadow-lg overflow-hidden transition-transform duration-300 hover:scale-105 hover:shadow-2xl flex flex-col relative" data-lesson-id="ahorro-1">
+                            <div class="completed-badge hidden">Completed</div>
+                            <div class="relative">
+                                <img class="w-full h-48 object-cover" src="images/Leccion 1-Tema 2.png" alt="[Imagen de una alcancía]">
+                            </div>
+                            <div class="p-6 flex-grow flex flex-col">
+                                <h4 class="text-xl font-bold text-gray-800 mb-2">Lesson 1</h4>
+                                <p class="text-gray-600 flex-grow">The power of “paying yourself first”: Make saving a habit.</p>
+                                <button class="start-lesson-btn w-full mt-4 bg-orange-500 text-white py-2 rounded-full font-bold hover:bg-orange-600 transition">Start</button>
+                            </div>
+                        </div>
+                        <!-- Lección 2 -->
+                        <div class="bg-white rounded-xl shadow-lg overflow-hidden transition-transform duration-300 hover:scale-105 hover:shadow-2xl flex flex-col relative" data-lesson-id="ahorro-2">
+                            <div class="completed-badge hidden">Completed</div>
+                            <div class="relative">
+                                <img class="w-full h-48 object-cover" src="images/Leccion 2-Tema 2.webp" alt="[Imagen de una planta creciendo de monedas]">
+                            </div>
+                            <div class="p-6 flex-grow flex flex-col">
+                                <h4 class="text-xl font-bold text-gray-800 mb-2">Lesson 2</h4>
+                                <p class="text-gray-600 flex-grow">The snowball effect: Discover compound interest.</p>
+                                <button class="start-lesson-btn w-full mt-4 bg-orange-500 text-white py-2 rounded-full font-bold hover:bg-orange-600 transition">Start</button>
+                            </div>
+                        </div>
+                        <!-- Lección 3 -->
+                        <div class="bg-white rounded-xl shadow-lg overflow-hidden transition-transform duration-300 hover:scale-105 hover:shadow-2xl flex flex-col relative" data-lesson-id="ahorro-3">
+                            <div class="completed-badge hidden">Completed</div>
+                            <div class="relative">
+                                <img class="w-full h-48 object-cover" src="images/Leccion 3- Tema 2.png" alt="[Imagen de un tablero con metas]">
+                            </div>
+                            <div class="p-6 flex-grow flex flex-col">
+                                <h4 class="text-xl font-bold text-gray-800 mb-2">Lesson 3</h4>
+                                <p class="text-gray-600 flex-grow">Saving with a purpose: Your goals, your motivation.</p>
+                                <button class="start-lesson-btn w-full mt-4 bg-orange-500 text-white py-2 rounded-full font-bold hover:bg-orange-600 transition">Start</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- TEMA: CRISIS -->
+                <div id="crisis">
+                    <h3 class="text-2xl font-bold text-white mb-8 text-center">
+                        <span class="border-2 border-orange-400 text-orange-400 px-8 py-3 rounded-lg shadow-lg">Crisis</span>
+                    </h3>
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                        <!-- Lección 1 -->
+                        <div class="bg-white rounded-xl shadow-lg overflow-hidden transition-transform duration-300 hover:scale-105 hover:shadow-2xl flex flex-col relative" data-lesson-id="crisis-1">
+                            <div class="completed-badge hidden">Completed</div>
+                            <div class="relative">
+                                <img class="w-full h-48 object-cover" src="images/Leccion 1- Tema 3.png" alt="[Imagen de un salvavidas rojo]">
+                            </div>
+                            <div class="p-6 flex-grow flex flex-col">
+                                <h4 class="text-xl font-bold text-gray-800 mb-2">Lesson 1</h4>
+                                <p class="text-gray-600 flex-grow">Life is unpredictable: Build your safety net.</p>
+                                <button class="start-lesson-btn w-full mt-4 bg-orange-500 text-white py-2 rounded-full font-bold hover:bg-orange-600 transition">Start</button>
+                            </div>
+                        </div>
+                        <!-- Lección 2 -->
+                        <div class="bg-white rounded-xl shadow-lg overflow-hidden transition-transform duration-300 hover:scale-105 hover:shadow-2xl flex flex-col relative" data-lesson-id="crisis-2">
+                            <div class="completed-badge hidden">Completed</div>
+                            <div class="relative">
+                                <img class="w-full h-48 object-cover" src="images/Leccion 2- Tema 3.png" alt="[Imagen de una persona sospechosa en una laptop]">
+                            </div>
+                            <div class="p-6 flex-grow flex flex-col">
+                                <h4 class="text-xl font-bold text-gray-800 mb-2">Lesson 2</h4>
+                                <p class="text-gray-600 flex-grow">Not all that glitters is gold: Protect your money from fraud.</p>
+                                <button class="start-lesson-btn w-full mt-4 bg-orange-500 text-white py-2 rounded-full font-bold hover:bg-orange-600 transition">Start</button>
+                            </div>
+                        </div>
+                        <!-- Lección 3 -->
+                        <div class="bg-white rounded-xl shadow-lg overflow-hidden transition-transform duration-300 hover:scale-105 hover:shadow-2xl flex flex-col relative" data-lesson-id="crisis-3">
+                            <div class="completed-badge hidden">Completed</div>
+                            <div class="relative">
+                                <img class="w-full h-48 object-cover" src="images/Leccion 3- tema 3.png" alt="[Imagen de un globo aerostático hecho de billetes]">
+                            </div>
+                            <div class="p-6 flex-grow flex flex-col">
+                                <h4 class="text-xl font-bold text-gray-800 mb-2">Lesson 3</h4>
+                                <p class="text-gray-600 flex-grow">The invisible cost of living: Understanding inflation.</p>
+                                <button class="start-lesson-btn w-full mt-4 bg-orange-500 text-white py-2 rounded-full font-bold hover:bg-orange-600 transition">Start</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    <!-- MODAL PARA SELECCIONAR TIPO DE APRENDIZAJE -->
+    <div id="learning-modal" class="fixed inset-0 bg-black bg-opacity-60 flex items-center justify-center p-4 z-50 hidden">
+        <div class="modal-content bg-white rounded-2xl shadow-2xl w-full max-w-md p-8 text-center relative">
+            <!-- Botón para cerrar el modal -->
+            <button id="close-modal-btn" class="absolute top-4 right-4 text-gray-400 hover:text-gray-700 transition">
+                <i class="fas fa-times fa-2x"></i>
+            </button>
+            
+            <h3 class="text-2xl font-bold text-gray-800 mb-4">Select your learning style</h3>
+            <p class="text-gray-600 mb-8">Everyone learns differently. Choose the option you like best!</p>
+            
+            <div class="space-y-4">
+                <a href="exercise1.html" class="block w-full bg-blue-600 text-white py-3 rounded-lg font-semibold text-lg hover:bg-blue-700 transition transform hover:scale-105">
+                    <i class="fas fa-book-open mr-2"></i> Story
+                </a>
+                <a href="exercise1.html" class="block w-full bg-teal-500 text-white py-3 rounded-lg font-semibold text-lg hover:bg-teal-600 transition transform hover:scale-105">
+                    <i class="fas fa-file-alt mr-2"></i> Text
+                </a>
+                <a href="exercise1.html" class="block w-full bg-indigo-600 text-white py-3 rounded-lg font-semibold text-lg hover:bg-indigo-700 transition transform hover:scale-105">
+                    <i class="fas fa-pencil-ruler mr-2"></i> Exercises
+                </a>
+            </div>
+        </div>
+    </div>
+    <!-- FOOTER -->
+    <footer class="bg-gray-900 text-white py-12">
+        <div class="container mx-auto px-6 text-center">
+            <p>&copy; 2025 PENTA Financial Education. All rights reserved.</p>
+        </div>
+    </footer>
+    <script>
+        // --- Lógica para el Modal ---
+        const modal = document.getElementById('learning-modal');
+        const startButtons = document.querySelectorAll('.start-lesson-btn');
+        const closeButton = document.getElementById('close-modal-btn');
+        // Función para abrir el modal
+        const openModal = () => {
+            modal.classList.remove('hidden');
+        };
+        // Función para cerrar el modal
+        const closeModal = () => {
+            modal.classList.add('hidden');
+        };
+        // Asignar evento a todos los botones "Start"
+        startButtons.forEach(button => {
+            button.addEventListener('click', openModal);
+        });
+        // Asignar evento al botón de cerrar
+        closeButton.addEventListener('click', closeModal);
+        // Cerrar el modal si se hace clic fuera del contenido
+        modal.addEventListener('click', (event) => {
+            if (event.target === modal) {
+                closeModal();
+            }
+        });
+        
+        // --- Sistema de Progreso del Usuario ---
+        // Cargar progreso desde localStorage
+        function loadProgress() {
+            const savedProgress = localStorage.getItem('pentaProgress');
+            if (savedProgress) {
+                const progress = JSON.parse(savedProgress);
+                progress.completed.forEach(lessonId => {
+                    const lessonElement = document.querySelector(`[data-lesson-id="${lessonId}"]`);
+                    if (lessonElement) {
+                        const badge = lessonElement.querySelector('.completed-badge');
+                        badge.classList.remove('hidden');
+                    }
+                });
+            }
+        }
+        
+        // Guardar progreso en localStorage
+        function saveProgress(lessonId) {
+            const savedProgress = localStorage.getItem('pentaProgress');
+            let progress = savedProgress ? JSON.parse(savedProgress) : { completed: [] };
+            
+            // Agregar lección completada si no está ya en la lista
+            if (!progress.completed.includes(lessonId)) {
+                progress.completed.push(lessonId);
+                localStorage.setItem('pentaProgress', JSON.stringify(progress));
+                
+                // Mostrar badge de completado
+                const lessonElement = document.querySelector(`[data-lesson-id="${lessonId}"]`);
+                if (lessonElement) {
+                    const badge = lessonElement.querySelector('.completed-badge');
+                    badge.classList.remove('hidden');
+                }
+                
+                // Notificar al usuario
+                alert('¡Lección completada! Tu progreso ha sido guardado.');
+            }
+        }
+        
+        // Asignar evento de completar lección
+        startButtons.forEach(button => {
+            button.addEventListener('click', function() {
+                const lessonCard = this.closest('[data-lesson-id]');
+                const lessonId = lessonCard.dataset.lessonId;
+                saveProgress(lessonId);
+            });
+        });
+        
+        // Inicializar al cargar la página
+        document.addEventListener('DOMContentLoaded', loadProgress);
+    </script>
+</body>
+</html>
