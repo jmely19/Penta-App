@@ -6,6 +6,7 @@
     <title> PENTA - Financial Education for Youth</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="stylechatbot.css">
     <style>
         /* IMPORTACIÓN DE FUENTES - Carga las tipografías Poppins y Fredoka One de Google Fonts */
         @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Fredoka+One&display=swap');
@@ -704,6 +705,29 @@
             </div>
         </div>
     </section>
+<div class="chatbot-container">
+        <div class="chatbot-window" id="chatbotWindow">
+            <div class="chatbot-header">
+                <div class="chatbot-title">Penta Assistance</div>
+                <button class="chatbot-close" id="closeChatbot">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="chatbot-messages" id="chatMessages">
+                <!-- Messages will appear here -->
+            </div>
+            <div class="chatbot-input-container">
+                <input type="text" class="chatbot-input" id="userInput" placeholder="Type your message...">
+                <button class="chatbot-send" id="sendMessage">
+                    <i class="fas fa-paper-plane"></i>
+                </button>
+            </div>
+        </div>
+        <div class="chatbot-minimized" id="minimizedChatbot">
+            <i class="fas fa-robot chatbot-icon"></i>
+        </div>
+    </div>
+
 
     <!-- FOOTER - Dividido en 4 columnas:
          1. Logo y descripción + redes
@@ -855,5 +879,6 @@
             console.log('Mobile menu would open');
         });
     </script>
+    <script src="scriptchatbot.js"></script>
 </body>
 </html>
