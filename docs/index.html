@@ -227,6 +227,29 @@
             </div>
         </div>
     </section>
+    <div class="chatbot-container">
+        <div class="chatbot-window" id="chatbotWindow">
+            <div class="chatbot-header">
+                <div class="chatbot-title">Penta Assistance</div>
+                <button class="chatbot-close" id="closeChatbot">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="chatbot-messages" id="chatMessages">
+                <!-- Messages will appear here -->
+            </div>
+            <div class="chatbot-input-container">
+                <input type="text" class="chatbot-input" id="userInput" placeholder="Type your message...">
+                <button class="chatbot-send" id="sendMessage">
+                    <i class="fas fa-paper-plane"></i>
+                </button>
+            </div>
+        </div>
+        <div class="chatbot-minimized" id="minimizedChatbot">
+            <i class="fas fa-robot chatbot-icon"></i>
+        </div>
+    </div>
+
 
 
     <!-- SECCIÓN SOBRE NOSOTROS - Contiene:
@@ -705,29 +728,6 @@
             </div>
         </div>
     </section>
-<div class="chatbot-container">
-        <div class="chatbot-window" id="chatbotWindow">
-            <div class="chatbot-header">
-                <div class="chatbot-title">Penta Assistance</div>
-                <button class="chatbot-close" id="closeChatbot">
-                    <i class="fas fa-times"></i>
-                </button>
-            </div>
-            <div class="chatbot-messages" id="chatMessages">
-                <!-- Messages will appear here -->
-            </div>
-            <div class="chatbot-input-container">
-                <input type="text" class="chatbot-input" id="userInput" placeholder="Type your message...">
-                <button class="chatbot-send" id="sendMessage">
-                    <i class="fas fa-paper-plane"></i>
-                </button>
-            </div>
-        </div>
-        <div class="chatbot-minimized" id="minimizedChatbot">
-            <i class="fas fa-robot chatbot-icon"></i>
-        </div>
-    </div>
-
 
     <!-- FOOTER - Dividido en 4 columnas:
          1. Logo y descripción + redes
@@ -879,6 +879,6 @@
             console.log('Mobile menu would open');
         });
     </script>
-    <script src="scriptchatbot.js"></script>
+ <script src="scriptchatbot.js"></script>
 </body>
 </html>
