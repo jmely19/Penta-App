@@ -3,49 +3,628 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="SoftCuit's goal is to provide tools and train people everywhere in cybersecurity.">
-    <meta name="keywords" content="SoftCuit, Panamá, Security, Ciber-Security, Trust, Safety, Reliability">
-    <link rel="shortcut icon" type="image/x.icon" href="logopng.png">
-    <link rel="stylesheet" type="text/css" href="css/sign.up.css">
-    <title> Sign Up- Penta </title>
+    <title>Sign Up</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #0a0e17;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .signup-container {
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+            padding: 14px;
+            width: 100%;
+            max-width: 600px;
+            text-align: center;
+        }
+
+        .logo {
+            width: 35px;
+            height: 35px;
+            background: linear-gradient(135deg, #1e3a8a, #1e40af);
+            border-radius: 50%;
+            margin: 0 auto 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 14px;
+            font-weight: bold;
+        }
+
+        h1 {
+            color: #333;
+            margin-bottom: 5px;
+            font-size: 18px;
+            font-weight: 600;
+        }
+
+        .subtitle {
+            color: #666;
+            margin-bottom: 10px;
+            font-size: 12px;
+            line-height: 1.4;
+        }
+
+        .form-group {
+            margin-bottom: 6px;
+            text-align: left;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 6px;
+            color: #333;
+            font-weight: 500;
+            font-size: 13px;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 6px;
+            border: 2px solid #e1e5e9;
+            border-radius: 10px;
+            font-size: 14px;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-group input:focus {
+            outline: none;
+            border-color: #1e3a8a;
+        }
+
+        .form-row {
+            display: flex;
+            gap: 8px;
+        }
+
+        .form-row .form-group {
+            flex: 1;
+        }
+
+        .signup-btn {
+            width: 100%;
+            padding: 8px;
+            background: linear-gradient(135deg, #1e3a8a, #1e40af);
+            color: white;
+            border: none;
+            border-radius: 12px;
+            font-size: 15px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-bottom: 12px;
+        }
+
+        .signup-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(30, 58, 138, 0.4);
+        }
+
+        .signup-btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .back-to-signin {
+            color: #1e3a8a;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+            display: inline-block;
+            margin-top: 8px;
+        }
+
+        .back-to-signin:hover {
+            text-decoration: underline;
+        }
+
+        .success-message {
+            background: #d4edda;
+            color: #155724;
+            padding: 12px;
+            border-radius: 10px;
+            margin-bottom: 16px;
+            border: 1px solid #c3e6cb;
+            display: none;
+        }
+
+        .error-message {
+            background: #f8d7da;
+            color: #721c24;
+            padding: 12px;
+            border-radius: 10px;
+            margin-bottom: 16px;
+            border: 1px solid #f5c6cb;
+            display: none;
+        }
+
+        .info-box {
+            background: #e7f3ff;
+            color: #0c5460;
+            padding: 10px;
+            border-radius: 10px;
+            margin-bottom: 14px;
+            border: 1px solid #bee5eb;
+            font-size: 12px;
+            line-height: 1.4;
+        }
+
+        .terms-checkbox {
+            display: flex;
+            align-items: flex-start;
+            gap: 8px;
+            margin: 10px 0;
+            text-align: left;
+        }
+
+        .terms-checkbox input[type="checkbox"] {
+            width: auto;
+            margin-top: 2px;
+        }
+
+        .terms-checkbox label {
+            font-size: 12px;
+            color: #666;
+            line-height: 1.4;
+        }
+
+        .terms-checkbox a {
+            color: #1e3a8a;
+            text-decoration: none;
+        }
+
+        .terms-checkbox a:hover {
+            text-decoration: underline;
+        }
+
+        .divider {
+            display: flex;
+            align-items: center;
+            margin: 10px 0;
+            color: #999;
+            font-size: 12px;
+        }
+
+        .divider::before,
+        .divider::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: #e1e5e9;
+        }
+
+        .divider span {
+            padding: 0 15px;
+        }
+
+        .social-auth {
+            margin-top: 10px;
+            padding: 10px;
+            background: #f8f9fa;
+            border-radius: 16px;
+            text-align: center;
+        }
+
+        .social-auth h3 {
+            color: #333;
+            margin-bottom: 8px;
+            font-size: 13px;
+            font-weight: 600;
+        }
+
+        .social-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .social-buttons .auth-button {
+            width: 100%;
+            max-width: 280px;
+            padding: 10px 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            border: 2px solid #e1e5e9;
+            border-radius: 15px;
+            background: white;
+            color: #333;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .social-buttons .auth-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+        }
+
+        .auth-button.icloud {
+            border-color: #007AFF;
+            color: #007AFF;
+        }
+
+        .auth-button.icloud:hover {
+            background: #007AFF;
+            color: white;
+        }
+
+        .auth-button.google {
+            border-color: #4285F4;
+            color: #4285F4;
+        }
+
+        .auth-button.google:hover {
+            background: #4285F4;
+            color: white;
+        }
+
+        .auth-button.windows {
+            border-color: #00A4EF;
+            color: #00A4EF;
+        }
+
+        .auth-button.windows:hover {
+            background: #00A4EF;
+            color: white;
+        }
+
+        .auth-icon {
+            width: 24px;
+            height: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        @media (max-width: 768px) {
+            .signup-container {
+                padding: 20px 16px;
+                margin: 12px;
+                max-width: 95%;
+            }
+            
+            h1 {
+                font-size: 18px;
+            }
+            
+            .subtitle {
+                font-size: 12px;
+            }
+            
+            .logo {
+                width: 35px;
+                height: 35px;
+                font-size: 14px;
+            }
+
+            .form-row {
+                flex-direction: column;
+                gap: 0;
+            }
+
+            .social-buttons .auth-button {
+                min-width: 200px;
+            }
+
+            .social-auth {
+                padding: 14px;
+            }
+        }
+    </style>
 </head>
-
 <body>
+    <div class="signup-container">
+        <div class="logo">🔐</div>
+        <h1>Create Account</h1>
+        <p class="subtitle">Join us and start your journey today</p>
+        
+        <div class="info-box">
+            <strong>Quick & Secure:</strong> Create your account in just a few steps. We'll never share your personal information.
+        </div>
 
- <!--Logo de Soft Cuit-->
- <div>
-    <center>
-        <img src="logopng.png" alt="logopenta" class="logopenta" width="340" height="200">
-    </center>  
- </div>
- <!--Logo de Soft Cuit-->
+        <form id="signupForm">
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="firstName">First Name</label>
+                    <input type="text" id="firstName" name="firstName" placeholder="John" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="lastName">Last Name</label>
+                    <input type="text" id="lastName" name="lastName" placeholder="Doe" required>
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <label for="email">Email Address</label>
+                <input type="email" id="email" name="email" placeholder="your@email.com" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" id="password" name="password" placeholder="Create a strong password" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="confirmPassword">Confirm Password</label>
+                <input type="password" id="confirmPassword" name="confirmPassword" placeholder="Confirm your password" required>
+            </div>
 
- <!--Códigos de el formulario de Sign Up-->   
-    <div class="padre">
-        <div class="box2">
-            <div class="content">
-                <p class="tittle">Create account</p>
-                <br>
-                <input type="text" placeholder="                         Name">
-                <br>
-                <br>
-                <input type="text" placeholder="                     Last name"> 
-                <br>
-                <br>
-                <input type="text" placeholder="                          Email"> 
-                <br>
-                <br>
-                <input type="password" placeholder="                       Password">
-                <br>
-                <p class="other">Alredy a member? <a href="sign.in.html">Sign in</a> </p>
-                <a href="index.html">
-                    <button class="Signup" onclick="window.location.href='SoftCuit.html'">Sign Up
-                    </button>
-                 </a>
+            <div class="terms-checkbox">
+                <input type="checkbox" id="terms" name="terms" required>
+                <label for="terms">
+                    I agree to the <a href="#" onclick="showTerms()">Terms of Service</a> and <a href="#" onclick="showPrivacy()">Privacy Policy</a>
+                </label>
+            </div>
+            
+            <button type="submit" class="signup-btn" id="signupBtn">Create Account</button>
+        </form>
+
+        <div class="success-message" id="successMessage">
+            ✅ Account created successfully! Redirecting to sign in...
+        </div>
+
+        <div class="error-message" id="errorMessage">
+            ❌ An error occurred. Please try again.
+        </div>
+
+        <div class="divider">
+            <span>or</span>
+        </div>
+        
+        <div class="social-auth">
+            <h3>🔐 Sign up with</h3>
+            <div class="social-buttons">
+                <a href="#" class="auth-button icloud" onclick="signUpWithApple()">
+                    <div class="auth-icon">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+                            <path d="M12 6c-2.67 0-4.33 1.33-5 4 1-1 2-1.5 3-1.5s2.5.5 3.5 1.5 2.5 1.5 3.5 1.5 2-.5 3-1.5c-.67-2.67-2.33-4-5-4z"/>
+                        </svg>
+                    </div>
+                    Continue with iCloud
+                </a>
+                
+                <a href="#" class="auth-button google" onclick="signUpWithGoogle()">
+                    <div class="auth-icon">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
+                            <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
+                            <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/>
+                            <path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/>
+                        </svg>
+                    </div>
+                    Continue with Google
+                </a>
+                
+                <a href="#" class="auth-button windows" onclick="signUpWithMicrosoft()">
+                    <div class="auth-icon">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M0 3.5L9.5 2.1v9.4H0V3.5zM10.5 2.1L22 0v11.5H10.5V2.1zM0 12.5h9.5v9.4L0 20.5V12.5zM10.5 12.5H22V24l-11.5-2.1V12.5z"/>
+                        </svg>
+                    </div>
+                    Continue with Windows
+                </a>
             </div>
         </div>
+
+        <a href="Sign in.html" class="back-to-signin">← Already have an account? Sign in here</a>
     </div>
- <!--Códigos de el formulario de Sign Up-->  
-  
+
+    <script>
+        // OAuth configuration for each provider
+        const oauthConfig = {
+            google: {
+                clientId: 'TU_GOOGLE_CLIENT_ID.apps.googleusercontent.com',
+                redirectUri: window.location.origin + '/auth/google/callback',
+                scope: 'openid email profile',
+                authUrl: 'https://accounts.google.com/o/oauth2/v2/auth'
+            },
+            microsoft: {
+                clientId: 'TU_MICROSOFT_CLIENT_ID',
+                redirectUri: window.location.origin + '/auth/microsoft/callback',
+                scope: 'openid email profile',
+                authUrl: 'https://login.microsoftonline.com/common/oauth2/v2.0/authorize'
+            },
+            apple: {
+                clientId: 'com.tuapp.signin',
+                redirectUri: window.location.origin + '/auth/apple/callback',
+                scope: 'name email',
+                authUrl: 'https://appleid.apple.com/auth/authorize'
+            }
+        };
+
+        // Function to start authentication with Google
+        function signUpWithGoogle() {
+            const config = oauthConfig.google;
+            const params = new URLSearchParams({
+                client_id: config.clientId,
+                redirect_uri: config.redirectUri,
+                scope: config.scope,
+                response_type: 'code',
+                access_type: 'offline',
+                prompt: 'consent'
+            });
+            
+            const authUrl = `${config.authUrl}?${params.toString()}`;
+            window.location.href = authUrl;
+        }
+
+        // Function to start authentication with Microsoft/Windows
+        function signUpWithMicrosoft() {
+            const config = oauthConfig.microsoft;
+            const params = new URLSearchParams({
+                client_id: config.clientId,
+                redirect_uri: config.redirectUri,
+                scope: config.scope,
+                response_type: 'code',
+                response_mode: 'query'
+            });
+            
+            const authUrl = `${config.authUrl}?${params.toString()}`;
+            window.location.href = authUrl;
+        }
+
+        // Function to start authentication with Apple/iCloud
+        function signUpWithApple() {
+            const config = oauthConfig.apple;
+            const params = new URLSearchParams({
+                client_id: config.clientId,
+                redirect_uri: config.redirectUri,
+                scope: config.scope,
+                response_type: 'code',
+                response_mode: 'form_post'
+            });
+            
+            const authUrl = `${config.authUrl}?${params.toString()}`;
+            window.location.href = authUrl;
+        }
+
+        // Form submission handler
+        document.getElementById('signupForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const firstName = document.getElementById('firstName').value.trim();
+            const lastName = document.getElementById('lastName').value.trim();
+            const email = document.getElementById('email').value.trim();
+            const password = document.getElementById('password').value;
+            const confirmPassword = document.getElementById('confirmPassword').value;
+            const terms = document.getElementById('terms').checked;
+            
+            // Validation
+            if (!firstName || !lastName || !email || !password || !confirmPassword) {
+                showError('Please fill in all fields');
+                return;
+            }
+
+            if (password !== confirmPassword) {
+                showError('Passwords do not match');
+                return;
+            }
+
+            if (password.length < 8) {
+                showError('Password must be at least 8 characters long');
+                return;
+            }
+
+            if (!terms) {
+                showError('Please accept the terms and conditions');
+                return;
+            }
+
+            // Email validation
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(email)) {
+                showError('Please enter a valid email address');
+                return;
+            }
+
+            // Show loading state
+            const submitBtn = document.getElementById('signupBtn');
+            submitBtn.textContent = 'Creating Account...';
+            submitBtn.disabled = true;
+            
+            // Hide any existing messages
+            hideMessages();
+
+            // Simulate API call
+            setTimeout(() => {
+                // Simulate success (in real app, this would be an API call)
+                if (Math.random() > 0.1) { // 90% success rate for demo
+                    showSuccess();
+                    
+                    // Redirect to sign in page after 2 seconds
+                    setTimeout(() => {
+                        window.location.href = 'Sign in.html';
+                    }, 2000);
+                } else {
+                    showError('Failed to create account. Please try again.');
+                    submitBtn.textContent = 'Create Account';
+                    submitBtn.disabled = false;
+                }
+            }, 2000);
+        });
+
+        function showSuccess() {
+            const successMessage = document.getElementById('successMessage');
+            successMessage.style.display = 'block';
+        }
+
+        function showError(message) {
+            const errorMessage = document.getElementById('errorMessage');
+            errorMessage.textContent = `❌ ${message}`;
+            errorMessage.style.display = 'block';
+        }
+
+        function hideMessages() {
+            document.getElementById('successMessage').style.display = 'none';
+            document.getElementById('errorMessage').style.display = 'none';
+        }
+
+        // Clear messages when user starts typing
+        document.querySelectorAll('input').forEach(input => {
+            input.addEventListener('input', function() {
+                hideMessages();
+            });
+        });
+
+        // Terms and Privacy functions (placeholder)
+        function showTerms() {
+            alert('Terms of Service would be displayed here in a real application.');
+        }
+
+        function showPrivacy() {
+            alert('Privacy Policy would be displayed here in a real application.');
+        }
+
+        // Handle OAuth callback if present
+        function handleAuthCallback() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const code = urlParams.get('code');
+            const error = urlParams.get('error');
+            
+            if (error) {
+                console.error('Authentication error:', error);
+                showError('Error during authentication. Please try again.');
+                return;
+            }
+            
+            if (code) {
+                console.log('Authorization code received:', code);
+                // In a real app, you would exchange this code for a token
+                // and create the user account
+                showSuccess();
+                setTimeout(() => {
+                    window.location.href = 'Sign in.html';
+                }, 2000);
+            }
+        }
+
+        // Check for OAuth callback on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            handleAuthCallback();
+        });
+    </script>
 </body>
 </html>
