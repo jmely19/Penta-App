@@ -158,30 +158,34 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
     
-    // TODO: Implement Gemini API integration
+    // Gemini API integration
     async function callGeminiAPI(prompt) {
-        /*
-        Implementation example:
-        
-        const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent?key=${GEMINI_API_KEY}`, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-                contents: [{
-                    parts: [{
-                        text: prompt
+        try {
+            const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent?key=${GEMINI_API_KEY}`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    contents: [{
+                        parts: [{
+                            text: prompt
+                        }]
                     }]
-                }]
-            })
-        });
-        
-        const data = await response.json();
-        return data.candidates[0].content.parts[0].text;
-        */
-        
-        // For now, using the simple response generator
-        return generateBotResponse(prompt);
+                })
+            });
+            if (!response.ok) {
+                throw new Error(`API request failed with status ${response.status}`);
+            }
+            const data = await response.json();
+            if (data.candidates && data.candidates[0] && data.candidates[0].content && data.candidates[0].content.parts) {
+                return data.candidates[0].content.parts[0].text;
+            } else {
+                throw new Error("Unexpected API response structure");
+            }
+        } catch (error) {
+            console.error("Gemini API Error:", error);
+            return "Sorry, I encountered an error processing your request. Please try again later.";
+        }
     }
 });
