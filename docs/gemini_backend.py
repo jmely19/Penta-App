@@ -3,7 +3,7 @@ import requests
 
 app = Flask(__name__)
 
-GEMINI_API_KEY = 'TU_API_KEY_AQUI'  # Reemplaza por tu API Key
+GEMINI_API_KEY = 'AIzaSyAnQNiXryTD1k6g3aI7Y7FUqASrCW8i0jE'  
 GEMINI_URL = f'https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent?key={GEMINI_API_KEY}'
 
 @app.route('/chat', methods=['POST'])
