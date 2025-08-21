@@ -753,8 +753,8 @@
                         </svg>
                         <span class="text-xl font-bold">PENTA</span>
                     </div>
-                    <p class="text-gray-400 mb-4">Desde 2024 ayudando a jóvenes a tomar el control de su futuro financiero. Más de 50,000 estudiantes confían en nosotros.</p>
-                    <p class="text-sm text-gray-500 mb-4">Certificados por la Asociación de Educación Financiera</p>
+                    <p class="text-gray-400 mb-4">Helping young people take control of their financial future since 2024. More than 50,000 students trust us.</p>
+                    <p class="text-sm text-gray-500 mb-4">Certified by the Financial Education Association.</p>
                     <div class="flex space-x-4">
                         <a href="#" class="text-gray-400 hover:text-white transition duration-300 relative group">
                             <i class="fab fa-facebook-f"></i>
@@ -821,17 +821,17 @@
             const message = document.getElementById('message').value.trim();
             
             if(!name || !email || !message) {
-                alert('Por favor completa todos los campos requeridos');
+                alert('Please complete all required fields');
                 return;
             }
             
             if(!/^S+@S+\.S+$/.test(email)) {
-                alert('Por favor ingresa un email válido');
+                alert('Please enter a valid email address');
                 return;
             }
             
             // Aquí iría la lógica para enviar el formulario
-            alert('¡Gracias por tu mensaje! Nos pondremos en contacto pronto.');
+            alert('Thank you for your message! We will contact you shortly.');
             this.reset();
         });
         
@@ -881,4 +881,5 @@
     </script>
  <script src="scriptchatbot.js"></script>
 </body>
+
 </html>
