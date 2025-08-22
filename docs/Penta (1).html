@@ -1,0 +1,861 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PENTA - Financial Education for Youth</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* IMPORTACIÓN DE FUENTES - Carga las tipografías Poppins y Fredoka One de Google Fonts */
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Fredoka+One&display=swap');
+        
+        /* Estilos generales del cuerpo del documento */
+        body {
+            font-family: 'Poppins', sans-serif;
+            scroll-behavior: smooth;
+            line-height: 1.6;
+            color: #333;
+            background-color: white;
+        }
+        
+        .fun-heading {
+            font-family: 'Fredoka One', cursive;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        section {
+            padding: 80px 0;
+        }
+        
+        h1, h2, h3, h4 {
+            line-height: 1.2;
+            margin-bottom: 1rem;
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+        }
+        
+        h2 {
+            font-size: 2rem;
+            margin-bottom: 2rem;
+        }
+        
+        p {
+            margin-bottom: 1.5rem;
+            font-size: 1.1rem;
+        }
+        
+        .carousel-item {
+            transition: transform 0.5s ease;
+        }
+        
+        .plan-card {
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        
+        .plan-card:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.15);
+        }
+        
+        .value-card {
+            transition: all 0.3s ease;
+        }
+        
+        .value-card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 12px 24px;
+            border-radius: 30px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        .btn:hover {
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.15);
+        }
+        
+        .bg-blue-800 {
+            background-color: #1e40af;
+        }
+        
+        .text-blue-800 {
+            color: #1e40af;
+        }
+        
+        @media (max-width: 768px) {
+            section {
+                padding: 60px 0;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+            
+            h2 {
+                font-size: 1.75rem;
+            }
+        }
+    </style>
+</head>
+<body class="bg-white">
+    <!-- Navegación principal - La barra superior que aparece en todas las páginas -->
+    <!-- Diseñada para ser limpia y accesible, con: -->
+    <!-- - Nuestro logo pentagonal que representa los 5 pilares financieros es por mientra despues se le agregara el otro-->
+    <!-- - Acceso rápido a las secciones principales -->
+    <!-- - Espacio para login/signup bien visible -->
+    <!-- - Adaptación perfecta para móviles -->
+    <nav class="bg-white shadow-md sticky top-0 z-50 border-b border-gray-200">
+        <div class="container mx-auto px-6 py-4">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center space-x-2">
+                    <svg class="h-12 w-12" viewBox="0 0 320 341" xmlns="http://www.w3.org/2000/svg">
+                        <g transform="translate(0.000000,341.000000) scale(0.100000,-0.100000)" stroke="none">
+                            <!-- First two paths are orange -->
+                            <path fill="#F97316" d="M1885 2627 c-4 -188 -5 -355 -4 -372 4 -25 25 -43 164 -138 88 -60 193 -128 233 -152 l73 -43 82 24 c308 93 607 188 607 195 0 4 -37 34 -82 66 -77 55 -200 145 -623 453 -174 128 -400 287 -426 301 -15 8 -17 -21 -24 -334z"/>
+                            <path fill="#EA580C" d="M580 1866 c0 -9 18 -69 40 -133 64 -184 151 -457 337 -1046 16 -52 32 -87 39 -85 10 3 96 109 426 530 l29 37 -61 173 c-34 95 -73 205 -87 245 l-24 71 -322 105 c-386 127 -377 124 -377 103z"/>
+                            <!-- Last three paths are blue -->
+                            <path fill="#1E40AF" d="M1405 2683 c-170 -129 -350 -265 -400 -302 -256 -189 -420 -313 -423 -320 -1 -4 53 -24 120 -45 68 -21 220 -69 338 -107 118 -38 221 -69 229 -69 7 0 109 77 227 171 208 167 213 172 218 212 9 74 17 697 9 696 -5 0 -147 -106 -318 -236z"/>
+                            <path fill="#3B82F6" d="M3030 1970 c-47 -16 -195 -63 -330 -104 -134 -42 -250 -82 -257 -89 -7 -7 -44 -125 -83 -262 -39 -138 -73 -255 -75 -262 -2 -7 31 -61 74 -120 42 -59 137 -192 210 -295 73 -104 136 -188 141 -188 10 0 54 125 151 435 94 302 90 290 203 637 47 147 86 269 86 272 0 11 -36 4 -120 -24z"/>
+                            <path fill="#60A5FA" d="M1755 1120 c-60 -4 -121 -8 -135 -9 -18 -1 -37 -17 -66 -54 -22 -28 -123 -158 -224 -287 l-183 -235 39 -7 c21 -4 190 -7 374 -8 184 0 497 -5 695 -10 198 -5 361 -8 362 -6 3 3 -267 387 -392 559 l-50 67 -155 -2 c-85 -1 -204 -5 -265 -8z"/>
+                        </g>
+                    </svg>
+                    <span class="text-2xl font-bold ml-2">PENTA</span>
+                </div>
+                <div class="hidden md:flex space-x-6">
+                    <a href="#home" class="px-3 py-2 font-medium text-gray-700 hover:text-orange-500 transition">Home</a>
+                    <a href="#about" class="px-3 py-2 font-medium text-gray-700 hover:text-orange-500 transition">About Us</a>
+                    <a href="#plans" class="px-3 py-2 font-medium text-gray-700 hover:text-orange-500 transition">Plans</a>
+                    <a href="#contact" class="px-3 py-2 font-medium text-gray-700 hover:text-orange-500 transition">Contact Us</a>
+                </div>
+                <div class="hidden md:flex items-center space-x-4">
+                    <a href="sign.in.html" class="px-4 py-2 text-gray-700 hover:text-orange-500 transition">Login</a>
+                    <a href="#" class="bg-orange-500 text-white px-4 py-2 rounded-lg hover:bg-orange-600 transition">Sign Up</a>
+                </div>
+                <button class="md:hidden focus:outline-none">
+                    <i class="fas fa-bars text-gray-800 text-xl"></i>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- SECCIÓN HERO - Banner principal con:
+         - Título principal
+         - Subtítulo descriptivo
+         - Botón CTA (Call to Action)
+         - Fondo con imagen y overlay oscuro para mejor legibilidad -->
+    <section id="home" class="text-white py-20 md:py-32 relative overflow-hidden">
+        <div class="absolute inset-0 bg-black/70 z-0">
+            <video autoplay muted loop class="w-full h-full object-cover">
+                <source src="https://assets.mixkit.co/videos/preview/mixkit-man-doing-financial-work-in-a-modern-office-43709-large.mp4" type="video/mp4">
+            </video>
+        </div>
+        <div class="container mx-auto px-6 text-center relative z-10">
+            <h1 class="text-4xl md:text-6xl font-bold mb-6">
+                Financial Education for the Next Generation
+            </h1>
+            <p class="text-xl md:text-2xl mb-8">Empowering youth with essential money management skills through interactive learning</p>
+            <a href="#plans" class="bg-orange-500 text-white px-8 py-3 rounded-full text-lg font-semibold hover:bg-orange-600 transition duration-300">
+                Get Started <i class="fas fa-arrow-right ml-2"></i>
+            </a>
+        </div>
+    </section>
+
+    <!-- SECCIÓN DE 3 PASOS - Explica el proceso educativo:
+         1. Aprender: Lecciones interactivas
+         2. Practicar: Simulaciones financieras
+         3. Dominar: Seguimiento de progreso
+         Cada paso tiene:
+         - Icono representativo
+         - Imagen ilustrativa
+         - Descripción
+         - Botón de acción -->
+    <section class="bg-blue-50 py-16">
+        <div class="container mx-auto px-6">
+            <h2 class="text-3xl font-bold text-center mb-12">Start Your Financial Journey</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="bg-white rounded-xl shadow-lg overflow-hidden transition-transform hover:scale-105">
+                    <div class="bg-blue-800 p-6 text-white">
+                        <h3 class="text-xl font-bold text-center">Step 1: Learn</h3>
+                    </div>
+                    <div class="p-6">
+                        <img src="https://images.unsplash.com/photo-1544717305-2782549b5136?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80" alt="Finance books" class="w-full h-40 object-cover mb-4 rounded-lg">
+                        <p class="text-gray-600 mb-4">Explore our interactive lessons on saving, budgeting, and investing basics.</p>
+                        <a href="#about" class="block text-center bg-blue-100 text-blue-800 px-4 py-2 rounded-full font-medium hover:bg-blue-200 transition">Start Learning</a>
+                    </div>
+                </div>
+                <div class="bg-white rounded-xl shadow-lg overflow-hidden transition-transform hover:scale-105">
+                    <div class="bg-orange-500 p-6 text-white">
+                        <h3 class="text-xl font-bold text-center">Step 2: Practice</h3>
+                    </div>
+                    <div class="p-6">
+                        <img src="https://images.unsplash.com/photo-1554224155-6726b3ff858f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=715&q=80" alt="Financial practice" class="w-full h-40 object-cover mb-4 rounded-lg">
+                        <p class="text-gray-600 mb-4">Apply what you've learned with our virtual financial simulations.</p>
+                        <a href="#plans" class="block text-center bg-orange-100 text-orange-500 px-4 py-2 rounded-full font-medium hover:bg-orange-200 transition">Start Practicing</a>
+                    </div>
+                </div>
+                <div class="bg-white rounded-xl shadow-lg overflow-hidden transition-transform hover:scale-105">
+                    <div class="bg-blue-800 p-6 text-white">
+                        <h3 class="text-xl font-bold text-center">Step 3: Master</h3>
+                    </div>
+                    <div class="p-6">
+                        <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=715&q=80" alt="Financial mastery" class="w-full h-40 object-cover mb-4 rounded-lg">
+                        <p class="text-gray-600 mb-4">Track your progress and earn badges as you master financial concepts.</p>
+                        <a href="#contact" class="block text-center bg-blue-100 text-blue-800 px-4 py-2 rounded-full font-medium hover:bg-blue-200 transition">View Progress</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- SECCIÓN SOBRE NOSOTROS - Contiene:
+         - Nuestros objetivos (3 cards con iconos)
+         - Imagen representativa
+         - Nuestra misión (texto + imagen)
+         Explica el propósito y enfoque educativo de PENTA -->
+    <section id="about" class="py-16 bg-navy-900 text-white" style="background-color: #05052b;">
+        <div class="container mx-auto px-6">
+            <h2 class="text-3xl font-bold text-center mb-12">About Us</h2>
+            
+            <div class="flex flex-col md:flex-row items-center mb-16">
+                <div class="md:w-1/2 mb-8 md:mb-0 md:pr-8">
+                    <h3 class="text-3xl font-bold text-center mb-8 text-orange-400">Our Goals</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 px-4">
+                        <div class="bg-white p-6 rounded-xl hover:shadow-xl transition duration-300 transform hover:-translate-y-2 border border-gray-200">
+                            <div class="w-16 h-16 bg-orange-100 rounded-full flex items-center justify-center mb-4 mx-auto shadow-lg">
+                                <i class="fas fa-piggy-bank text-orange-500 text-2xl"></i>
+                            </div>
+                            <h4 class="font-bold text-xl text-center mb-3 text-gray-800">Financial Literacy</h4>
+                            <p class="text-center text-gray-600">Empowering youth with essential money management skills through interactive, engaging learning methods.</p>
+                        </div>
+                        <div class="bg-white p-6 rounded-xl hover:shadow-xl transition duration-300 transform hover:-translate-y-2 border border-gray-200">
+                            <div class="w-16 h-16 bg-orange-100 rounded-full flex items-center justify-center mb-4 mx-auto shadow-lg">
+                                <i class="fas fa-chart-line text-orange-500 text-2xl"></i>
+                            </div>
+                            <h4 class="font-bold text-xl text-center mb-3 text-gray-800">Practical Skills</h4>
+                            <p class="text-center text-gray-600">Delivering actionable financial knowledge that students can immediately apply in real-world situations.</p>
+                        </div>
+                        <div class="bg-white p-6 rounded-xl hover:shadow-xl transition duration-300 transform hover:-translate-y-2 border border-gray-200">
+                            <div class="w-16 h-16 bg-orange-100 rounded-full flex items-center justify-center mb-4 mx-auto shadow-lg">
+                                <i class="fas fa-hands-helping text-orange-500 text-2xl"></i>
+                            </div>
+                            <h4 class="font-bold text-xl text-center mb-3 text-gray-800">Community</h4>
+                            <p class="text-center text-gray-600">Building a supportive network where youth collaborate and grow their financial knowledge together.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="md:w-1/2 relative">
+                    <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Financial education" class="rounded-lg shadow-xl w-full h-auto max-h-96 object-cover">
+                    <div class="absolute -bottom-4 -right-4 bg-orange-400 p-4 rounded-lg shadow-lg">
+                        <p class="text-white font-bold text-sm">"Financial education is the foundation of success"</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="flex flex-col md:flex-row items-center mt-12">
+                <div class="md:w-1/2 mb-8 md:mb-0 md:pr-8">
+                    <img src="https://images.unsplash.com/photo-1544947950-fa07a98d237f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80" alt="Finance books" class="rounded-lg shadow-xl w-full h-64 object-cover">
+                </div>
+                <div class="md:w-1/2">
+                    <h3 class="text-2xl font-bold mb-4">Our Mission</h3>
+                    <p class="mb-4">At PEMTA, we believe financial education should be accessible, engaging, and fun for everyone, especially young people. Our mission is to empower the next generation with the financial knowledge and skills they need to make smart money decisions throughout their lives.</p>
+                    <p>We break down complex financial concepts into bite-sized, easy-to-understand lessons using interactive tools, games, and real-life scenarios. Whether you're saving for your first car, planning for college, or just want to understand how money works, PEMTA makes learning about finance exciting and rewarding.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- REVAMPED INTERACTIVE LEARNING SECTION -->
+    <section class="py-16 bg-gradient-to-b from-white to-blue-50">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold mb-4 text-gray-800">Interactive Learning Experience</h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">Our gamified approach makes financial education engaging and effective</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+                <div class="space-y-8">
+                    <!-- Feature Cards -->
+                    <div class="bg-white p-6 rounded-xl shadow-lg border-l-4 border-orange-500 transform transition hover:-translate-y-2">
+                        <div class="flex items-start">
+                            <div class="bg-orange-100 p-3 rounded-lg mr-4">
+                                <i class="fas fa-gamepad text-orange-500 text-xl"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-xl font-bold mb-2">Financial Games</h3>
+                                <p class="text-gray-600">Learn through interactive games that simulate real financial decisions and consequences.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-white p-6 rounded-xl shadow-lg border-l-4 border-blue-500 transform transition hover:-translate-y-2">
+                        <div class="flex items-start">
+                            <div class="bg-blue-100 p-3 rounded-lg mr-4">
+                                <i class="fas fa-chart-line text-blue-500 text-xl"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-xl font-bold mb-2">Progress Dashboard</h3>
+                                <p class="text-gray-600">Track your learning journey with visual metrics and personalized recommendations.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-white p-6 rounded-xl shadow-lg border-l-4 border-green-500 transform transition hover:-translate-y-2">
+                        <div class="flex items-start">
+                            <div class="bg-green-100 p-3 rounded-lg mr-4">
+                                <i class="fas fa-trophy text-green-500 text-xl"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-xl font-bold mb-2">Achievement System</h3>
+                                <p class="text-gray-600">Earn badges and certificates as you master financial concepts and complete challenges.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="relative">
+                    <div class="bg-white p-8 rounded-2xl shadow-xl border-2 border-orange-100">
+                        <div class="text-center mb-6">
+                            <span class="bg-orange-100 text-orange-600 px-4 py-1 rounded-full text-sm font-bold">FEATURED</span>
+                            <h3 class="text-2xl font-bold mt-4">Money Quest Adventure</h3>
+                            <p class="text-gray-600 mt-2">An immersive RPG where your financial knowledge determines your success</p>
+                        </div>
+                        <img src="https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Financial planning" class="rounded-lg w-full h-48 object-cover mb-6">
+                        <div class="grid grid-cols-3 gap-4 text-center mb-6">
+                            <div>
+                                <div class="text-orange-500 text-2xl font-bold">50+</div>
+                                <div class="text-gray-500 text-sm">Challenges</div>
+                            </div>
+                            <div>
+                                <div class="text-orange-500 text-2xl font-bold">10</div>
+                                <div class="text-gray-500 text-sm">Financial Topics</div>
+                            </div>
+                            <div>
+                                <div class="text-orange-500 text-2xl font-bold">5</div>
+                                <div class="text-gray-500 text-sm">Difficulty Levels</div>
+                            </div>
+                        </div>
+                        <a href="#plans" class="w-full bg-orange-500 text-white py-3 rounded-lg font-bold hover:bg-orange-600 transition duration-300 block text-center">
+                            Start Adventure <i class="fas fa-play ml-2"></i>
+                        </a>
+                    </div>
+                    <div class="absolute -z-10 -bottom-6 -right-6 w-full h-full rounded-2xl bg-orange-100"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECCIÓN DE VALORES - Muestra los 3 pilares de PENTA:
+         1. Solidaridad (comunidad)
+         2. Transparencia (claridad)
+         3. Compromiso (dedicación)
+         Incluye testimonios de estudiantes en 3 cards -->
+    <section class="py-16 relative overflow-hidden">
+        <div class="absolute inset-0 z-0">
+            <video autoplay muted loop class="w-full h-full object-cover">
+                <source src="https://assets.mixkit.co/videos/preview/mixkit-group-of-young-people-in-a-meeting-43705-large.mp4" type="video/mp4">
+            </video>
+            <div class="absolute inset-0 bg-black/40"></div>
+        </div>
+        <div class="container mx-auto px-6 relative z-10">
+            <h2 class="text-3xl font-bold text-center mb-12 text-white">Our Values</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
+                <div class="value-card bg-white/90 backdrop-blur-sm p-6 rounded-2xl shadow-md transition duration-300 hover:shadow-lg">
+                    <div class="w-16 h-16 bg-orange-500 rounded-full flex items-center justify-center mb-4 mx-auto shadow-md">
+                        <i class="fas fa-hands-helping text-white text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-center mb-2">Solidarity</h3>
+                    <p class="text-center text-gray-600">We believe in supporting each other's financial journeys and creating a community where everyone can learn and grow together.</p>
+                </div>
+                <div class="value-card bg-white/90 backdrop-blur-sm p-6 rounded-lg shadow-md transition duration-300">
+                    <div class="w-16 h-16 bg-orange-400 rounded-full flex items-center justify-center mb-4 mx-auto">
+                        <i class="fas fa-eye text-white text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-center mb-2">Transparency</h3>
+                    <p class="text-center text-gray-600">We're open and honest about financial concepts, pricing, and our methods. No hidden fees, no confusing jargon.</p>
+                </div>
+                <div class="value-card bg-white/90 backdrop-blur-sm p-6 rounded-lg shadow-md transition duration-300">
+                    <div class="w-16 h-16 bg-orange-400 rounded-full flex items-center justify-center mb-4 mx-auto">
+                        <i class="fas fa-handshake text-white text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-center mb-2">Commitment</h3>
+                    <p class="text-center text-gray-600">We're dedicated to providing the best financial education possible and committed to our students' success.</p>
+                </div>
+            </div>
+            
+            <div class="bg-white/90 backdrop-blur-sm rounded-xl p-8">
+                <h3 class="text-2xl font-bold text-center mb-6">What Our Students Say</h3>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <div class="bg-white p-6 rounded-lg shadow-sm">
+                        <div class="flex items-center mb-4">
+                            <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="PENTA user" class="w-10 h-10 rounded-full object-cover mr-3">
+                            <div>
+                                <h4 class="font-bold">PENTA User, 16</h4>
+                                <div class="flex text-yellow-400">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <p>"PENTA made learning about money actually fun! I never thought I'd care about budgeting, but their games and challenges changed my mind."</p>
+                    </div>
+                    <div class="bg-white p-6 rounded-lg shadow-sm">
+                        <div class="flex items-center mb-4">
+                            <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="PENTA user" class="w-10 h-10 rounded-full object-cover mr-3">
+                            <div>
+                                <h4 class="font-bold">PENTA User, 17</h4>
+                                <div class="flex text-yellow-400">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <p>"I saved up for my first car using the saving strategies I learned here. My parents were so impressed!"</p>
+                    </div>
+                    <div class="bg-white p-6 rounded-lg shadow-sm">
+                        <div class="flex items-center mb-4">
+                            <img src="https://randomuser.me/api/portraits/men/22.jpg" alt="PENTA user" class="w-10 h-10 rounded-full object-cover mr-3">
+                            <div>
+                                <h4 class="font-bold">PENTA User, 15</h4>
+                                <div class="flex text-yellow-400">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star-half-alt"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <p>"The investing basics course was eye-opening. I'm already thinking about how to invest my allowance wisely."</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECCIÓN DE PLANES - Muestra 3 opciones de suscripción:
+         1. Básico ($20/mes)
+         2. Avanzado ($50/mes) - Destacado como "Popular"
+         3. Premium ($100/mes)
+         Cada plan muestra características y botón de acción -->
+    <section id="plans" class="py-16" style="background-color: #05052b;">
+        <div class="container mx-auto px-6">
+            <h2 class="text-3xl font-bold text-center mb-12 text-white">Choose Your Plan</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="plan-card bg-white rounded-xl shadow-lg overflow-hidden transition duration-300">
+                    <div class="bg-gray-100 p-6">
+                        <h3 class="text-2xl font-bold text-center text-gray-800">Basic</h3>
+                        <div class="text-center mt-4">
+                            <span class="text-4xl font-bold text-blue-800">$20</span>
+                            <span class="text-gray-600">/month</span>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <ul class="space-y-3">
+                            <li class="flex items-center">
+                                <i class="fas fa-check text-green-500 mr-2"></i>
+                                <span>2GB Storage</span>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check text-green-500 mr-2"></i>
+                                <span>4 Language Domains</span>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check text-green-500 mr-2"></i>
+                                <span>2 Accounts</span>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check text-green-500 mr-2"></i>
+                                <span>Email Support</span>
+                            </li>
+                        </ul>
+                        <button class="w-full mt-6 bg-gray-200 text-gray-800 py-2 rounded-full font-semibold hover:bg-gray-300 transition duration-300">
+                            Get Started
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="plan-card bg-white rounded-xl shadow-xl overflow-hidden transition duration-300 transform hover:scale-105 relative border-4 border-orange-400">
+                    <div class="absolute top-0 right-0 bg-orange-500 text-white px-4 py-1 text-sm font-bold rounded-bl-lg">
+                        POPULAR
+                    </div>
+                    <div class="bg-gradient-to-r from-orange-400 to-orange-500 p-6">
+                        <h3 class="text-2xl font-bold text-center text-white">Advanced</h3>
+                        <div class="text-center mt-4">
+                            <span class="text-4xl font-bold text-white">$50</span>
+                            <span class="text-white opacity-80">/month</span>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <ul class="space-y-3">
+                            <li class="flex items-center">
+                                <i class="fas fa-check text-orange-500 mr-2"></i>
+                                <span class="font-medium">4GB Storage</span>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check text-orange-500 mr-2"></i>
+                                <span class="font-medium">5 Language Domains</span>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check text-orange-500 mr-2"></i>
+                                <span class="font-medium">3 Accounts</span>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check text-orange-500 mr-2"></i>
+                                <span class="font-medium">Priority Support</span>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check text-orange-500 mr-2"></i>
+                                <span class="font-medium">Advanced Tools</span>
+                            </li>
+                        </ul>
+                        <button class="w-full mt-6 bg-orange-500 text-white py-2 rounded-full font-semibold hover:bg-orange-600 transition duration-300">
+                            Get Started Now <i class="fas fa-arrow-right ml-2"></i>
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="plan-card bg-white rounded-xl shadow-lg overflow-hidden transition duration-300">
+                    <div class="bg-gray-100 p-6">
+                        <h3 class="text-2xl font-bold text-center text-gray-800">Premium</h3>
+                        <div class="text-center mt-4">
+                            <span class="text-4xl font-bold text-blue-800">$100</span>
+                            <span class="text-gray-600">/month</span>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <ul class="space-y-3">
+                            <li class="flex items-center">
+                                <i class="fas fa-check text-green-500 mr-2"></i>
+                                <span>8GB Storage</span>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check text-green-500 mr-2"></i>
+                                <span>Unlimited Domains</span>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check text-green-500 mr-2"></i>
+                                <span>5 Accounts</span>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check text-green-500 mr-2"></i>
+                                <span>24/7 Support</span>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check text-green-500 mr-2"></i>
+                                <span>All Features</span>
+                            </li>
+                        </ul>
+                        <button class="w-full mt-6 bg-blue-600 text-white py-2 rounded-full font-semibold hover:bg-blue-700 transition duration-300">
+                            Get Started
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="mt-12 text-center text-white">
+                <h3 class="text-2xl font-bold mb-4">Not sure which plan is right for you?</h3>
+                <p class="mb-6">Contact our team and we'll help you find the perfect solution for your needs.</p>
+                <a href="#contact" class="inline-block bg-orange-500 text-white px-6 py-3 rounded-full font-semibold hover:bg-orange-600 transition duration-300">
+                    Contact Us <i class="fas fa-envelope ml-2"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECCIÓN DE CONTACTO - Dividida en 2 columnas:
+         1. Información de contacto (dirección, email, teléfono)
+         2. Formulario de contacto (nombre, email, asunto, mensaje)
+         Incluye también redes sociales -->
+    <section id="contact" class="py-16 bg-gray-100">
+        <div class="container mx-auto px-6">
+            <h2 class="text-3xl font-bold text-center mb-12">Get In Touch</h2>
+            
+            <div class="flex flex-col md:flex-row gap-8">
+                <div class="md:w-1/2">
+                    <div class="bg-white rounded-xl shadow-md p-8 h-full">
+                        <h3 class="text-2xl font-bold mb-6">Contact Information</h3>
+                        
+                        <div class="space-y-6">
+                            <div class="flex items-start">
+                                <div class="bg-orange-100 p-3 rounded-lg mr-4">
+                                    <i class="fas fa-map-marker-alt text-orange-500"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-lg">Our Location</h4>
+                                    <p class="text-gray-600">123 Financial Street, Moneyville, MV 12345</p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-start">
+                                <div class="bg-orange-100 p-3 rounded-lg mr-4">
+                                    <i class="fas fa-envelope text-orange-500"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-lg">Email Us</h4>
+                                    <p class="text-gray-600">info@penta-finance.com</p>
+                                    <p class="text-gray-600">support@penta-finance.com</p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-start">
+                                <div class="bg-orange-100 p-3 rounded-lg mr-4">
+                                    <i class="fas fa-phone-alt text-orange-500"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-lg">Call Us</h4>
+                                    <p class="text-gray-600">+1 (555) 123-4567</p>
+                                    <p class="text-gray-600">Mon-Fri: 9am-5pm</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="mt-8">
+                            <h4 class="font-bold text-lg mb-4">Follow Us</h4>
+                            <div class="flex space-x-4">
+                                <a href="#" class="w-10 h-10 bg-gray-200 rounded-full flex items-center justify-center text-gray-700 hover:bg-orange-500 hover:text-white transition duration-300">
+                                    <i class="fab fa-facebook-f"></i>
+                                </a>
+                                <a href="#" class="w-10 h-10 bg-gray-200 rounded-full flex items-center justify-center text-gray-700 hover:bg-orange-500 hover:text-white transition duration-300">
+                                    <i class="fab fa-twitter"></i>
+                                </a>
+                                <a href="#" class="w-10 h-10 bg-gray-200 rounded-full flex items-center justify-center text-gray-700 hover:bg-orange-500 hover:text-white transition duration-300">
+                                    <i class="fab fa-instagram"></i>
+                                </a>
+                                <a href="#" class="w-10 h-10 bg-gray-200 rounded-full flex items-center justify-center text-gray-700 hover:bg-orange-500 hover:text-white transition duration-300">
+                                    <i class="fab fa-linkedin-in"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="md:w-1/2">
+                    <div class="bg-white rounded-xl shadow-md p-8 h-full">
+                        <h3 class="text-2xl font-bold mb-6">Send Us a Message</h3>
+                        
+                        <form id="contactForm" class="space-y-4">
+                            <!-- Grupo de campos del formulario con validación mejorada -->
+                            <div class="mb-4">
+                                <label for="name" class="block text-gray-700 font-medium mb-2">Your Name</label>
+                                <input type="text" id="name" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-400">
+                            </div>
+                            
+                            <div class="mb-4">
+                                <label for="email" class="block text-gray-700 font-medium mb-2">Email Address</label>
+                                <input type="email" id="email" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-400">
+                            </div>
+                            
+                            <div class="mb-4">
+                                <label for="subject" class="block text-gray-700 font-medium mb-2">Subject</label>
+                                <input type="text" id="subject" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-400">
+                            </div>
+                            
+                            <div class="mb-6">
+                                <label for="message" class="block text-gray-700 font-medium mb-2">Message</label>
+                                <textarea id="message" rows="5" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-400"></textarea>
+                            </div>
+                            
+                            <button type="submit" class="w-full bg-orange-500 text-white py-3 rounded-lg font-semibold hover:bg-orange-600 transition duration-300">
+                                Send Message <i class="fas fa-paper-plane ml-2"></i>
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- NEWSLETTER - Sección de suscripción:
+         - Título y texto explicativo
+         - Campo de email + botón de suscripción
+         Diseñado para captar leads y mantener engagement -->
+    <section class="py-12 bg-gray-100">
+        <div class="container mx-auto px-6 text-center">
+            <h2 class="text-2xl font-semibold mb-3 text-gray-800">Stay Updated</h2>
+            <p class="mb-6 max-w-2xl mx-auto text-gray-600">Get financial tips and updates in your inbox</p>
+            
+            <div class="max-w-md mx-auto flex">
+                <input type="email" placeholder="Your email" class="flex-grow px-4 py-2 rounded-l-lg border border-gray-300 focus:outline-none focus:ring-1 focus:ring-blue-500">
+                <button class="bg-blue-600 text-white px-4 py-2 rounded-r-lg font-medium hover:bg-blue-700 transition duration-200">
+                    Join
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER - Dividido en 4 columnas:
+         1. Logo y descripción + redes
+         2. Enlaces rápidos (navegación)
+         3. Recursos educativos
+         4. Legal (términos, privacidad)
+         + Copyright en la parte inferior -->
+    <footer class="bg-gray-900 text-white py-12">
+        <div class="container mx-auto px-6">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div>
+                    <div class="flex items-center mb-4">
+                        <svg class="h-8 w-8 mr-2" viewBox="0 0 320 341" xmlns="http://www.w3.org/2000/svg">
+                            <g transform="translate(0.000000,341.000000) scale(0.100000,-0.100000)" stroke="none">
+                                <!-- First two paths are orange -->
+                                <path fill="#F97316" d="M1885 2627 c-4 -188 -5 -355 -4 -372 4 -25 25 -43 164 -138 88 -60 193 -128 233 -152 l73 -43 82 24 c308 93 607 188 607 195 0 4 -37 34 -82 66 -77 55 -200 145 -623 453 -174 128 -400 287 -426 301 -15 8 -17 -21 -24 -334z"/>
+                                <path fill="#EA580C" d="M580 1866 c0 -9 18 -69 40 -133 64 -184 151 -457 337 -1046 16 -52 32 -87 39 -85 10 3 96 109 426 530 l29 37 -61 173 c-34 95 -73 205 -87 245 l-24 71 -322 105 c-386 127 -377 124 -377 103z"/>
+                                <!-- Last three paths are blue -->
+                                <path fill="#1E40AF" d="M1405 2683 c-170 -129 -350 -265 -400 -302 -256 -189 -420 -313 -423 -320 -1 -4 53 -24 120 -45 68 -21 220 -69 338 -107 118 -38 221 -69 229 -69 7 0 109 77 227 171 208 167 213 172 218 212 9 74 17 697 9 696 -5 0 -147 -106 -318 -236z"/>
+                                <path fill="#3B82F6" d="M3030 1970 c-47 -16 -195 -63 -330 -104 -134 -42 -250 -82 -257 -89 -7 -7 -44 -125 -83 -262 -39 -138 -73 -255 -75 -262 -2 -7 31 -61 74 -120 42 -59 137 -192 210 -295 73 -104 136 -188 141 -188 10 0 54 125 151 435 94 302 90 290 203 637 47 147 86 269 86 272 0 11 -36 4 -120 -24z"/>
+                                <path fill="#60A5FA" d="M1755 1120 c-60 -4 -121 -8 -135 -9 -18 -1 -37 -17 -66 -54 -22 -28 -123 -158 -224 -287 l-183 -235 39 -7 c21 -4 190 -7 374 -8 184 0 497 -5 695 -10 198 -5 361 -8 362 -6 3 3 -267 387 -392 559 l-50 67 -155 -2 c-85 -1 -204 -5 -265 -8z"/>
+                            </g>
+                        </svg>
+                        <span class="text-xl font-bold">PENTA</span>
+                    </div>
+                    <p class="text-gray-400 mb-4">Desde 2024 ayudando a jóvenes a tomar el control de su futuro financiero. Más de 50,000 estudiantes confían en nosotros.</p>
+                    <p class="text-sm text-gray-500 mb-4">Certificados por la Asociación de Educación Financiera</p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-gray-400 hover:text-white transition duration-300 relative group">
+                            <i class="fab fa-facebook-f"></i>
+                            <span class="absolute -bottom-8 left-1/2 transform -translate-x-1/2 bg-gray-800 text-white text-xs px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity duration-200 whitespace-nowrap">Síguenos en Facebook</span>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white transition duration-300">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white transition duration-300">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white transition duration-300">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div>
+                    <h3 class="text-lg font-bold mb-4">Quick Links</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#home" class="text-gray-400 hover:text-white transition duration-300">Home</a></li>
+                        <li><a href="#about" class="text-gray-400 hover:text-white transition duration-300">About Us</a></li>
+                        <li><a href="#plans" class="text-gray-400 hover:text-white transition duration-300">Plans</a></li>
+                        <li><a href="#contact" class="text-gray-400 hover:text-white transition duration-300">Contact</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition duration-300">Blog</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="text-lg font-bold mb-4">Resources</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-400 hover:text-white transition duration-300">Financial Calculators</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition duration-300">Learning Modules</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition duration-300">Glossary</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition duration-300">FAQs</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition duration-300">Support</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="text-lg font-bold mb-4">Legal</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-400 hover:text-white transition duration-300">Terms of Service</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition duration-300">Privacy Policy</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition duration-300">Cookie Policy</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition duration-300">GDPR</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-800 mt-12 pt-8 text-center text-gray-400">
+                <p>&copy; 2024 PENTA Financial Education. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Validación del formulario de contacto
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const name = document.getElementById('name').value.trim();
+            const email = document.getElementById('email').value.trim();
+            const message = document.getElementById('message').value.trim();
+            
+            if(!name || !email || !message) {
+                alert('Por favor completa todos los campos requeridos');
+                return;
+            }
+            
+            if(!/^S+@S+\.S+$/.test(email)) {
+                alert('Por favor ingresa un email válido');
+                return;
+            }
+            
+            // Aquí iría la lógica para enviar el formulario
+            alert('¡Gracias por tu mensaje! Nos pondremos en contacto pronto.');
+            this.reset();
+        });
+        
+        // Scroll suave mejorado con offset para el header fijo
+        document.querySelectorAll('.quick-access a').forEach(button => {
+            button.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-5px)';
+                this.style.boxShadow = '0 10px 20px rgba(0,0,0,0.2)';
+            });
+            button.addEventListener('mouseleave', function() {
+                this.style.transform = '';
+                this.style.boxShadow = '';
+            });
+        });
+        
+        /* Desplazamiento suave para enlaces internos con offset para el header */
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if(targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if(targetElement) {
+                    const headerHeight = document.querySelector('nav').offsetHeight;
+                    const targetPosition = targetElement.getBoundingClientRect().top + window.pageYOffset - headerHeight;
+                    
+                    window.scrollTo({
+                        top: targetPosition,
+                        behavior: 'smooth'
+                    });
+                    
+                    // Actualizar URL sin recargar la página
+                    history.pushState(null, null, targetId);
+                }
+            });
+        });
+        
+        /* Toggle para menú móvil (necesitaría elementos HTML adicionales)
+           Esto es solo un marcador de posición - se necesitaría implementar la estructura del menú móvil */
+        const mobileMenuButton = document.querySelector('nav button.md\\:hidden');
+        mobileMenuButton.addEventListener('click', () => {
+            // This would toggle a mobile menu
+            console.log('Mobile menu would open');
+        });
+    </script>
+</body>
+</html>
