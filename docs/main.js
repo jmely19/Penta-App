@@ -11,8 +11,32 @@ const CloseChatbot = document.querySelector("#close-chatbot");
 
 // API Setup
 // API Configuración
-const API_KEY = "AIzaSyAAMnZEeHAs4tuBmJ_kBgYSpK5v26Gpd7g";
-const API_URL = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${API_KEY}`;
+const API_URL = "http://localhost:5000/chat";
+
+const generateBotResponse = async (incomingMessageDiv) => {
+    const messageElement = incomingMessageDiv.querySelector(".message-text");
+    try {
+        const response = await fetch(API_URL, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ prompt: userData.message })
+        });
+        const data = await response.json();
+        if (data.response) {
+            messageElement.innerText = data.response;
+        } else {
+            messageElement.innerText = data.error || "Error en la respuesta del servidor";
+            messageElement.style.color = "#ff0000";
+        }
+    } catch (error) {
+        messageElement.innerText = error.message;
+        messageElement.style.color = "#ff0000";
+    } finally {
+        userData.file = {};
+        incomingMessageDiv.classList.remove("thinking");
+        scrollToLatestMessage();
+    }
+};
 
 const userData = {
     message: null,
@@ -38,61 +62,7 @@ const createMessageElement = (content, ...classes) => {
     return div;
 };
 
-// Generate bot response using API
-// Generar respuesta de bot usando API
-const generateBotResponse = async (incomingMessageDiv) => {
-    const messageElement = incomingMessageDiv.querySelector(".message-text");
-
-    // Add user message to chat history
-    // Agregar mensaje de usuario al historial de chat
-    chatHistory.push({
-        role: "user",
-        parts: [{ text: userData.message }, ...(userData.file.data ? [{ inline_data: userData.file }] : [])]
-    });
-
-    // API request options
-    // Opciones de solicitud de API
-    const requestOptions = {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-            contents: chatHistory
-        })
-    }
-
-    try {
-        // Fetch bot response from API
-        // Obtener la respuesta del bot desde la API
-        const response = await fetch(API_URL, requestOptions);
-        const data = await response.json();
-        if(!response.ok) throw new Error(data.error.message);
-
-        // Extract and display bot's response text
-        // Extraer y mostrar el texto de respuesta del bot
-        const apiResponseText = data.candidates[0].content.parts[0].text.replace(/\*\*(.*?)\*\*/g, "$1").trim();
-        messageElement.innerText = apiResponseText;
-
-        // Add bot response to chat history
-        // Agregar la respuesta del bot al historial de chat
-        chatHistory.push({
-            role: "model",
-            parts: [{ text: apiResponseText }]
-        });
-
-    } catch (error) {
-        // Handle error in API response
-        // Manejar error en respuesta API
-        console.error(error);
-        messageElement.innerText = error.message;
-        messageElement.style.color = "#ff0000";
-    } finally {
-        // Reset user's file data, removing thinking indicator and scroll chat to bottom
-        // Restablecer los datos del archivo del usuario, eliminar el indicador de pensamiento y desplazar el chat hasta el final
-        userData.file = {};
-        incomingMessageDiv.classList.remove("thinking");
-        scrollToLatestMessage();
-    }
-}
+// ...existing code...
 
 // Handle outgoing user messages
 // Gestionar mensajes salientes de usuario
