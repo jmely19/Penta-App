@@ -90,7 +90,7 @@ body.show-chatbot .chatbot-popup {
     height: 35px;
     width: 35px;
     padding: 6px;
-    fill: #05052b;
+    fill: #5350C4;
     flex-shrink: 0;
     background: #fff;
     border-radius: 50%;
@@ -117,7 +117,7 @@ body.show-chatbot .chatbot-popup {
 }
 
 .chat-header #close-chatbot:hover {
-    background-color: #05052b;
+    background-color: #3d39ac;
 }
 
 .chat-body {
