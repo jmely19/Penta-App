@@ -30,7 +30,7 @@
 </head>
 <body class="bg-gray-100">
     <!-- NAV -->
-    <nav class="bg-white shadow-md sticky top-0 z-50 border-b border-gray-200">
+           <nav class="bg-white shadow-md sticky top-0 z-50 border-b border-gray-200">
         <div class="container mx-auto px-6 py-4">
             <div class="flex items-center justify-between">
                 <div class="flex items-center space-x-2">
@@ -47,29 +47,29 @@
                     </svg>
                     <span class="text-2xl font-bold ml-2">PENTA</span>
                 </div>
-                <div class="hidden md:flex space-x-6">
-                    <a href="#home" class="px-3 py-2 font-medium text-gray-700 hover:text-orange-500 transition">Home</a>
-                    <a href="#about" class="px-3 py-2 font-medium text-gray-700 hover:text-orange-500 transition">About Us</a>
-                    <a href="#plans" class="px-3 py-2 font-medium text-gray-700 hover:text-orange-500 transition">Plans</a>
-                    <a href="#contact" class="px-3 py-2 font-medium text-gray-700 hover:text-orange-500 transition">Contact Us</a>
+                <!-- Enlaces de navegación -->
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="index.html" class="nav-link text-gray-800 hover:text-orange-500 font-medium">Home</a>
+                    <a href="our-lessons.html" class="nav-link text-gray-800 hover:text-orange-500 font-medium">Our lessons</a>
+                    <a href="profile.html" class="nav-link text-orange-500 border-b-2 border-orange-500 font-medium">Profile</a>
+                    <a href="contact.html" class="nav-link text-gray-800 hover:text-orange-500 font-medium">Contact us</a>
                 </div>
-                <div class="hidden md:flex items-center space-x-4">
-                    <a href="sign.in.html" class="px-4 py-2 text-gray-700 hover:text-orange-500 transition">Login</a>
-                    <a href="sign.up.html" class="bg-orange-500 text-white px-4 py-2 rounded-lg hover:bg-orange-600 transition">Sign Up</a>
+                <!-- Cerrar Sesión -->
+                <div class="hidden md:flex">
+                     <a href="#" class="bg-gray-200 text-gray-700 px-4 py-2 rounded-full hover:bg-gray-300 transition duration-300 text-sm font-semibold">Log out</a>
                 </div>
+                
                 <button class="md:hidden focus:outline-none">
                     <i class="fas fa-bars text-gray-800 text-xl"></i>
                 </button>
             </div>
         </div>
     </nav>
-
     <!-- MAIN -->
     <main>
         <section id="modulos" class="py-16" style="background-color:#05052b;">
             <div class="container mx-auto px-6">
                 <h2 class="text-3xl lg:text-4xl font-bold text-center mb-16 text-white">Our Learning Modules</h2>
-
                 <div id="temas-container">
                     <!-- PRESUPUESTO -->
                     <div class="tema" data-index="0">
@@ -102,6 +102,19 @@
                                     <p class="text-gray-600 flex-grow">A budget is a map: Navigating your expenses and making choices.</p>
                                     <button class="start-lesson-btn mt-4 bg-orange-500 text-white py-2 rounded-full font-bold hover:bg-orange-600">Start</button>
                                 </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- MODAL PRESUPUESTO -->
+                    <div id="learning-modal-presupuesto" class="fixed inset-0 bg-black bg-opacity-60 flex items-center justify-center p-4 z-50 hidden">
+                        <div class="modal-content bg-white rounded-2xl shadow-2xl w-full max-w-md p-8 text-center relative">
+                            <button id="close-modal-btn-presupuesto" class="absolute top-4 right-4 text-gray-400 hover:text-gray-700"><i class="fas fa-times fa-2x"></i></button>
+                            <h3 class="text-2xl font-bold mb-4">Select your learning style</h3>
+                            <p class="text-gray-600 mb-8">Everyone learns differently. Choose the option you like best!</p>
+                            <div class="space-y-4">
+                                <a href="#" class="block w-full bg-blue-600 text-white py-3 rounded-lg font-semibold text-lg hover:bg-blue-700"><i class="fas fa-book-open mr-2"></i> Story</a>
+                                <a href="#" class="block w-full bg-teal-500 text-white py-3 rounded-lg font-semibold text-lg hover:bg-teal-600"><i class="fas fa-file-alt mr-2"></i> Text</a>
+                                <a href="exercise1.html" class="block w-full bg-indigo-600 text-white py-3 rounded-lg font-semibold text-lg hover:bg-indigo-700"><i class="fas fa-pencil-ruler mr-2"></i> Exercises</a>
                             </div>
                         </div>
                     </div>
@@ -139,6 +152,19 @@
                             </div>
                         </div>
                     </div>
+                    <!-- MODAL AHORRO -->
+                    <div id="learning-modal-ahorro" class="fixed inset-0 bg-black bg-opacity-60 flex items-center justify-center p-4 z-50 hidden">
+                        <div class="modal-content bg-white rounded-2xl shadow-2xl w-full max-w-md p-8 text-center relative">
+                            <button id="close-modal-btn-ahorro" class="absolute top-4 right-4 text-gray-400 hover:text-gray-700"><i class="fas fa-times fa-2x"></i></button>
+                            <h3 class="text-2xl font-bold mb-4">Select your learning style</h3>
+                            <p class="text-gray-600 mb-8">Everyone learns differently. Choose the option you like best!</p>
+                            <div class="space-y-4">
+                                <a href="#" class="block w-full bg-blue-600 text-white py-3 rounded-lg font-semibold text-lg hover:bg-blue-700"><i class="fas fa-book-open mr-2"></i> Story</a>
+                                <a href="#" class="block w-full bg-teal-500 text-white py-3 rounded-lg font-semibold text-lg hover:bg-teal-600"><i class="fas fa-file-alt mr-2"></i> Text</a>
+                                <a href="exercise2.html" class="block w-full bg-indigo-600 text-white py-3 rounded-lg font-semibold text-lg hover:bg-indigo-700"><i class="fas fa-pencil-ruler mr-2"></i> Exercises</a>
+                            </div>
+                        </div>
+                    </div>
 
                     <!-- CRISIS -->
                     <div class="tema hidden" data-index="2">
@@ -173,8 +199,20 @@
                             </div>
                         </div>
                     </div>
+                    <!-- MODAL CRISIS -->
+                    <div id="learning-modal-crisis" class="fixed inset-0 bg-black bg-opacity-60 flex items-center justify-center p-4 z-50 hidden">
+                        <div class="modal-content bg-white rounded-2xl shadow-2xl w-full max-w-md p-8 text-center relative">
+                            <button id="close-modal-btn-crisis" class="absolute top-4 right-4 text-gray-400 hover:text-gray-700"><i class="fas fa-times fa-2x"></i></button>
+                            <h3 class="text-2xl font-bold mb-4">Select your learning style</h3>
+                            <p class="text-gray-600 mb-8">Everyone learns differently. Choose the option you like best!</p>
+                            <div class="space-y-4">
+                                <a href="#" class="block w-full bg-blue-600 text-white py-3 rounded-lg font-semibold text-lg hover:bg-blue-700"><i class="fas fa-book-open mr-2"></i> Story</a>
+                                <a href="#" class="block w-full bg-teal-500 text-white py-3 rounded-lg font-semibold text-lg hover:bg-teal-600"><i class="fas fa-file-alt mr-2"></i> Text</a>
+                                <a href="exercise3.html" class="block w-full bg-indigo-600 text-white py-3 rounded-lg font-semibold text-lg hover:bg-indigo-700"><i class="fas fa-pencil-ruler mr-2"></i> Exercises</a>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-
                 <!-- Botones -->
                 <div class="flex justify-between mt-10">
                     <button id="prev-btn" class="bg-gray-500 text-white px-6 py-2 rounded-full font-bold hover:bg-gray-600 hidden">Previous</button>
@@ -183,8 +221,7 @@
             </div>
         </section>
     </main>
-
-    <!-- MODAL -->
+    <!-- MODAL ORIGINAL (puedes eliminarlo si ya no lo usas) -->
     <div id="learning-modal" class="fixed inset-0 bg-black bg-opacity-60 flex items-center justify-center p-4 z-50 hidden">
         <div class="modal-content bg-white rounded-2xl shadow-2xl w-full max-w-md p-8 text-center relative">
             <button id="close-modal-btn" class="absolute top-4 right-4 text-gray-400 hover:text-gray-700"><i class="fas fa-times fa-2x"></i></button>
@@ -197,21 +234,44 @@
             </div>
         </div>
     </div>
-
     <!-- FOOTER -->
     <footer class="bg-gray-900 text-white py-12 text-center">
         <p>&copy; 2025 PENTA Financial Education. All rights reserved.</p>
     </footer>
-
     <script>
-        const modal = document.getElementById('learning-modal');
-        const startButtons = document.querySelectorAll('.start-lesson-btn');
-        const closeButton = document.getElementById('close-modal-btn');
-        const openModal = () => modal.classList.remove('hidden');
-        const closeModal = () => modal.classList.add('hidden');
-        startButtons.forEach(btn => btn.addEventListener('click', openModal));
-        closeButton.addEventListener('click', closeModal);
-        modal.addEventListener('click', e => { if (e.target === modal) closeModal(); });
+        // Modal Presupuesto
+        const modalPresupuesto = document.getElementById('learning-modal-presupuesto');
+        const startButtonsPresupuesto = document.querySelectorAll('[data-lesson-id^="presupuesto-"] .start-lesson-btn');
+        const closeButtonPresupuesto = document.getElementById('close-modal-btn-presupuesto');
+
+        // Modal Ahorro
+        const modalAhorro = document.getElementById('learning-modal-ahorro');
+        const startButtonsAhorro = document.querySelectorAll('[data-lesson-id^="ahorro-"] .start-lesson-btn');
+        const closeButtonAhorro = document.getElementById('close-modal-btn-ahorro');
+
+        // Modal Crisis
+        const modalCrisis = document.getElementById('learning-modal-crisis');
+        const startButtonsCrisis = document.querySelectorAll('[data-lesson-id^="crisis-"] .start-lesson-btn');
+        const closeButtonCrisis = document.getElementById('close-modal-btn-crisis');
+
+        // Funciones para abrir y cerrar modales
+        const openModal = (modal) => modal.classList.remove('hidden');
+        const closeModal = (modal) => modal.classList.add('hidden');
+
+        // Asignar eventos a los botones de Presupuesto
+        startButtonsPresupuesto.forEach(btn => btn.addEventListener('click', () => openModal(modalPresupuesto)));
+        closeButtonPresupuesto.addEventListener('click', () => closeModal(modalPresupuesto));
+        modalPresupuesto.addEventListener('click', e => { if (e.target === modalPresupuesto) closeModal(modalPresupuesto); });
+
+        // Asignar eventos a los botones de Ahorro
+        startButtonsAhorro.forEach(btn => btn.addEventListener('click', () => openModal(modalAhorro)));
+        closeButtonAhorro.addEventListener('click', () => closeModal(modalAhorro));
+        modalAhorro.addEventListener('click', e => { if (e.target === modalAhorro) closeModal(modalAhorro); });
+
+        // Asignar eventos a los botones de Crisis
+        startButtonsCrisis.forEach(btn => btn.addEventListener('click', () => openModal(modalCrisis)));
+        closeButtonCrisis.addEventListener('click', () => closeModal(modalCrisis));
+        modalCrisis.addEventListener('click', e => { if (e.target === modalCrisis) closeModal(modalCrisis); });
 
         function loadProgress() {
             const savedProgress = localStorage.getItem('pentaProgress');
@@ -223,10 +283,8 @@
                 });
             }
         }
-
         function saveProgress(lessonId) {
             let progress = JSON.parse(localStorage.getItem('pentaProgress') || '{"completed":[],"skills":{"critical-thinking":0,"problem-solving":0,"financial-decision-making":0}}');
-
             if (!progress.completed.includes(lessonId)) {
                 progress.completed.push(lessonId);
                 if (lessonId.startsWith('presupuesto')) {
@@ -242,28 +300,35 @@
                 alert('¡Lección completada! Tu progreso ha sido guardado.');
             }
         }
-
-        startButtons.forEach(btn => {
+        startButtonsPresupuesto.forEach(btn => {
             btn.addEventListener('click', function() {
                 const lessonId = this.closest('[data-lesson-id]').dataset.lessonId;
                 saveProgress(lessonId);
             });
         });
-
+        startButtonsAhorro.forEach(btn => {
+            btn.addEventListener('click', function() {
+                const lessonId = this.closest('[data-lesson-id]').dataset.lessonId;
+                saveProgress(lessonId);
+            });
+        });
+        startButtonsCrisis.forEach(btn => {
+            btn.addEventListener('click', function() {
+                const lessonId = this.closest('[data-lesson-id]').dataset.lessonId;
+                saveProgress(lessonId);
+            });
+        });
         let currentTema = 0;
         const temas = document.querySelectorAll('.tema');
         const prevBtn = document.getElementById('prev-btn');
         const nextBtn = document.getElementById('next-btn');
-
         function showTema(index) {
             temas.forEach((tema, i) => tema.classList.toggle('hidden', i !== index));
             prevBtn.classList.toggle('hidden', index === 0);
             nextBtn.classList.toggle('hidden', index === temas.length - 1);
         }
-
         nextBtn.addEventListener('click', () => { if (currentTema < temas.length - 1) { currentTema++; showTema(currentTema); } });
         prevBtn.addEventListener('click', () => { if (currentTema > 0) { currentTema--; showTema(currentTema); } });
-
         document.addEventListener('DOMContentLoaded', () => {
             loadProgress();
             const temaIndex = localStorage.getItem('pentaSelectedTema');
