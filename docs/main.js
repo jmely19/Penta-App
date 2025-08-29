@@ -220,26 +220,12 @@ chatbotToggler.addEventListener("click", () => document.body.classList.toggle("s
 
 CloseChatbot.addEventListener("click", () => document.body.classList.remove("show-chatbot"));
 
-// Load FAQ from external JSON file
-let aiFAQ = [];
-
-async function loadFAQ() {
-  try {
-    const response = await fetch('ai_faq.json');
-    if (response.ok) {
-      aiFAQ = await response.json();
-    } else {
-      aiFAQ = [];
-    }
-  } catch (e) {
-    aiFAQ = [];
-  }
-}
+// Importa el array de preguntas/respuestas desde ai_faq.js
+// Asegúrate de incluir <script src="ai_faq.js"></script> antes de main.js en tu HTML
+let aiFAQ = window.aiFAQ || [];
 
 function getFAQAnswer(userQuestion) {
-  userQuestion = userQuestion.toLowerCase();
-  const match = aiFAQ.find(item => item.q.toLowerCase().includes(userQuestion));
-  return match ? match.a : null;
+    userQuestion = userQuestion.toLowerCase();
+    const match = aiFAQ.find(item => item.q.toLowerCase().includes(userQuestion));
+    return match ? match.a : null;
 }
-
-document.addEventListener('DOMContentLoaded', loadFAQ);
