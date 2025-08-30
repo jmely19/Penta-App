@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PENTA - My Profile</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Fredoka+One&display=swap');
+        body { font-family: 'Poppins', sans-serif; }
+        .progress-bar {
+            transition: width 0.5s ease-in-out;
+        }
+    </style>
+</head>
+<body class="bg-gray-100">
+    <!-- NAVEGACIÓN CONSISTENTE PARA USUARIO LOGUEADO -->
+       <nav class="bg-white shadow-md sticky top-0 z-50 border-b border-gray-200">
+        <div class="container mx-auto px-6 py-4">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center space-x-2">
+                    <svg class="h-12 w-12" viewBox="0 0 320 341" xmlns="http://www.w3.org/2000/svg">
+                        <g transform="translate(0.000000,341.000000) scale(0.100000,-0.100000)" stroke="none">
+                            <!-- First two paths are orange -->
+                            <path fill="#F97316" d="M1885 2627 c-4 -188 -5 -355 -4 -372 4 -25 25 -43 164 -138 88 -60 193 -128 233 -152 l73 -43 82 24 c308 93 607 188 607 195 0 4 -37 34 -82 66 -77 55 -200 145 -623 453 -174 128 -400 287 -426 301 -15 8 -17 -21 -24 -334z"/>
+                            <path fill="#EA580C" d="M580 1866 c0 -9 18 -69 40 -133 64 -184 151 -457 337 -1046 16 -52 32 -87 39 -85 10 3 96 109 426 530 l29 37 -61 173 c-34 95 -73 205 -87 245 l-24 71 -322 105 c-386 127 -377 124 -377 103z"/>
+                            <!-- Last three paths are blue -->
+                            <path fill="#1E40AF" d="M1405 2683 c-170 -129 -350 -265 -400 -302 -256 -189 -420 -313 -423 -320 -1 -4 53 -24 120 -45 68 -21 220 -69 338 -107 118 -38 221 -69 229 -69 7 0 109 77 227 171 208 167 213 172 218 212 9 74 17 697 9 696 -5 0 -147 -106 -318 -236z"/>
+                            <path fill="#3B82F6" d="M3030 1970 c-47 -16 -195 -63 -330 -104 -134 -42 -250 -82 -257 -89 -7 -7 -44 -125 -83 -262 -39 -138 -73 -255 -75 -262 -2 -7 31 -61 74 -120 42 -59 137 -192 210 -295 73 -104 136 -188 141 -188 10 0 54 125 151 435 94 302 90 290 203 637 47 147 86 269 86 272 0 11 -36 4 -120 -24z"/>
+                            <path fill="#60A5FA" d="M1755 1120 c-60 -4 -121 -8 -135 -9 -18 -1 -37 -17 -66 -54 -22 -28 -123 -158 -224 -287 l-183 -235 39 -7 c21 -4 190 -7 374 -8 184 0 497 -5 695 -10 198 -5 361 -8 362 -6 3 3 -267 387 -392 559 l-50 67 -155 -2 c-85 -1 -204 -5 -265 -8z"/>
+                        </g>
+                    </svg>
+                    <span class="text-2xl font-bold ml-2">PENTA</span>
+                </div>
+                <!-- Enlaces de navegación -->
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="index.html" class="nav-link text-gray-800 hover:text-orange-500 font-medium">Home</a>
+                    <a href="our-lessons.html" class="nav-link text-gray-800 hover:text-orange-500 font-medium">Our lessons</a>
+                    <a href="profile.html" class="nav-link text-orange-500 border-b-2 border-orange-500 font-medium">Profile</a>
+                    <a href="contact.html" class="nav-link text-gray-800 hover:text-orange-500 font-medium">Contact us</a>
+                </div>
+                <!-- Cerrar Sesión -->
+                <div class="hidden md:flex">
+                     <a href="#" class="bg-gray-200 text-gray-700 px-4 py-2 rounded-full hover:bg-gray-300 transition duration-300 text-sm font-semibold">Log out</a>
+                </div>
+                
+                <button class="md:hidden focus:outline-none">
+                    <i class="fas fa-bars text-gray-800 text-xl"></i>
+                </button>
+            </div>
+        </div>
+    </nav>
+    <!-- CONTENIDO PRINCIPAL: PERFIL DE USUARIO -->
+    <main class="py-16 lg:py-24" style="background-color: #0d253f;">
+        <div class="container mx-auto px-6">
+            <div class="bg-white/10 backdrop-blur-lg rounded-2xl p-8 max-w-4xl mx-auto shadow-2xl">
+                <div class="flex flex-col md:flex-row items-center gap-8">
+                    <!-- Tarjeta de Perfil -->
+                    <div class="flex-shrink-0 text-center">
+                        <div class="bg-white rounded-2xl p-6 shadow-lg">
+                            <img src="pexels-matheushenrin-2121122.jpg" alt="Foto de perfil de Cristal Beitia" class="w-40 h-40 rounded-full mx-auto border-4 border-orange-400 object-cover">
+                            <h2 class="text-2xl font-bold text-gray-800 mt-4">Andrea Batista</h2>
+                            <p class="text-gray-500">Advanced Student</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Estadísticas de Habilidades -->
+                    <div class="w-full space-y-6 text-white">
+                        <h3 class="text-3xl font-bold mb-6 text-center md:text-left">My skills</h3>
+                        
+                        <!-- Habilidad 1: Critical Thinking -->
+                        <div class="space-y-2">
+                            <div class="flex items-center gap-4">
+                                <div class="bg-white/20 p-3 rounded-full"><i class="fas fa-lightbulb fa-fw text-xl text-orange-300"></i></div>
+                                <span class="font-semibold text-lg flex-grow">Critical Thinking</span>
+                                <span class="font-bold" id="critical-thinking-percent">48%</span>
+                            </div>
+                            <div class="w-full bg-white/20 rounded-full h-4">
+                                <div class="progress-bar bg-orange-400 h-4 rounded-full" id="critical-thinking-bar" style="width: 48%"></div>
+                            </div>
+                        </div>
+                        <!-- Habilidad 2: Problem-Solving -->
+                        <div class="space-y-2">
+                            <div class="flex items-center gap-4">
+                                <div class="bg-white/20 p-3 rounded-full"><i class="fas fa-puzzle-piece fa-fw text-xl text-orange-300"></i></div>
+                                <span class="font-semibold text-lg flex-grow">Problem-Solving</span>
+                                <span class="font-bold" id="problem-solving-percent">67%</span>
+                            </div>
+                            <div class="w-full bg-white/20 rounded-full h-4">
+                                <div class="progress-bar bg-orange-400 h-4 rounded-full" id="problem-solving-bar" style="width: 67%"></div>
+                            </div>
+                        </div>
+                        <!-- Habilidad 3: Financial Decision-Making -->
+                        <div class="space-y-2">
+                           <div class="flex items-center gap-4">
+                                <div class="bg-white/20 p-3 rounded-full"><i class="fas fa-sitemap fa-fw text-xl text-orange-300"></i></div>
+                                <span class="font-semibold text-lg flex-grow">Financial Decision-Making</span>
+                                <span class="font-bold" id="financial-decision-percent">34%</span>
+                            </div>
+                            <div class="w-full bg-white/20 rounded-full h-4">
+                                <div class="progress-bar bg-orange-400 h-4 rounded-full" id="financial-decision-bar" style="width: 34%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Progreso General -->
+                <div class="mt-10 bg-white/10 rounded-xl p-6">
+                    <h3 class="text-2xl font-bold text-white mb-4 text-center">General Progress</h3>
+                    <div class="flex items-center gap-4 mb-2">
+                        <span class="font-semibold text-lg text-white">Completed lessons:</span>
+                        <span class="font-bold text-xl text-orange-300" id="lessons-completed">0/9</span>
+                    </div>
+                    <div class="w-full bg-white/20 rounded-full h-6">
+                        <div class="progress-bar bg-gradient-to-r from-blue-500 to-orange-500 h-6 rounded-full" id="general-progress-bar" style="width: 0%"></div>
+                    </div>
+                    <p class="text-sm text-green-300 mt-4 ml-4" id="progress-message">Start learning to improve your skills!</p>
+                </div>
+                
+                <!-- Recomendaciones -->
+                <div class="mt-8 bg-white/10 rounded-xl p-6">
+                    <h3 class="text-2xl font-bold text-white mb-4 text-center">Recommended selections</h3>
+                    <div id="recommendations-container" class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <p class="text-gray-300 text-center col-span-2">Complete more lessons to receive personalized recommendations.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    <!-- FOOTER -->
+    <footer class="bg-gray-900 text-white py-12">
+        <div class="container mx-auto px-6">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div>
+                    <div class="flex items-center mb-4">
+                        <svg class="h-8 w-8 mr-2" viewBox="0 0 320 341" xmlns="http://www.w3.org/2000/svg">
+                            <g transform="translate(0.000000,341.000000) scale(0.100000,-0.100000)" stroke="none">
+                                <!-- First two paths are orange -->
+                                <path fill="#F97316" d="M1885 2627 c-4 -188 -5 -355 -4 -372 4 -25 25 -43 164 -138 88 -60 193 -128 233 -152 l73 -43 82 24 c308 93 607 188 607 195 0 4 -37 34 -82 66 -77 55 -200 145 -623 453 -174 128 -400 287 -426 301 -15 8 -17 -21 -24 -334z"/>
+                                <path fill="#EA580C" d="M580 1866 c0 -9 18 -69 40 -133 64 -184 151 -457 337 -1046 16 -52 32 -87 39 -85 10 3 96 109 426 530 l29 37 -61 173 c-34 95 -73 205 -87 245 l-24 71 -322 105 c-386 127 -377 124 -377 103z"/>
+                                <!-- Last three paths are blue -->
+                                <path fill="#1E40AF" d="M1405 2683 c-170 -129 -350 -265 -400 -302 -256 -189 -420 -313 -423 -320 -1 -4 53 -24 120 -45 68 -21 220 -69 338 -107 118 -38 221 -69 229 -69 7 0 109 77 227 171 208 167 213 172 218 212 9 74 17 697 9 696 -5 0 -147 -106 -318 -236z"/>
+                                <path fill="#3B82F6" d="M3030 1970 c-47 -16 -195 -63 -330 -104 -134 -42 -250 -82 -257 -89 -7 -7 -44 -125 -83 -262 -39 -138 -73 -255 -75 -262 -2 -7 31 -61 74 -120 42 -59 137 -192 210 -295 73 -104 136 -188 141 -188 10 0 54 125 151 435 94 302 90 290 203 637 47 147 86 269 86 272 0 11 -36 4 -120 -24z"/>
+                                <path fill="#60A5FA" d="M1755 1120 c-60 -4 -121 -8 -135 -9 -18 -1 -37 -17 -66 -54 -22 -28 -123 -158 -224 -287 l-183 -235 39 -7 c21 -4 190 -7 374 -8 184 0 497 -5 695 -10 198 -5 361 -8 362 -6 3 3 -267 387 -392 559 l-50 67 -155 -2 c-85 -1 -204 -5 -265 -8z"/>
+                            </g>
+                        </svg>
+                        <span class="text-xl font-bold">PENTA</span>
+                    </div>
+                    <p class="text-gray-400 mb-4">Helping young people take control of their financial future since 2024. More than 50,000 students trust us.</p>
+                    <p class="text-sm text-gray-500 mb-4">Certified by the Financial Education Association.</p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-gray-400 hover:text-white transition duration-300 relative group">
+                            <i class="fab fa-facebook-f"></i>
+                            <span class="absolute -bottom-8 left-1/2 transform -translate-x-1/2 bg-gray-800 text-white text-xs px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity duration-200 whitespace-nowrap">Síguenos en Facebook</span>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white transition duration-300">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white transition duration-300">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white transition duration-300">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div>
+                    <h3 class="text-lg font-bold mb-4">Quick Links</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#home" class="text-gray-400 hover:text-white transition duration-300">Home</a></li>
+                        <li><a href="#about" class="text-gray-400 hover:text-white transition duration-300">About Us</a></li>
+                        <li><a href="#plans" class="text-gray-400 hover:text-white transition duration-300">Plans</a></li>
+                        <li><a href="#contact" class="text-gray-400 hover:text-white transition duration-300">Contact</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition duration-300">Blog</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="text-lg font-bold mb-4">Resources</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-400 hover:text-white transition duration-300">Financial Calculators</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition duration-300">Learning Modules</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition duration-300">Glossary</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition duration-300">FAQs</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition duration-300">Support</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="text-lg font-bold mb-4">Legal</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-400 hover:text-white transition duration-300">Terms of Service</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition duration-300">Privacy Policy</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition duration-300">Cookie Policy</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition duration-300">GDPR</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-800 mt-12 pt-8 text-center text-gray-400">
+                <p>&copy; 2024 PENTA Financial Education. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+    
+    <script>
+        // --- Sistema de Progreso del Usuario ---
+        const lessonProgress = {
+            completed: [],
+            skills: {
+                'critical-thinking': 48,
+                'problem-solving': 67,
+                'financial-decision-making': 34
+            }
+        };
+        
+        // Cargar progreso desde localStorage
+        function loadProgress() {
+            const savedProgress = localStorage.getItem('pentaProgress');
+            if (savedProgress) {
+                const progress = JSON.parse(savedProgress);
+                lessonProgress.completed = progress.completed || [];
+                lessonProgress.skills = progress.skills || lessonProgress.skills;
+            }
+            updateProgressDisplay();
+            updateRecommendations();
+        }
+        
+        // Guardar progreso en localStorage
+        function saveProgress() {
+            localStorage.setItem('pentaProgress', JSON.stringify(lessonProgress));
+        }
+        
+        // Actualizar visualización del progreso
+        function updateProgressDisplay() {
+            // Actualizar barras de habilidades
+            for (const skill in lessonProgress.skills) {
+                const percent = lessonProgress.skills[skill];
+                document.getElementById(`${skill}-percent`).textContent = `${percent}%`;
+                document.getElementById(`${skill}-bar`).style.width = `${percent}%`;
+            }
+            
+            // Actualizar progreso general
+            const totalLessons = 9; // 3 temas × 3 lecciones
+            const completedLessons = lessonProgress.completed.length;
+            const progressPercent = Math.round((completedLessons / totalLessons) * 100);
+            
+            document.getElementById('lessons-completed').textContent = `${completedLessons}/${totalLessons}`;
+            document.getElementById('general-progress-bar').style.width = `${progressPercent}%`;
+            
+            // Actualizar mensaje de progreso
+            const progressMessage = document.getElementById('progress-message');
+            if (progressPercent < 30) {
+                progressMessage.textContent = '¡Empieza a aprender para mejorar tus habilidades!';
+            } else if (progressPercent < 70) {
+                progressMessage.textContent = '¡Vas por buen camino! Sigue aprendiendo.';
+            } else {
+                progressMessage.textContent = '¡Excelente trabajo! Estás casi listo.';
+            }
+        }
+        
+        // Actualizar recomendaciones
+        function updateRecommendations() {
+            const recommendationsContainer = document.getElementById('recommendations-container');
+            recommendationsContainer.innerHTML = '';
+            
+            if (lessonProgress.completed.length === 0) {
+                recommendationsContainer.innerHTML = '<p class="text-gray-300 text-center col-span-2">Completa más lecciones para recibir recomendaciones personalizadas.</p>';
+                return;
+            }
+            
+            // Recomendar lecciones no completadas
+            const allLessons = [
+                { id: 'presupuesto-1', name: 'Lección 1: Conoce dónde va tu dinero', topic: 'Presupuesto', completed: false },
+                { id: 'presupuesto-2', name: 'Lección 2: Necesidades vs. Deseos', topic: 'Presupuesto', completed: false },
+                { id: 'presupuesto-3', name: 'Lección 3: El presupuesto es un mapa', topic: 'Presupuesto', completed: false },
+                { id: 'ahorro-1', name: 'Lección 1: El poder del "pagarte a ti mismo"', topic: 'Ahorro', completed: false },
+                { id: 'ahorro-2', name: 'Lección 2: El efecto bola de nieve', topic: 'Ahorro', completed: false },
+                { id: 'ahorro-3', name: 'Lección 3: Ahorrar con un propósito', topic: 'Ahorro', completed: false },
+                { id: 'crisis-1', name: 'Lección 1: La vida es impredecible', topic: 'Crisis', completed: false },
+                { id: 'crisis-2', name: 'Lección 2: No todo lo que brilla es oro', topic: 'Crisis', completed: false },
+                { id: 'crisis-3', name: 'Lección 3: El costo invisible de la vida', topic: 'Crisis', completed: false }
+            ];
+            
+            // Marcar lecciones completadas
+            allLessons.forEach(lesson => {
+                lesson.completed = lessonProgress.completed.includes(lesson.id);
+            });
+            
+            // Filtrar lecciones no completadas
+            const recommendedLessons = allLessons.filter(lesson => !lesson.completed);
+            
+            if (recommendedLessons.length === 0) {
+                recommendationsContainer.innerHTML = '<p class="text-green-300 text-center col-span-2">¡Felicidades! Has completado todas las lecciones.</p>';
+                return;
+            }
+            
+            // Mostrar hasta 4 recomendaciones
+            recommendedLessons.slice(0, 4).forEach(lesson => {
+                const lessonCard = document.createElement('div');
+                lessonCard.className = 'bg-white/10 rounded-lg p-4 flex items-center';
+                lessonCard.innerHTML = `
+                    <div class="bg-blue-800 text-white rounded-full p-2 mr-3">
+                        <i class="fas fa-book"></i>
+                    </div>
+                    <div>
+                        <h4 class="font-semibold text-white">${lesson.name}</h4>
+                        <p class="text-sm text-blue-300">Tema: ${lesson.topic}</p>
+                    </div>
+                    <a href="our-lessons.html#${lesson.topic.toLowerCase()}" class="ml-auto bg-orange-500 text-white px-3 py-1 rounded-full text-sm hover:bg-orange-600 transition">
+                        Ver
+                    </a>
+                `;
+                recommendationsContainer.appendChild(lessonCard);
+            });
+        }
+        
+        // Inicializar al cargar la página
+        document.addEventListener('DOMContentLoaded', loadProgress);
+    </script>
+</body>
+</html>
