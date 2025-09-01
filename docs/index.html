@@ -67,17 +67,20 @@
          - Subtítulo descriptivo
          - Botón CTA (Call to Action)
          - Fondo con imagen y overlay oscuro para mejor legibilidad -->
-    <section id="home" class="hero-bg text-white py-20 md:py-32 relative overflow-hidden">
-        <div class="absolute inset-0 bg-black/70"></div>
-        <div class="container mx-auto px-6 text-center relative z-10">
-            <h1 class="text-4xl md:text-6xl font-bold mb-6">
-                Financial Education for the Next Generation
-            </h1>
-            <p class="text-xl md:text-2xl mb-8">Empowering youth with essential money management skills through interactive learning</p>
-            <a href="our-lessons.html" class="bg-orange-500 text-white px-8 py-3 rounded-full text-lg font-semibold hover:bg-orange-600 transition duration-300">
-                Get Started <i class="fas fa-arrow-right ml-2"></i>
-            </a>
-        </div>
+    <section class="relative h-screen flex items-center justify-center overflow-hidden">
+      <video autoplay loop muted class="absolute z-0 w-auto min-w-full min-h-full max-w-none">
+        <source src="video.mp4" type="video/mp4">
+      </video>
+      <div class="absolute inset-0 bg-black/70 z-10"></div>
+      <div class="container mx-auto px-6 text-center relative z-20">
+        <h1 class="text-4xl md:text-6xl font-bold mb-6 text-white">
+          Financial Education for the Next Generation
+        </h1>
+        <p class="text-xl md:text-2xl mb-8 text-white">Empowering youth with essential money management skills through interactive learning</p>
+        <a href="our-lessons.html" class="bg-orange-500 text-white px-8 py-3 rounded-full text-lg font-semibold hover:bg-orange-600 transition duration-300">
+          Get Started <i class="fas fa-arrow-right ml-2"></i>
+        </a>
+      </div>
     </section>
 
     <!-- SECCIÓN DE 3 PASOS - Explica el proceso educativo:
