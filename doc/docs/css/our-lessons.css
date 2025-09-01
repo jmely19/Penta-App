@@ -1,0 +1,32 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Fredoka+One&display=swap');
+
+body { 
+    font-family: 'Poppins', sans-serif; 
+}
+
+.modal-content { 
+    animation: slide-up 0.3s ease-out; 
+}
+
+@keyframes slide-up {
+    from { transform: translateY(20px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+
+.nav-link {
+    font-size: 1.1rem;
+    text-align: left;
+}
+
+.completed-badge {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-color: #10b981;
+    color: white;
+    border-radius: 9999px;
+    padding: 4px 12px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    z-index: 10;
+}
