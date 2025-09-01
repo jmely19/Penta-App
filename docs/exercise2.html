@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Quiz: Necesidades vs Deseos</title>
+    <title>Quiz: Needs vs Wants</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="css/exercise2.css">
@@ -14,64 +14,57 @@
         <div id="questionScreen">
             <div class="header">
                 <div class="progress"><span id="progressText">1/5</span></div>
-                <h1 id="questionTitle">Necesidades vs Deseos: ¡Descubre qué tan bien sabes diferenciar!</h1>
-                <p id="questionSubtitle">Aprender a distinguir entre necesidades y deseos es clave para tomar decisiones financieras inteligentes. ¡Pon a prueba tu conocimiento!</p>
-                <div class="budget-badge" id="budgetBadge">Situación: Tienes $500</div>
+                <h1 id="questionTitle">Needs vs Wants: Discover How Well You Can Tell the Difference!</h1>
+                <p id="questionSubtitle">Learning to distinguish between needs and wants is key to making smart financial decisions. Test your knowledge!</p>
+                <div class="budget-badge" id="budgetBadge">Situation: You have $500</div>
             </div>
-            
+
             <div class="money-icon">
                 <div class="icon-circle"></div>
             </div>
-            
+
             <div class="content">
-                <h2 class="question" id="currentQuestion">Pregunta 1/5: ¿Cuál de estas opciones es una NECESIDAD?</h2>
-                
+                <h2 class="question" id="currentQuestion">Question 1/5: Which of these options is a NEED?</h2>
+
                 <div class="options" id="optionsContainer">
                     <!-- Options will be populated by JavaScript -->
                 </div>
-                
+
                 <button class="next-btn" id="nextBtn" onclick="nextQuestion()" disabled>
-                    Siguiente →
+                    Next →
                 </button>
             </div>
         </div>
-
         <!-- Result Screen -->
         <div id="resultScreen" class="hidden">
             <div class="result-screen">
                 <div class="result-icon" id="resultIcon">
                     ✓
                 </div>
-                <h2 class="result-title" id="resultTitle">¡Correcto!</h2>
-                <p class="result-text" id="resultText">¡Excelente! Sabes identificar correctamente las necesidades.</p>
+                <h2 class="result-title" id="resultTitle">Correct!</h2>
+                <p class="result-text" id="resultText">Excellent! You know how to correctly identify needs.</p>
             </div>
         </div>
-
         <!-- Final Screen -->
         <div id="finalScreen" class="hidden">
             <div class="final-screen">
                 <div class="final-icon">🎯</div>
-                <h2 class="final-title">¡Quiz Completado!</h2>
-                <p class="final-subtitle">Ya sabes diferenciar necesidades de deseos</p>
-                
-                <div class="score-card">
-                    <h3 class="score-title">Tu Puntuación</h3>
-                    <p class="score-number" id="finalScore">0/5</p>
-                    <p class="score-percentage" id="finalPercentage">0% Correcto</p>
-                </div>
+                <h2 class="final-title">Quiz Completed!</h2>
+                <p class="final-subtitle">You now know how to differentiate needs from wants</p>
 
+                <div class="score-card">
+                    <h3 class="score-title">Your Score</h3>
+                    <p class="score-number" id="finalScore">0/5</p>
+                    <p class="score-percentage" id="finalPercentage">0% Correct</p>
+                </div>
                 <div class="performance" id="performanceMessage">
                     <div class="performance-icon">🎯</div>
-                    <p class="performance-text">¡Excelente! Tienes muy claro qué es importante en tus finanzas.</p>
+                    <p class="performance-text">Excellent! You have a clear understanding of what's important in your finances.</p>
                 </div>
-
-                <button class="restart-btn" onclick="restartQuiz()">Reiniciar Quiz</button>
+                <button class="restart-btn" onclick="restartQuiz()">Restart Quiz</button>
             </div>
         </div>
     </div>
-
     <script src="js/exercise2.js"></script>
-
-
 </body>
 </html>

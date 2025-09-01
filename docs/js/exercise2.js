@@ -1,61 +1,61 @@
 const questions = [
     {
-        title: "Necesidades vs Deseos: ¡Descubre qué tan bien sabes diferenciar!",
-        subtitle: "Aprender a distinguir entre necesidades y deseos es clave para tomar decisiones financieras inteligentes. ¡Pon a prueba tu conocimiento!",
-        budget: "Situación: Tienes $500",
-        question: "Pregunta 1/5: ¿Cuál de estas opciones es una NECESIDAD?",
+        title: "Needs vs Wants: Discover How Well You Can Tell the Difference!",
+        subtitle: "Learning to distinguish between needs and wants is key to making smart financial decisions. Test your knowledge!",
+        budget: "Situation: You have $500",
+        question: "Question 1/5: Which of these options is a NEED?",
         options: [
-            "Un nuevo iPhone cuando el tuyo funciona bien",
-            "Comida y productos básicos de alimentación",
-            "Una suscripción a Netflix"
+            "A new iPhone when yours works fine",
+            "Food and basic groceries",
+            "A Netflix subscription"
         ],
         correct: 1
     },
     {
-        title: "¡Perfecto! Sigamos identificando prioridades",
-        subtitle: "Muy bien, reconoces las necesidades básicas. Ahora veamos si puedes identificar un deseo claramente.",
-        budget: "Situación: Mes de quincena",
-        question: "Pregunta 2/5: ¿Cuál de estos es claramente un DESEO?",
+        title: "Perfect! Let's keep identifying priorities",
+        subtitle: "Great, you recognize basic needs. Now let's see if you can clearly identify a want.",
+        budget: "Situation: Mid-month",
+        question: "Question 2/5: Which of these is clearly a WANT?",
         options: [
-            "Pagar el alquiler de tu casa",
-            "Comprar zapatos deportivos de marca premium",
-            "Medicinas para una enfermedad"
+            "Paying rent for your home",
+            "Buying premium brand sports shoes",
+            "Medicine for an illness"
         ],
         correct: 1
     },
     {
-        title: "¡Excelente! Vamos con situaciones más complejas",
-        subtitle: "Genial, ya dominas los casos obvios. Ahora veremos situaciones donde la línea entre necesidad y deseo es más delgada.",
-        budget: "Situación: Presupuesto ajustado",
-        question: "Pregunta 3/5: Si tienes presupuesto limitado, ¿qué priorizarías?",
+        title: "Excellent! Let's tackle more complex situations",
+        subtitle: "Great, you've mastered the obvious cases. Now let's look at situations where the line between need and want is thinner.",
+        budget: "Situation: Tight budget",
+        question: "Question 3/5: If you have a limited budget, what would you prioritize?",
         options: [
-            "Una cena cara en un restaurante elegante",
-            "Productos de limpieza para tu hogar",
-            "Ropa de diseñador en oferta"
+            "An expensive dinner at a fancy restaurant",
+            "Cleaning products for your home",
+            "Designer clothes on sale"
         ],
         correct: 1
     },
     {
-        title: "¡Muy bien! Casi terminamos",
-        subtitle: "Tus decisiones demuestran que entiendes las prioridades financieras. Una pregunta más sobre gastos inteligentes.",
-        budget: "Situación: Planificando gastos",
-        question: "Pregunta 4/5: ¿Cuál representa mejor una necesidad a largo plazo?",
+        title: "Very good! We're almost done",
+        subtitle: "Your decisions show that you understand financial priorities. One more question about smart spending.",
+        budget: "Situation: Planning expenses",
+        question: "Question 4/5: Which best represents a long-term need?",
         options: [
-            "Educación o capacitación profesional",
-            "Videojuegos y entretenimiento",
-            "Decoración costosa para tu casa"
+            "Education or professional training",
+            "Video games and entertainment",
+            "Expensive home decoration"
         ],
         correct: 0
     },
     {
-        title: "¡Última pregunta! Eres un experto",
-        subtitle: "Has demostrado gran habilidad para distinguir necesidades y deseos. Terminemos con una situación práctica común.",
-        budget: "Situación: Decisión de compra",
-        question: "Pregunta 5/5: Tu auto funciona bien, pero ves uno más nuevo en oferta. ¿Qué es?",
+        title: "Last question! You're an expert",
+        subtitle: "You've shown great skill in distinguishing needs from wants. Let's finish with a common practical situation.",
+        budget: "Situation: Purchase decision",
+        question: "Question 5/5: Your car works fine, but you see a newer one on sale. What is it?",
         options: [
-            "Una necesidad urgente",
-            "Un deseo que puedes considerar si tienes dinero extra",
-            "Una inversión necesaria siempre"
+            "An urgent need",
+            "A want you can consider if you have extra money",
+            "A necessary investment always"
         ],
         correct: 1
     }
@@ -67,16 +67,16 @@ let selectedAnswer = -1;
 
 function loadQuestion() {
     const question = questions[currentQuestionIndex];
-    
+
     document.getElementById('progressText').textContent = `${currentQuestionIndex + 1}/5`;
     document.getElementById('questionTitle').textContent = question.title;
     document.getElementById('questionSubtitle').textContent = question.subtitle;
     document.getElementById('budgetBadge').textContent = question.budget;
     document.getElementById('currentQuestion').textContent = question.question;
-    
+
     const optionsContainer = document.getElementById('optionsContainer');
     optionsContainer.innerHTML = '';
-    
+
     question.options.forEach((option, index) => {
         const button = document.createElement('button');
         button.className = 'option';
@@ -84,59 +84,59 @@ function loadQuestion() {
         button.onclick = () => selectAnswer(index);
         optionsContainer.appendChild(button);
     });
-    
+
     selectedAnswer = -1;
     document.getElementById('nextBtn').disabled = true;
 }
 
 function selectAnswer(index) {
     selectedAnswer = index;
-    
+
     const options = document.querySelectorAll('.option');
     options.forEach((option, i) => {
         option.classList.toggle('selected', i === index);
     });
-    
+
     document.getElementById('nextBtn').disabled = false;
 }
 
 function nextQuestion() {
     const isCorrect = selectedAnswer === questions[currentQuestionIndex].correct;
     if (isCorrect) score++;
-    
+
     showResult(isCorrect);
 }
 
 function showResult(isCorrect) {
     document.getElementById('questionScreen').classList.add('hidden');
     document.getElementById('resultScreen').classList.remove('hidden');
-    
+
     const resultIcon = document.getElementById('resultIcon');
     const resultTitle = document.getElementById('resultTitle');
     const resultText = document.getElementById('resultText');
-    
+
     if (isCorrect) {
         resultIcon.textContent = '✓';
         resultIcon.className = 'result-icon correct';
-        resultTitle.textContent = '¡Correcto!';
+        resultTitle.textContent = 'Correct!';
         resultTitle.className = 'result-title correct';
-        
+
         const correctMessages = [
-            '¡Excelente! Sabes identificar correctamente las necesidades.',
-            '¡Perfecto! Reconoces claramente qué es un deseo.',
-            '¡Muy bien! Priorizas correctamente tus gastos.',
-            '¡Genial! Entiendes las inversiones necesarias a largo plazo.',
-            '¡Fantástico! Sabes cuándo algo es realmente un deseo.'
+            'Excellent! You know how to correctly identify needs.',
+            'Perfect! You clearly recognize what is a want.',
+            'Very good! You prioritize your expenses correctly.',
+            'Great! You understand necessary long-term investments.',
+            'Fantastic! You know when something is truly a want.'
         ];
         resultText.textContent = correctMessages[currentQuestionIndex];
     } else {
         resultIcon.textContent = '✗';
         resultIcon.className = 'result-icon incorrect';
-        resultTitle.textContent = '¡Incorrecto!';
+        resultTitle.textContent = 'Incorrect!';
         resultTitle.className = 'result-title incorrect';
-        resultText.textContent = `La respuesta correcta era: ${questions[currentQuestionIndex].options[questions[currentQuestionIndex].correct]}`;
+        resultText.textContent = `The correct answer was: ${questions[currentQuestionIndex].options[questions[currentQuestionIndex].correct]}`;
     }
-    
+
     setTimeout(() => {
         currentQuestionIndex++;
         if (currentQuestionIndex < questions.length) {
@@ -152,27 +152,27 @@ function showResult(isCorrect) {
 function showFinalScreen() {
     document.getElementById('resultScreen').classList.add('hidden');
     document.getElementById('finalScreen').classList.remove('hidden');
-    
+
     const percentage = (score / questions.length) * 100;
-    
+
     document.getElementById('finalScore').textContent = `${score}/${questions.length}`;
-    document.getElementById('finalPercentage').textContent = `${percentage}% Correcto`;
-    
+    document.getElementById('finalPercentage').textContent = `${percentage}% Correct`;
+
     const performanceMessage = document.getElementById('performanceMessage');
     if (percentage >= 80) {
         performanceMessage.innerHTML = `
             <div class="performance-icon">🏆</div>
-            <p class="performance-text">¡Excelente! Tienes muy claro qué es importante en tus finanzas.</p>
+            <p class="performance-text">Excellent! You have a clear understanding of what's important in your finances.</p>
         `;
     } else if (percentage >= 60) {
         performanceMessage.innerHTML = `
             <div class="performance-icon">🎯</div>
-            <p class="performance-text">¡Bien! Ya identificas la mayoría de necesidades y deseos.</p>
+            <p class="performance-text">Good! You already identify most needs and wants.</p>
         `;
     } else {
         performanceMessage.innerHTML = `
             <div class="performance-icon">📚</div>
-            <p class="performance-text">¡Sigue practicando! Pronto dominarás estas diferencias importantes.</p>
+            <p class="performance-text">Keep practicing! Soon you'll master these important differences.</p>
         `;
     }
 }
@@ -181,12 +181,13 @@ function restartQuiz() {
     currentQuestionIndex = 0;
     score = 0;
     selectedAnswer = -1;
-    
+
     document.getElementById('finalScreen').classList.add('hidden');
     document.getElementById('questionScreen').classList.remove('hidden');
-    
+
     loadQuestion();
 }
 
 // Initialize the quiz
 loadQuestion();
+

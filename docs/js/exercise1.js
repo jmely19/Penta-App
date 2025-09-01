@@ -1,61 +1,61 @@
 const questions = [
     {
-        title: "Es hora de la verdad: ¿Qué tanto aprendiste?",
-        subtitle: "¡Llegó el momento de poner a prueba tus conocimientos! Este quiz es tu oportunidad para demostrar cuánto dominas la lección.",
+        title: "Moment of Truth: How Much Did You Learn?",
+        subtitle: "It's time to test your knowledge! This quiz is your chance to show how well you've mastered the lesson.",
         budget: "$100",
-        question: "Pregunta 1/5: ¿Qué es un presupuesto?",
+        question: "Question 1/5: What is a budget?",
         options: [
-            "Un gasto innecesario",
-            "Un plan para organizar tus ingresos y gastos",
-            "Una forma de gastar dinero"
+            "An unnecessary expense",
+            "A plan to organize your income and expenses",
+            "A way to spend money"
         ],
         correct: 1
     },
     {
-        title: "¡Muy bien! Sigamos con la siguiente",
-        subtitle: "Excelente respuesta. Ahora vamos a profundizar un poco más en conceptos financieros importantes.",
+        title: "Very good! Let's move to the next one",
+        subtitle: "Excellent answer. Now let's delve a little deeper into important financial concepts.",
         budget: "$200",
-        question: "Pregunta 2/5: ¿Cuál es la regla 50/30/20?",
+        question: "Question 2/5: What is the 50/30/20 rule?",
         options: [
-            "50% gastos necesarios, 30% gastos personales, 20% ahorros",
-            "50% ahorros, 30% gastos, 20% inversiones",
-            "50% inversiones, 30% gastos, 20% ahorros"
+            "50% needs, 30% wants, 20% savings",
+            "50% savings, 30% expenses, 20% investments",
+            "50% investments, 30% expenses, 20% savings"
         ],
         correct: 0
     },
     {
-        title: "¡Perfecto! Continuemos aprendiendo",
-        subtitle: "Tu conocimiento sobre finanzas personales va muy bien. Sigamos con el siguiente concepto.",
+        title: "Perfect! Let's keep learning",
+        subtitle: "Your knowledge of personal finance is going very well. Let's continue with the next concept.",
         budget: "$300",
-        question: "Pregunta 3/5: ¿Qué es un fondo de emergencia?",
+        question: "Question 3/5: What is an emergency fund?",
         options: [
-            "Dinero para gastos innecesarios",
-            "Dinero reservado para situaciones imprevistas",
-            "Un tipo de inversión arriesgada"
+            "Money for unnecessary expenses",
+            "Money set aside for unexpected situations",
+            "A type of risky investment"
         ],
         correct: 1
     },
     {
-        title: "¡Excelente progreso!",
-        subtitle: "Vas dominando los conceptos básicos. Ahora vamos con algo sobre inversiones.",
+        title: "Excellent progress!",
+        subtitle: "You are mastering the basic concepts. Now let's move on to something about investments.",
         budget: "$400",
-        question: "Pregunta 4/5: ¿Qué significa diversificar inversiones?",
+        question: "Question 4/5: What does diversifying investments mean?",
         options: [
-            "Invertir todo en una sola opción",
-            "Repartir el dinero en diferentes tipos de inversión",
-            "Solo invertir en acciones"
+            "Investing everything in a single option",
+            "Spreading money across different types of investments",
+            "Only investing in stocks"
         ],
         correct: 1
     },
     {
-        title: "¡Fantástico! Última pregunta",
-        subtitle: "Solo queda una pregunta más. ¡Sigues demostrando que sabes mucho sobre finanzas!",
+        title: "Fantastic! Last question",
+        subtitle: "Only one more question left. You keep showing that you know a lot about finance!",
         budget: "$500",
-        question: "Pregunta 5/5: ¿Qué es el interés compuesto?",
+        question: "Question 5/5: What is compound interest?",
         options: [
-            "Interés que se paga solo una vez",
-            "Interés que se genera sobre el capital inicial y los intereses acumulados",
-            "Un tipo de préstamo"
+            "Interest that is paid only once",
+            "Interest that is earned on the initial capital and accumulated interest",
+            "A type of loan"
         ],
         correct: 1
     }
@@ -67,16 +67,16 @@ let selectedAnswer = -1;
 
 function loadQuestion() {
     const question = questions[currentQuestionIndex];
-    
+
     document.getElementById('progressText').textContent = `${currentQuestionIndex + 1}/5`;
     document.getElementById('questionTitle').textContent = question.title;
     document.getElementById('questionSubtitle').textContent = question.subtitle;
-    document.getElementById('budgetBadge').textContent = `Presupuesto: ${question.budget}`;
+    document.getElementById('budgetBadge').textContent = `Budget: $${question.budget}`;
     document.getElementById('currentQuestion').textContent = question.question;
-    
+
     const optionsContainer = document.getElementById('optionsContainer');
     optionsContainer.innerHTML = '';
-    
+
     question.options.forEach((option, index) => {
         const button = document.createElement('button');
         button.className = 'option';
@@ -84,51 +84,51 @@ function loadQuestion() {
         button.onclick = () => selectAnswer(index);
         optionsContainer.appendChild(button);
     });
-    
+
     selectedAnswer = -1;
     document.getElementById('nextBtn').disabled = true;
 }
 
 function selectAnswer(index) {
     selectedAnswer = index;
-    
+
     const options = document.querySelectorAll('.option');
     options.forEach((option, i) => {
         option.classList.toggle('selected', i === index);
     });
-    
+
     document.getElementById('nextBtn').disabled = false;
 }
 
 function nextQuestion() {
     const isCorrect = selectedAnswer === questions[currentQuestionIndex].correct;
     if (isCorrect) score++;
-    
+
     showResult(isCorrect);
 }
 
 function showResult(isCorrect) {
     document.getElementById('questionScreen').classList.add('hidden');
     document.getElementById('resultScreen').classList.remove('hidden');
-    
+
     const resultIcon = document.getElementById('resultIcon');
     const resultTitle = document.getElementById('resultTitle');
     const resultText = document.getElementById('resultText');
-    
+
     if (isCorrect) {
         resultIcon.textContent = '✓';
         resultIcon.className = 'result-icon correct';
-        resultTitle.textContent = '¡Correcto!';
+        resultTitle.textContent = 'Correct!';
         resultTitle.className = 'result-title correct';
-        resultText.textContent = 'Excelente respuesta. ¡Sigues demostrando tus conocimientos!';
+        resultText.textContent = 'Excellent answer. You keep demonstrating your knowledge!';
     } else {
         resultIcon.textContent = '✗';
         resultIcon.className = 'result-icon incorrect';
-        resultTitle.textContent = '¡Incorrecto!';
+        resultTitle.textContent = 'Incorrect!';
         resultTitle.className = 'result-title incorrect';
-        resultText.textContent = `La respuesta correcta era: ${questions[currentQuestionIndex].options[questions[currentQuestionIndex].correct]}`;
+        resultText.textContent = `The correct answer was: ${questions[currentQuestionIndex].options[questions[currentQuestionIndex].correct]}`;
     }
-    
+
     setTimeout(() => {
         currentQuestionIndex++;
         if (currentQuestionIndex < questions.length) {
@@ -144,27 +144,27 @@ function showResult(isCorrect) {
 function showFinalScreen() {
     document.getElementById('resultScreen').classList.add('hidden');
     document.getElementById('finalScreen').classList.remove('hidden');
-    
+
     const percentage = (score / questions.length) * 100;
-    
+
     document.getElementById('finalScore').textContent = `${score}/${questions.length}`;
-    document.getElementById('finalPercentage').textContent = `${percentage}% Correcto`;
-    
+    document.getElementById('finalPercentage').textContent = `${percentage}% Correct`;
+
     const performanceMessage = document.getElementById('performanceMessage');
     if (percentage >= 80) {
         performanceMessage.innerHTML = `
             <div class="performance-icon">🏆</div>
-            <p class="performance-text">¡Excelente! Dominas muy bien las finanzas personales.</p>
+            <p class="performance-text">Excellent! You have a very good grasp of personal finance.</p>
         `;
     } else if (percentage >= 60) {
         performanceMessage.innerHTML = `
             <div class="performance-icon">📊</div>
-            <p class="performance-text">¡Bien hecho! Tienes buenos conocimientos financieros.</p>
+            <p class="performance-text">Well done! You have good financial knowledge.</p>
         `;
     } else {
         performanceMessage.innerHTML = `
             <div class="performance-icon">📈</div>
-            <p class="performance-text">¡Sigue aprendiendo! Cada paso cuenta en educación financiera.</p>
+            <p class="performance-text">Keep learning! Every step counts in financial education.</p>
         `;
     }
 }
@@ -173,10 +173,10 @@ function restartQuiz() {
     currentQuestionIndex = 0;
     score = 0;
     selectedAnswer = -1;
-    
+
     document.getElementById('finalScreen').classList.add('hidden');
     document.getElementById('questionScreen').classList.remove('hidden');
-    
+
     loadQuestion();
 }
 
