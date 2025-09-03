@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Video Test - PENTA</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
+        .video-container {
+            position: relative;
+            width: 100vw;
+            height: 100vh;
+            overflow: hidden;
+        }
+        .hero-video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: 0;
+        }
+        .hero-fallback {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: 0;
+        }
+        .overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            z-index: 10;
+        }
+        .content {
+            position: relative;
+            z-index: 20;
+            color: white;
+            text-align: center;
+            padding-top: 20vh;
+        }
+        .controls {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            z-index: 30;
+            background: rgba(0, 0, 0, 0.8);
+            padding: 20px;
+            border-radius: 10px;
+            color: white;
+        }
+        button {
+            background: #f97316;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            margin: 5px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background: #ea580c;
+        }
+    </style>
+</head>
+<body>
+    <div class="controls">
+        <h3>Controles de Video</h3>
+        <button onclick="playVideo()">▶️ Reproducir</button>
+        <button onclick="pauseVideo()">⏸️ Pausar</button>
+        <button onclick="restartVideo()">🔄 Reiniciar</button>
+        <button onclick="toggleMute()">🔊 Sonido</button>
+        <div id="status">Estado: Cargando...</div>
+    </div>
+
+    <div class="video-container">
+        <video id="heroVideo" autoplay loop muted playsinline preload="auto" class="hero-video">
+            <source src="images/video.mp4" type="video/mp4">
+            <!-- Fallback para navegadores que no soporten video -->
+            <img src="images/pexels-matheushenrin-2121122.jpg" alt="Financial education background" class="hero-fallback">
+        </video>
+        <div class="overlay"></div>
+        <div class="content">
+            <h1>Test de Video - PENTA</h1>
+            <p>Si ves este texto sobre el video, el video está funcionando correctamente</p>
+        </div>
+    </div>
+
+    <script>
+        const video = document.getElementById('heroVideo');
+        const status = document.getElementById('status');
+
+        // Función para reproducir el video
+        function playVideo() {
+            video.play().then(() => {
+                status.textContent = 'Estado: Reproduciendo';
+            }).catch(error => {
+                status.textContent = 'Estado: Error al reproducir - ' + error.message;
+            });
+        }
+
+        // Función para pausar el video
+        function pauseVideo() {
+            video.pause();
+            status.textContent = 'Estado: Pausado';
+        }
+
+        // Función para reiniciar el video
+        function restartVideo() {
+            video.currentTime = 0;
+            video.play().then(() => {
+                status.textContent = 'Estado: Reiniciado y reproduciendo';
+            }).catch(error => {
+                status.textContent = 'Estado: Error al reiniciar - ' + error.message;
+            });
+        }
+
+        // Función para alternar el sonido
+        function toggleMute() {
+            video.muted = !video.muted;
+            status.textContent = 'Estado: ' + (video.muted ? 'Silenciado' : 'Con sonido');
+        }
+
+        // Eventos del video
+        video.addEventListener('loadeddata', function() {
+            status.textContent = 'Estado: Video cargado correctamente';
+            console.log('Video loaded successfully');
+        });
+
+        video.addEventListener('canplay', function() {
+            status.textContent = 'Estado: Video puede reproducirse';
+            console.log('Video can play');
+        });
+
+        video.addEventListener('playing', function() {
+            status.textContent = 'Estado: Reproduciendo';
+        });
+
+        video.addEventListener('pause', function() {
+            status.textContent = 'Estado: Pausado';
+        });
+
+        video.addEventListener('error', function(e) {
+            status.textContent = 'Estado: Error en el video';
+            console.error('Video error:', e);
+        });
+
+        // Verificar estado del video cada segundo
+        setInterval(() => {
+            if (video.readyState >= 2) {
+                if (video.paused) {
+                    status.textContent = 'Estado: Pausado (listo para reproducir)';
+                } else {
+                    status.textContent = 'Estado: Reproduciendo';
+                }
+            }
+        }, 1000);
+    </script>
+</body>
+</html>

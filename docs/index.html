@@ -67,12 +67,14 @@
          - Subtítulo descriptivo
          - Botón CTA (Call to Action)
          - Fondo con imagen y overlay oscuro para mejor legibilidad -->
-    <section class="relative h-screen flex items-center justify-center overflow-hidden">
-      <video autoplay loop muted class="absolute z-0 w-auto min-w-full min-h-full max-w-none">
-        <source src="video.mp4" type="video/mp4">
+    <section class="relative h-screen flex items-center justify-center overflow-hidden hero-video-container">
+      <video autoplay loop muted playsinline preload="auto" class="hero-video">
+        <source src="images/video.mp4" type="video/mp4">
+        <!-- Fallback para navegadores que no soporten video -->
+        <img src="images/pexels-matheushenrin-2121122.jpg" alt="Financial education background" class="hero-fallback">
       </video>
       <div class="absolute inset-0 bg-black/70 z-10"></div>
-      <div class="container mx-auto px-6 text-center relative z-20">
+      <div class="container mx-auto px-6 text-center hero-content">
         <h1 class="text-4xl md:text-6xl font-bold mb-6 text-white">
           Financial Education for the Next Generation
         </h1>

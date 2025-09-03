@@ -1,7 +1,57 @@
 // Verificar estado de autenticación al cargar la página
 document.addEventListener('DOMContentLoaded', function() {
     checkAuthStatus();
+    initializeVideo();
 });
+
+// Función para inicializar y manejar el video de fondo
+function initializeVideo() {
+    const video = document.querySelector('video');
+    if (!video) return;
+    
+    // Intentar reproducir el video
+    video.addEventListener('loadeddata', function() {
+        console.log('Video loaded successfully');
+        // Forzar reproducción en dispositivos móviles
+        if (video.paused) {
+            video.play().catch(function(error) {
+                console.log('Video autoplay failed:', error);
+                // Si falla el autoplay, mostrar la imagen de fallback
+                showFallbackImage();
+            });
+        }
+    });
+    
+    // Manejar errores del video
+    video.addEventListener('error', function(e) {
+        console.error('Video error:', e);
+        showFallbackImage();
+    });
+    
+    // Manejar cuando el video no puede reproducirse
+    video.addEventListener('canplay', function() {
+        console.log('Video can play');
+    });
+    
+    // Verificar si el video se está reproduciendo
+    setInterval(function() {
+        if (video.readyState >= 2 && video.paused) {
+            console.log('Video paused, attempting to resume...');
+            video.play().catch(function(error) {
+                console.log('Failed to resume video:', error);
+            });
+        }
+    }, 5000);
+}
+
+// Función para mostrar imagen de fallback
+function showFallbackImage() {
+    const video = document.querySelector('video');
+    if (video) {
+        video.style.display = 'none';
+        // La imagen de fallback ya está configurada en el HTML
+    }
+}
 
 // Función para verificar si el usuario está logueado
 function checkAuthStatus() {
