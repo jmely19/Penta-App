@@ -7,29 +7,45 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="css/exercise3.css">
+    <style>
+        .back-to-lessons-btn {
+            background-color: #f0f0f0;
+            color: #333;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 14px;
+            margin-bottom: 10px;
+            display: inline-flex;
+            align-items: center;
+        }
+        .back-to-lessons-btn:hover {
+            background-color: #e0e0e0;
+        }
+    </style>
 </head>
 <body>
     <div class="quiz-container">
         <!-- Question Screen -->
         <div id="questionScreen">
             <div class="header">
+                <button class="back-to-lessons-btn" onclick="window.history.back()">
+                    <i class="fas fa-arrow-left"></i> Back to Lessons
+                </button>
                 <div class="progress"><span id="progressText">1/5</span></div>
                 <h1 id="questionTitle">The Budget: Your Financial Map</h1>
                 <p id="questionSubtitle">A budget is like a map that guides you through your expenses and helps you make better financial decisions. Discover how well you navigate!</p>
                 <div class="budget-badge" id="budgetBadge">Route: Smart Planning</div>
             </div>
-
             <div class="money-icon">
                 <div class="icon-circle"></div>
             </div>
-
             <div class="content">
                 <h2 class="question" id="currentQuestion">Question 1/5: What is the first step to create your "financial map"?</h2>
-
                 <div class="options" id="optionsContainer">
                     <!-- Options will be populated by JavaScript -->
                 </div>
-
                 <button class="next-btn" id="nextBtn" onclick="nextQuestion()" disabled>
                     Next →
                 </button>
@@ -38,6 +54,9 @@
         <!-- Result Screen -->
         <div id="resultScreen" class="hidden">
             <div class="result-screen">
+                <button class="back-to-lessons-btn" onclick="window.history.back()">
+                    <i class="fas fa-arrow-left"></i> Back to Lessons
+                </button>
                 <div class="result-icon" id="resultIcon">
                     ✓
                 </div>
@@ -48,10 +67,12 @@
         <!-- Final Screen -->
         <div id="finalScreen" class="hidden">
             <div class="final-screen">
+                <button class="back-to-lessons-btn" onclick="our-lessons.back()">
+                    <i class="fas fa-arrow-left"></i> Back to Lessons
+                </button>
                 <div class="final-icon">🗺️</div>
                 <h2 class="final-title">Navigation Completed!</h2>
                 <p class="final-subtitle">You now know how to use your budget as a financial map</p>
-
                 <div class="score-card">
                     <h3 class="score-title">Your Score</h3>
                     <p class="score-number" id="finalScore">0/5</p>
