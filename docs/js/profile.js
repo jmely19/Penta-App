@@ -1,4 +1,4 @@
-// --- Sistema de Progreso del Usuario ---
+// --- Sistema de progreso del usuario ---
 const lessonProgress = {
     completed: [],
     skills: {
@@ -8,7 +8,6 @@ const lessonProgress = {
     }
 };
 
-// Cargar progreso desde localStorage
 function loadProgress() {
     const savedProgress = localStorage.getItem('pentaProgress');
     if (savedProgress) {
@@ -20,77 +19,66 @@ function loadProgress() {
     updateRecommendations();
 }
 
-// Guardar progreso en localStorage
-function saveProgress() {
-    localStorage.setItem('pentaProgress', JSON.stringify(lessonProgress));
-}
-
-// Actualizar visualización del progreso
 function updateProgressDisplay() {
-    // Actualizar barras de habilidades
+    // Habilidades
     for (const skill in lessonProgress.skills) {
         const percent = lessonProgress.skills[skill];
         document.getElementById(`${skill}-percent`).textContent = `${percent}%`;
         document.getElementById(`${skill}-bar`).style.width = `${percent}%`;
     }
-    
-    // Actualizar progreso general
-    const totalLessons = 9; // 3 temas × 3 lecciones
+
+    // Progreso general
+    const totalLessons = 9;
     const completedLessons = lessonProgress.completed.length;
     const progressPercent = Math.round((completedLessons / totalLessons) * 100);
-    
+
     document.getElementById('lessons-completed').textContent = `${completedLessons}/${totalLessons}`;
     document.getElementById('general-progress-bar').style.width = `${progressPercent}%`;
-    
-    // Actualizar mensaje de progreso
+
     const progressMessage = document.getElementById('progress-message');
-    if (progressPercent < 30) {
+    if (progressPercent === 0) {
         progressMessage.textContent = '¡Empieza a aprender para mejorar tus habilidades!';
-    } else if (progressPercent < 70) {
+    } else if (progressPercent < 50) {
         progressMessage.textContent = '¡Vas por buen camino! Sigue aprendiendo.';
+    } else if (progressPercent < 100) {
+        progressMessage.textContent = '¡Genial! Estás cerca de completar todas las lecciones.';
     } else {
-        progressMessage.textContent = '¡Excelente trabajo! Estás casi listo.';
+        progressMessage.textContent = '🎉 ¡Felicidades! Completaste todas las lecciones.';
     }
 }
 
-// Actualizar recomendaciones
 function updateRecommendations() {
     const recommendationsContainer = document.getElementById('recommendations-container');
     recommendationsContainer.innerHTML = '';
-    
+
     if (lessonProgress.completed.length === 0) {
-        recommendationsContainer.innerHTML = '<p class="text-gray-300 text-center col-span-2">Completa más lecciones para recibir recomendaciones personalizadas.</p>';
+        recommendationsContainer.innerHTML =
+          '<p class="text-gray-300 text-center col-span-2">Completa más lecciones para recibir recomendaciones personalizadas.</p>';
         return;
     }
-    
-    // Recomendar lecciones no completadas
+
+    // Lista de todas las lecciones
     const allLessons = [
-        { id: 'presupuesto-1', name: 'Lección 1: Conoce dónde va tu dinero', topic: 'Presupuesto', completed: false },
-        { id: 'presupuesto-2', name: 'Lección 2: Necesidades vs. Deseos', topic: 'Presupuesto', completed: false },
-        { id: 'presupuesto-3', name: 'Lección 3: El presupuesto es un mapa', topic: 'Presupuesto', completed: false },
-        { id: 'ahorro-1', name: 'Lección 1: El poder del "pagarte a ti mismo"', topic: 'Ahorro', completed: false },
-        { id: 'ahorro-2', name: 'Lección 2: El efecto bola de nieve', topic: 'Ahorro', completed: false },
-        { id: 'ahorro-3', name: 'Lección 3: Ahorrar con un propósito', topic: 'Ahorro', completed: false },
-        { id: 'crisis-1', name: 'Lección 1: La vida es impredecible', topic: 'Crisis', completed: false },
-        { id: 'crisis-2', name: 'Lección 2: No todo lo que brilla es oro', topic: 'Crisis', completed: false },
-        { id: 'crisis-3', name: 'Lección 3: El costo invisible de la vida', topic: 'Crisis', completed: false }
+        { id: 'presupuesto-1', name: 'Lección 1: Conoce dónde va tu dinero', topic: 'Presupuesto' },
+        { id: 'presupuesto-2', name: 'Lección 2: Necesidades vs. Deseos', topic: 'Presupuesto' },
+        { id: 'presupuesto-3', name: 'Lección 3: El presupuesto es un mapa', topic: 'Presupuesto' },
+        { id: 'ahorro-1', name: 'Lección 1: El poder del "pagarte a ti mismo"', topic: 'Ahorro' },
+        { id: 'ahorro-2', name: 'Lección 2: El efecto bola de nieve', topic: 'Ahorro' },
+        { id: 'ahorro-3', name: 'Lección 3: Ahorrar con un propósito', topic: 'Ahorro' },
+        { id: 'crisis-1', name: 'Lección 1: La vida es impredecible', topic: 'Crisis' },
+        { id: 'crisis-2', name: 'Lección 2: No todo lo que brilla es oro', topic: 'Crisis' },
+        { id: 'crisis-3', name: 'Lección 3: El costo invisible de la vida', topic: 'Crisis' }
     ];
-    
-    // Marcar lecciones completadas
-    allLessons.forEach(lesson => {
-        lesson.completed = lessonProgress.completed.includes(lesson.id);
-    });
-    
-    // Filtrar lecciones no completadas
-    const recommendedLessons = allLessons.filter(lesson => !lesson.completed);
-    
-    if (recommendedLessons.length === 0) {
-        recommendationsContainer.innerHTML = '<p class="text-green-300 text-center col-span-2">¡Felicidades! Has completado todas las lecciones.</p>';
+
+    const recommended = allLessons.filter(lesson => !lessonProgress.completed.includes(lesson.id));
+
+    if (recommended.length === 0) {
+        recommendationsContainer.innerHTML =
+          '<p class="text-green-300 text-center col-span-2">¡Felicidades! Has completado todas las lecciones.</p>';
         return;
     }
-    
-    // Mostrar hasta 4 recomendaciones
-    recommendedLessons.slice(0, 4).forEach(lesson => {
+
+    recommended.slice(0, 4).forEach(lesson => {
         const lessonCard = document.createElement('div');
         lessonCard.className = 'bg-white/10 rounded-lg p-4 flex items-center';
         lessonCard.innerHTML = `
@@ -109,5 +97,4 @@ function updateRecommendations() {
     });
 }
 
-// Inicializar al cargar la página
 document.addEventListener('DOMContentLoaded', loadProgress);
