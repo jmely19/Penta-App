@@ -9,12 +9,17 @@ const lessonProgress = {
 };
 
 function loadProgress() {
+    // Lee el progreso guardado por our-lessons.js
+    const lessonsProgress = JSON.parse(localStorage.getItem('lessonsProgress')) || {};
+    lessonProgress.completed = Object.keys(lessonsProgress).filter(id => lessonsProgress[id] === 'completed');
+
+    // Si tienes skills guardadas en pentaProgress, puedes mantener esa parte:
     const savedProgress = localStorage.getItem('pentaProgress');
     if (savedProgress) {
         const progress = JSON.parse(savedProgress);
-        lessonProgress.completed = progress.completed || [];
         lessonProgress.skills = progress.skills || lessonProgress.skills;
     }
+
     updateProgressDisplay();
     updateRecommendations();
 }

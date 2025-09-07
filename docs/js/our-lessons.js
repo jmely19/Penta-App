@@ -28,6 +28,35 @@ const lessonToStoryMap = {
     'crisis-3': 'story3.html'
 };
 
+// Guardar progreso de una lección
+function saveLessonProgress(lessonId, status) {
+    let progress = JSON.parse(localStorage.getItem('lessonsProgress')) || {};
+    progress[lessonId] = status;
+    localStorage.setItem('lessonsProgress', JSON.stringify(progress));
+}
+
+// Obtener progreso de todas las lecciones
+function getAllLessonProgress() {
+    return JSON.parse(localStorage.getItem('lessonsProgress')) || {};
+}
+
+// Calcular porcentaje de progreso
+function getProgressPercentage() {
+    const lessonIds = Object.keys(lessonToExerciseMap);
+    const progress = getAllLessonProgress();
+    const completed = lessonIds.filter(id => progress[id] === 'completed').length;
+    return Math.round((completed / lessonIds.length) * 100);
+}
+
+// Generar recomendaciones según el progreso
+function getRecommendations() {
+    const percentage = getProgressPercentage();
+    if (percentage === 0) return "¡Comienza tu primera lección para avanzar!";
+    if (percentage < 50) return "¡Sigue así! Intenta completar más lecciones para mejorar tu aprendizaje.";
+    if (percentage < 100) return "¡Vas muy bien! Ya casi completas todas las lecciones.";
+    return "¡Felicidades! Has completado todas las lecciones.";
+}
+
 // Función para mostrar/ocultar temas
 function showTema(index) {
     document.querySelectorAll('.tema').forEach(tema => {
@@ -77,29 +106,19 @@ function prevTema() {
 }
 
 // Función para manejar el inicio de lecciones
+// ...existing code...
 function startLesson(lessonId) {
     const exerciseFile = lessonToExerciseMap[lessonId];
     const storyFile = lessonToStoryMap[lessonId];
 
+    // Guardar progreso como completado al iniciar la lección
+    saveLessonProgress(lessonId, 'completed');
+
     if (exerciseFile) {
         document.getElementById('learning-modal').classList.remove('hidden');
-
-        // Configurar enlaces del modal
-        const storyLink = document.querySelector('.story-btn');
-        const exercisesLink = document.querySelector('.exercises-btn');
-
-        // Configurar el enlace de "Exercises"
-        exercisesLink.href = exerciseFile;
-
-        // Configurar el enlace de "Story" para que NO redirija a ejercicios
-        storyLink.href = '#';
-        storyLink.onclick = function(e) {
-            e.preventDefault();
-            alert('The story option is not available yet.');
-        };
+        // ...existing code...
     }
 }
-
 // Event listeners
 document.addEventListener('DOMContentLoaded', function() {
     // Configurar botones de navegación
