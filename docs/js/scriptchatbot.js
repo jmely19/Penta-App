@@ -54,6 +54,9 @@ document.addEventListener('DOMContentLoaded', function() {
         if (chatMessages.children.length === 0) {
             showWelcomeMessage();
         }
+        setTimeout(() => {
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+        }, 100);
     });
     
     closeChatbot.addEventListener('click', function() {
@@ -131,6 +134,7 @@ document.addEventListener('DOMContentLoaded', function() {
         welcomeMessages.forEach((msg, index) => {
             setTimeout(() => {
                 displayMessage(msg, 'bot');
+                chatMessages.scrollTop = chatMessages.scrollHeight;
             }, 500 * (index + 1));
         });
     }
