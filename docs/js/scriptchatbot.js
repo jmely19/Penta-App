@@ -57,6 +57,8 @@ document.addEventListener('DOMContentLoaded', function() {
         setTimeout(() => {
             chatMessages.scrollTop = chatMessages.scrollHeight;
         }, 100);
+        chatMessages.style.overflowY = 'auto';
+        chatMessages.style.maxHeight = '100%';
     });
     
     closeChatbot.addEventListener('click', function() {
@@ -101,7 +103,9 @@ document.addEventListener('DOMContentLoaded', function() {
         messageDiv.classList.add(sender + '-message');
         messageDiv.textContent = text;
         chatMessages.appendChild(messageDiv);
-        chatMessages.scrollTop = chatMessages.scrollHeight;
+        setTimeout(() => {
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+        }, 50);
     }
     
     function showTypingIndicator() {
