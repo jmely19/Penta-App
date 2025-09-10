@@ -88,10 +88,15 @@ document.addEventListener('DOMContentLoaded', function() {
             const botResponse = await callGeminiAPI(message);
             removeTypingIndicator();
             displayMessage(botResponse, 'bot');
-            chatMessages.scrollTop = chatMessages.scrollHeight;
+            setTimeout(() => {
+                chatMessages.scrollTop = chatMessages.scrollHeight;
+            }, 200);
         } catch (error) {
             removeTypingIndicator();
             displayMessage("Sorry, I'm having trouble connecting to the AI service. Please try again later.", 'bot');
+            setTimeout(() => {
+                chatMessages.scrollTop = chatMessages.scrollHeight;
+            }, 200);
             console.error("Error:", error);
         }
     }
