@@ -39,6 +39,7 @@
     display: none;
     flex-direction: column;
     overflow: hidden;
+    display: flex;
 }
 
 .chatbot-header {
@@ -64,11 +65,12 @@
 }
 
 .chatbot-messages {
-    flex: 1;
+    flex: 1 1 auto;
     padding: 15px;
     overflow-y: auto;
     background-color: #f9f9f9;
     box-sizing: border-box;
+    min-height: 0;
 }
 
 .message {
@@ -98,6 +100,7 @@
     padding: 10px;
     border-top: 1px solid #ddd;
     background-color: white;
+    flex-shrink: 0;
 }
 
 .chatbot-input {
