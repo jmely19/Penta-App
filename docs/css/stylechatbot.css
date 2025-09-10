@@ -65,9 +65,10 @@
 
 .chatbot-messages {
     flex: 1;
-    padding: 15px;
+    padding: 15px 15px 80px 15px;
     overflow-y: auto;
     background-color: #f9f9f9;
+    box-sizing: border-box;
 }
 
 .message {
