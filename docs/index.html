@@ -50,6 +50,29 @@
             </div>
         </div>
     </nav>
+<!-- Chatbot Widget -->
+<div class="chatbot-container">
+    <div class="chatbot-window" id="chatbotWindow">
+        <div class="chatbot-header">
+            <div class="chatbot-title">Penta Assistance</div>
+            <button class="chatbot-close" id="closeChatbot">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        <div class="chatbot-messages" id="chatMessages"></div>
+        <div class="chatbot-input-container">
+            <input type="text" class="chatbot-input" id="userInput" placeholder="Type your message...">
+            <button class="chatbot-send" id="sendMessage">
+                <i class="fas fa-paper-plane"></i>
+            </button>
+        </div>
+    </div>
+    <div class="chatbot-minimized" id="minimizedChatbot">
+        <i class="fas fa-robot chatbot-icon"></i>
+    </div>
+</div>
+<script src="js/scriptchatbot.js"></script>
+<link rel="stylesheet" href="css/stylechatbot.css">
 
     <!-- SECCIÓN HERO - Banner principal con:
          - Título principal
