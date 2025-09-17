@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crisis Story - Interactive Learning</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .story-container {
+            min-height: 100vh;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 10px;
+        }
+        
+        .story-card {
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            max-width: 1000px;
+            width: 100%;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .story-image-container {
+            position: relative;
+            width: 100%;
+            height: 700px;
+        }
+        
+        .story-image {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            display: none;
+            cursor: pointer;
+            background: #f8f9fa;
+        }
+        
+        .story-image.active {
+            display: block;
+        }
+        
+        /* Clickable areas for buttons in images */
+        .clickable-area {
+            position: absolute;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border-radius: 8px;
+        }
+        
+        .clickable-area:hover {
+            background: rgba(255, 255, 255, 0.2);
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+        }
+        
+        /* Go Back button area - MOVED LOWER */
+        .go-back-area {
+            top: 100px;
+            left: 30px;
+            width: 130px;
+            height: 50px;
+        }
+        
+        /* Choice buttons areas for image 6 - MOVED HIGHER */
+        .choice1-area {
+            bottom: 160px;
+            left: 8%;
+            width: 220px;
+            height: 100px;
+        }
+        
+        .choice2-area {
+            bottom: 160px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 220px;
+            height: 100px;
+        }
+        
+        .choice3-area {
+            bottom: 160px;
+            right: 8%;
+            width: 220px;
+            height: 100px;
+        }
+        
+        /* Continue button area (bottom center for images 1-5) */
+        .continue-area {
+            bottom: 75px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 150px;
+            height: 50px;
+        }
+        
+        .completion-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.8);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+        }
+        
+        .completion-modal.active {
+            display: flex;
+        }
+        
+        .modal-content {
+            background: white;
+            padding: 40px;
+            border-radius: 20px;
+            text-align: center;
+            max-width: 500px;
+            width: 90%;
+        }
+        
+        /* Feedback animations */
+        .correct-feedback {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: rgba(16, 185, 129, 0.9);
+            color: white;
+            padding: 20px 40px;
+            border-radius: 15px;
+            font-size: 18px;
+            font-weight: bold;
+            z-index: 100;
+            animation: fadeInOut 2s ease-in-out;
+        }
+        
+        .wrong-feedback {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: rgba(239, 68, 68, 0.9);
+            color: white;
+            padding: 20px 40px;
+            border-radius: 15px;
+            font-size: 18px;
+            font-weight: bold;
+            z-index: 100;
+            animation: shake 0.5s ease-in-out;
+        }
+        
+        @keyframes fadeInOut {
+            0%, 100% { opacity: 0; transform: translate(-50%, -50%) scale(0.8); }
+            50% { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+        }
+        
+        @keyframes shake {
+            0%, 100% { transform: translate(-50%, -50%) translateX(0); }
+            25% { transform: translate(-50%, -50%) translateX(-10px); }
+            75% { transform: translate(-50%, -50%) translateX(10px); }
+        }
+        
+        /* Responsive design */
+        @media (max-width: 768px) {
+            .story-image-container {
+                height: 500px;
+            }
+            
+            .go-back-area {
+                top: 40px;
+            }
+            
+            .choice1-area, .choice2-area, .choice3-area {
+                width: 180px;
+                height: 80px;
+                bottom: 120px;
+            }
+            
+            .choice1-area {
+                left: 8%;
+            }
+            
+            .choice3-area {
+                right: 8%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="story-container">
+        <div class="story-card">
+            <div class="story-image-container">
+                <!-- Story Images with clickable areas -->
+                <img id="image1" src="images/crisis1.png" alt="Story Image 1" class="story-image active">
+                <img id="image2" src="images/crisis2.png" alt="Story Image 2" class="story-image">
+                <img id="image3" src="images/crisis3.png" alt="Story Image 3" class="story-image">
+                <img id="image4" src="images/crisis4.png" alt="Story Image 4" class="story-image">
+                <img id="image5" src="images/crisis5.png" alt="Story Image 5" class="story-image">
+                <img id="image6" src="images/crisis6.png" alt="Story Image 6" class="story-image">
+                <img id="image7" src="images/crisis7.png" alt="Story Image 7" class="story-image">
+                
+                <!-- Go Back clickable area (appears on all images) - MOVED LOWER -->
+                <div class="clickable-area go-back-area" onclick="goBack()" title="Go Back"></div>
+                
+                <!-- Continue button area (for images 1-5) -->
+                <div id="continueArea" class="clickable-area continue-area" onclick="nextImage()" title="Continue"></div>
+                
+                <!-- Choice button areas (only for image 6) - MOVED HIGHER -->
+                <div id="choice1Area" class="clickable-area choice1-area" onclick="makeChoice(1)" title="She is drawn to the most beautiful design." style="display: none;"></div>
+                <div id="choice2Area" class="clickable-area choice2-area" onclick="makeChoice(2)" title="Make a comparison table of the three cell phones." style="display: none;"></div>
+                <div id="choice3Area" class="clickable-area choice3-area" onclick="makeChoice(3)" title="Ask on social media which one they recommend." style="display: none;"></div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Completion Modal -->
+    <div id="completionModal" class="completion-modal">
+        <div class="modal-content">
+            <div class="mb-6">
+                <i class="fas fa-trophy text-yellow-500 text-6xl mb-4"></i>
+                <h2 class="text-2xl font-bold text-gray-800 mb-2">¡Story Completed!</h2>
+                <p class="text-gray-600">You have successfully completed this crisis lesson.</p>
+                <p class="text-lg font-semibold text-green-600 mt-2">Great decision making!</p>
+            </div>
+            <div class="space-y-3">
+                <button onclick="goToProfile()" class="w-full bg-blue-600 text-white py-3 rounded-lg font-semibold hover:bg-blue-700 transition">
+                    <i class="fas fa-user mr-2"></i>View My Progress
+                </button>
+                <button onclick="goToLessons()" class="w-full bg-orange-500 text-white py-3 rounded-lg font-semibold hover:bg-orange-600 transition">
+                    <i class="fas fa-book mr-2"></i>Continue Learning
+                </button>
+                <button onclick="restartStory()" class="w-full bg-gray-300 text-gray-700 py-3 rounded-lg font-semibold hover:bg-gray-400 transition">
+                    <i class="fas fa-redo mr-2"></i>Restart Story
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let currentImage = 1;
+        let choicesMade = [];
+        let choicesDisabled = [];
+        
+        // Get lesson ID from URL parameter
+        const urlParams = new URLSearchParams(window.location.search);
+        const lessonId = urlParams.get('lesson') || 'crisis-1';
+        
+        function nextImage() {
+            if (currentImage < 6) {
+                // Hide current image
+                document.getElementById(`image${currentImage}`).classList.remove('active');
+                
+                // Show next image
+                currentImage++;
+                document.getElementById(`image${currentImage}`).classList.add('active');
+                
+                // If we reach image 6, show choice areas and hide continue area
+                if (currentImage === 6) {
+                    document.getElementById('continueArea').style.display = 'none';
+                    document.getElementById('choice1Area').style.display = 'block';
+                    document.getElementById('choice2Area').style.display = 'block';
+                    document.getElementById('choice3Area').style.display = 'block';
+                }
+            }
+        }
+        
+        function makeChoice(choice) {
+            // Prevent multiple clicks on the same choice
+            if (choicesDisabled.includes(choice)) return;
+            
+            const imageContainer = document.querySelector('.story-image-container');
+            
+            if (choice === 2) {
+                // Correct choice: "Make a comparison table of the three cell phones"
+                choicesDisabled.push(choice);
+                
+                // Show correct feedback
+                const feedback = document.createElement('div');
+                feedback.className = 'correct-feedback';
+                feedback.textContent = '¡Excellent! Smart comparison!';
+                imageContainer.appendChild(feedback);
+                
+                // Remove feedback and continue to final image after animation
+                setTimeout(() => {
+                    feedback.remove();
+                    goToFinalImage();
+                }, 2000);
+                
+            } else {
+                // Wrong choice
+                choicesDisabled.push(choice);
+                choicesMade.push(choice);
+                
+                // Show wrong feedback
+                const feedback = document.createElement('div');
+                feedback.className = 'wrong-feedback';
+                feedback.textContent = choice === 1 ? 'Think more carefully!' : 'Research is better than opinions!';
+                imageContainer.appendChild(feedback);
+                
+                // Remove feedback
+                setTimeout(() => {
+                    feedback.remove();
+                }, 1000);
+                
+                // Check if both wrong choices have been made
+                const wrongChoices = choicesMade.filter(c => c !== 2);
+                if (wrongChoices.length === 2) {
+                    // Show hint for correct choice
+                    setTimeout(() => {
+                        const hint = document.createElement('div');
+                        hint.className = 'correct-feedback';
+                        hint.innerHTML = '<i class="fas fa-lightbulb mr-2"></i>Try comparing the options!';
+                        imageContainer.appendChild(hint);
+                        
+                        setTimeout(() => {
+                            hint.remove();
+                        }, 3000);
+                    }, 1500);
+                }
+            }
+        }
+        
+        function goToFinalImage() {
+            // Hide choice areas
+            document.getElementById('choice1Area').style.display = 'none';
+            document.getElementById('choice2Area').style.display = 'none';
+            document.getElementById('choice3Area').style.display = 'none';
+            
+            // Go to final image
+            document.getElementById(`image${currentImage}`).classList.remove('active');
+            currentImage = 7;
+            document.getElementById(`image${currentImage}`).classList.add('active');
+            
+            // Show completion modal after 3 seconds
+            setTimeout(showCompletionModal, 3000);
+        }
+        
+        function showCompletionModal() {
+            document.getElementById('completionModal').classList.add('active');
+            
+            // Mark lesson as completed
+            markLessonCompleted();
+        }
+        
+        function markLessonCompleted() {
+            // Save progress
+            let progress = JSON.parse(localStorage.getItem('lessonsProgress')) || {};
+            progress[lessonId] = {
+                status: 'completed',
+                completedAt: new Date().toISOString(),
+                skill: 'problem-solving',
+                completedVia: 'story'
+            };
+            localStorage.setItem('lessonsProgress', JSON.stringify(progress));
+            
+            // Update skills
+            updateSkillProgress();
+        }
+        
+        function updateSkillProgress() {
+            const progress = JSON.parse(localStorage.getItem('lessonsProgress')) || {};
+            const skills = {
+                'critical-thinking': 0,
+                'problem-solving': 0,
+                'financial-decision-making': 0
+            };
+            
+            const skillCounts = {
+                'critical-thinking': 0,
+                'problem-solving': 0,
+                'financial-decision-making': 0
+            };
+            
+            const skillTotals = {
+                'critical-thinking': 3,
+                'problem-solving': 3,
+                'financial-decision-making': 3
+            };
+            
+            const lessonToSkillMap = {
+                'presupuesto-1': 'critical-thinking',
+                'presupuesto-2': 'critical-thinking',
+                'presupuesto-3': 'financial-decision-making',
+                'ahorro-1': 'financial-decision-making',
+                'ahorro-2': 'problem-solving',
+                'ahorro-3': 'financial-decision-making',
+                'crisis-1': 'problem-solving',
+                'crisis-2': 'critical-thinking',
+                'crisis-3': 'problem-solving'
+            };
+            
+            Object.keys(progress).forEach(lessonId => {
+                if (progress[lessonId].status === 'completed') {
+                    const skill = lessonToSkillMap[lessonId];
+                    if (skill) {
+                        skillCounts[skill]++;
+                    }
+                }
+            });
+            
+            Object.keys(skills).forEach(skill => {
+                skills[skill] = Math.round((skillCounts[skill] / skillTotals[skill]) * 100);
+            });
+            
+            let pentaProgress = JSON.parse(localStorage.getItem('pentaProgress')) || {};
+            pentaProgress.skills = skills;
+            localStorage.setItem('pentaProgress', JSON.stringify(pentaProgress));
+        }
+        
+        function goBack() {
+            window.history.back();
+        }
+        
+        function goToProfile() {
+            window.location.href = 'profile.html';
+        }
+        
+        function goToLessons() {
+            window.location.href = 'our-lessons.html';
+        }
+        
+        function restartStory() {
+            location.reload();
+        }
+        
+        // Update UI based on current image
+        function updateUI() {
+            if (currentImage === 6) {
+                document.getElementById('continueArea').style.display = 'none';
+                document.getElementById('choice1Area').style.display = 'block';
+                document.getElementById('choice2Area').style.display = 'block';
+                document.getElementById('choice3Area').style.display = 'block';
+            } else if (currentImage === 7) {
+                document.getElementById('continueArea').style.display = 'none';
+                document.getElementById('choice1Area').style.display = 'none';
+                document.getElementById('choice2Area').style.display = 'none';
+                document.getElementById('choice3Area').style.display = 'none';
+            } else {
+                document.getElementById('continueArea').style.display = 'block';
+                document.getElementById('choice1Area').style.display = 'none';
+                document.getElementById('choice2Area').style.display = 'none';
+                document.getElementById('choice3Area').style.display = 'none';
+            }
+        }
+        
+        // Initialize
+        updateUI();
+    </script>
+</body>
+</html>
