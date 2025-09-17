@@ -15,7 +15,7 @@ const lessonToExerciseMap = {
     'crisis-3': 'exercise-crisis3.html'
 };
 
-// Mapeo de lecciones a historias
+// Mapeo de lecciones a historias - ACTUALIZADO PARA CRISIS
 const lessonToStoryMap = {
     'presupuesto-1': 'story1.html',
     'presupuesto-2': 'story2.html',
@@ -23,9 +23,9 @@ const lessonToStoryMap = {
     'ahorro-1': 'story1.html',
     'ahorro-2': 'story2.html',
     'ahorro-3': 'story3.html',
-    'crisis-1': 'story1.html',
-    'crisis-2': 'story2.html',
-    'crisis-3': 'story3.html'
+    'crisis-1': 'story-crisis.html?lesson=crisis-1',
+    'crisis-2': 'story-crisis.html?lesson=crisis-2',
+    'crisis-3': 'story-crisis.html?lesson=crisis-3'
 };
 
 // Mapeo de lecciones a habilidades
