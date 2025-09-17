@@ -27,7 +27,7 @@
                 </div>
                 <!-- Cerrar Sesión -->
                 <div class="hidden md:flex">
-                     <a href="#" class="bg-gray-200 text-gray-700 px-4 py-2 rounded-full hover:bg-gray-300 transition duration-300 text-sm font-semibold">Log out</a>
+                     <a href="#" id="logoutBtn" class="bg-gray-200 text-gray-700 px-4 py-2 rounded-full hover:bg-gray-300 transition duration-300 text-sm font-semibold">Log out</a>
                 </div>
                 
                 <button class="md:hidden focus:outline-none">
@@ -44,10 +44,13 @@
                     <!-- Tarjeta de Perfil -->
                     <div class="flex-shrink-0 text-center">
                         <div class="bg-white rounded-2xl p-6 shadow-lg">
-                            <img src="images/pexels-matheushenrin-2121122.jpg" alt="Foto de perfil de Cristal Beitia" class="w-40 h-40 rounded-full mx-auto border-4 border-orange-400 object-cover">
-                            <h2 class="text-2xl font-bold text-gray-800 mt-4">Andrea Batista</h2>
+                            <img id="profile-photo" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==" alt="User profile photo" class="w-40 h-40 rounded-full mx-auto border-4 border-orange-400 object-cover" style="visibility: hidden;">
+                            <h2 id="profile-name" class="text-2xl font-bold text-gray-800 mt-4">Andrea Batista</h2>
                             <p class="text-gray-600 mt-2">Student at PENTA</p>
-                            
+                            <div class="mt-4">
+                                <input id="profile-photo-input" type="file" accept="image/*" class="hidden">
+                                <button id="change-photo-btn" class="text-sm text-orange-600 hover:text-orange-700 font-medium underline">Change photo</button>
+                            </div>
                         </div>
                     </div>
                     
