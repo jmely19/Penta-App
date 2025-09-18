@@ -233,33 +233,37 @@ document.addEventListener("DOMContentLoaded", function () {
     const chatbotInput = document.querySelector('.chatbot-input');
     const chatbotMessages = document.querySelector('.chatbot-messages');
 
-    // Mostrar ventana del chatbot
-    chatbotMinimized.addEventListener('click', () => {
-        chatbotWindow.style.display = 'flex';
-        chatbotMinimized.style.display = 'none';
-        addBotMessage("¡Hola! ¿En qué puedo ayudarte?");
-    });
+    // Verifica que los elementos existen antes de agregar eventos
+    if (chatbotMinimized && chatbotWindow) {
+        chatbotMinimized.addEventListener('click', () => {
+            chatbotWindow.style.display = 'flex';
+            chatbotMinimized.style.display = 'none';
+            addBotMessage("¡Hola! ¿En qué puedo ayudarte?");
+        });
+    }
 
-    // Cerrar ventana del chatbot
-    chatbotClose.addEventListener('click', () => {
-        chatbotWindow.style.display = 'none';
-        chatbotMinimized.style.display = 'flex';
-        chatbotMessages.innerHTML = '';
-    });
+    if (chatbotClose && chatbotWindow && chatbotMinimized && chatbotMessages) {
+        chatbotClose.addEventListener('click', () => {
+            chatbotWindow.style.display = 'none';
+            chatbotMinimized.style.display = 'flex';
+            chatbotMessages.innerHTML = '';
+        });
+    }
 
-    // Enviar pregunta
-    chatbotForm.addEventListener('submit', function (e) {
-        e.preventDefault();
-        const userQuestion = chatbotInput.value.trim();
-        if (!userQuestion) return;
+    if (chatbotForm && chatbotInput && chatbotMessages) {
+        chatbotForm.addEventListener('submit', function (e) {
+            e.preventDefault();
+            const userQuestion = chatbotInput.value.trim();
+            if (!userQuestion) return;
 
-        addUserMessage(userQuestion);
-        chatbotInput.value = '';
-        setTimeout(() => {
-            const answer = findAnswer(userQuestion);
-            addBotMessage(answer);
-        }, 500);
-    });
+            addUserMessage(userQuestion);
+            chatbotInput.value = '';
+            setTimeout(() => {
+                const answer = getFAQAnswer(userQuestion) || "No encontré una respuesta para tu pregunta. ¿Puedes ser más específico?";
+                addBotMessage(answer);
+            }, 500);
+        });
+    }
 
     function addUserMessage(text) {
         const msg = document.createElement('div');
@@ -275,16 +279,5 @@ document.addEventListener("DOMContentLoaded", function () {
         msg.textContent = text;
         chatbotMessages.appendChild(msg);
         chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
-    }
-
-    function findAnswer(question) {
-        if (!window.aiFAQ) return "No tengo información para esa pregunta.";
-        const q = question.toLowerCase();
-        for (const item of window.aiFAQ) {
-            if (q.includes(item.question.toLowerCase())) {
-                return item.answer;
-            }
-        }
-        return "No encontré una respuesta para tu pregunta. ¿Puedes ser más específico?";
     }
 });

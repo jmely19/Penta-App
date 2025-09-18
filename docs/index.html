@@ -139,27 +139,37 @@
     </style>
 </head>
 <body>
-    <div class="chatbot-container">
-        <div id="chatbotMinimized" class="chatbot-minimized" title="Abrir Penta Assistance">
-            <span class="chatbot-icon">💬</span>
-        </div>
-        <div id="chatbotWindow" class="chatbot-window" style="display:none;">
-            <div class="chatbot-header">
-                <span class="chatbot-title">
-                    <span style="font-size:1.2em;vertical-align:middle;">🤖</span>
-                    Penta Assistance
-                </span>
-                <button id="chatbotClose" class="chatbot-close" title="Cerrar">×</button>
-            </div>
-            <div id="chatbotMessages" class="chatbot-messages"></div>
-            <form id="chatbotForm" class="chatbot-input-container" autocomplete="off">
-                <input id="chatbotInput" class="chatbot-input" type="text" placeholder="Type your question in the bot..." required>
-                <button type="submit" class="chatbot-send" title="Enviar">
-                    <span>➤</span>
-                </button>
-            </form>
-        </div>
+    <!-- Chatbot UI - Coloca esto antes del cierre de </body> -->
+<div class="chatbot-container">
+    <!-- Botón minimizado (toggler) -->
+    <div class="chatbot-minimized" id="chatbot-toggler">
+        <span class="chatbot-icon">💬</span>
     </div>
+
+    <!-- Ventana principal del chatbot -->
+    <div class="chatbot-window">
+        <div class="chatbot-header">
+            <span class="chatbot-title">Chatbot Penta-App</span>
+            <button class="chatbot-close" id="close-chatbot">&times;</button>
+        </div>
+        <div class="chat-body">
+            <!-- Aquí aparecen los mensajes -->
+        </div>
+        <form class="chat-form chatbot-form" autocomplete="off">
+            <div class="file-upload-wrapper">
+                <img src="" alt="Vista previa archivo" style="display:none;max-width:80px;max-height:80px;">
+                <button type="button" id="file-cancel" title="Cancelar archivo" style="display:none;">✖</button>
+            </div>
+            <input type="file" id="file-input" style="display:none;" />
+            <button type="button" id="file-upload" title="Adjuntar archivo">📎</button>
+            <input type="text" class="message-input chatbot-input" placeholder="Escribe tu mensaje..." autocomplete="off" />
+            <button type="button" id="emoji-picker" title="Emojis">😊</button>
+            <button type="submit" id="send-message" class="chatbot-send">Enviar</button>
+        </form>
+        <!-- Mensajes FAQ modo simple -->
+        <div class="chatbot-messages" style="display:none;"></div>
+    </div>
+</div>
     <script src="js/ai_faq.js"></script>
     <script src="js/chatbot.js"></script>
     <script>
