@@ -15,14 +15,14 @@ const lessonToExerciseMap = {
     'crisis-3': 'exercise-crisis3.html'
 };
 
-// Mapeo de lecciones a historias - ACTUALIZADO PARA CRISIS
+// Mapeo de lecciones a historias - ACTUALIZADO PARA CRISIS, BUDGET Y SAVINGS
 const lessonToStoryMap = {
-    'presupuesto-1': 'story1.html',
-    'presupuesto-2': 'story2.html',
-    'presupuesto-3': 'story3.html',
-    'ahorro-1': 'story1.html',
-    'ahorro-2': 'story2.html',
-    'ahorro-3': 'story3.html',
+    'presupuesto-1': 'story-budget.html?lesson=presupuesto-1',
+    'presupuesto-2': 'story-budget.html?lesson=presupuesto-2',
+    'presupuesto-3': 'story-budget.html?lesson=presupuesto-3',
+    'ahorro-1': 'story-savings.html?lesson=ahorro-1',
+    'ahorro-2': 'story-savings.html?lesson=ahorro-2',
+    'ahorro-3': 'story-savings.html?lesson=ahorro-3',
     'crisis-1': 'story-crisis.html?lesson=crisis-1',
     'crisis-2': 'story-crisis.html?lesson=crisis-2',
     'crisis-3': 'story-crisis.html?lesson=crisis-3'
