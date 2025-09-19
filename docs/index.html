@@ -120,9 +120,392 @@
         </div>
     </section>
     <!-- Chatbot PENTA -->
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chatbot PENTA - Integrable</title>
+    <style>
+        /* Estilos encapsulados para el chatbot solamente */
+        .penta-chatbot-container {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 1000;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        .penta-chatbot-toggle {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #4361ee, #3a0ca3);
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            cursor: pointer;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s;
+        }
+        
+        .penta-chatbot-toggle:hover {
+            transform: scale(1.05);
+        }
+        
+        .penta-chatbot-toggle svg {
+            width: 30px;
+            height: 30px;
+        }
+        
+        .penta-chatbot {
+            width: 350px;
+            height: 500px;
+            background-color: white;
+            border-radius: 12px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.15);
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            margin-bottom: 15px;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.3s, transform 0.3s;
+            display: none;
+        }
+        
+        .penta-chatbot.active {
+            opacity: 1;
+            transform: translateY(0);
+            display: flex;
+        }
+        
+        .penta-chat-header {
+            background: linear-gradient(135deg, #4361ee, #3a0ca3);
+            color: white;
+            padding: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .penta-chat-header h3 {
+            margin: 0;
+            font-size: 1.2rem;
+        }
+        
+        .penta-close-btn {
+            background: none;
+            border: none;
+            color: white;
+            cursor: pointer;
+            font-size: 1.2rem;
+        }
+        
+        .penta-chat-messages {
+            flex: 1;
+            padding: 15px;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+        
+        .penta-message {
+            max-width: 80%;
+            padding: 10px 14px;
+            border-radius: 18px;
+            line-height: 1.4;
+            animation: penta-fadeIn 0.3s ease;
+        }
+        
+        @keyframes penta-fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .penta-user-message {
+            align-self: flex-end;
+            background-color: #4361ee;
+            color: white;
+            border-bottom-right-radius: 5px;
+        }
+        
+        .penta-bot-message {
+            align-self: flex-start;
+            background-color: #f0f3ff;
+            color: #333;
+            border-bottom-left-radius: 5px;
+        }
+        
+        .penta-suggestions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            padding: 10px;
+            background-color: #f9fafc;
+            border-top: 1px solid #eee;
+        }
+        
+        .penta-suggestion-chip {
+            background-color: #e9ecf7;
+            color: #4361ee;
+            padding: 6px 12px;
+            border-radius: 16px;
+            font-size: 0.8rem;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+        
+        .penta-suggestion-chip:hover {
+            background-color: #d8deff;
+        }
+        
+        .penta-typing-indicator {
+            display: none;
+            align-self: flex-start;
+            background-color: #f0f3ff;
+            padding: 10px 15px;
+            border-radius: 18px;
+            margin-bottom: 8px;
+            color: #666;
+            font-style: italic;
+            font-size: 0.9rem;
+        }
+        
+        .penta-typing-indicator.active {
+            display: block;
+        }
+        
+        .penta-chat-input {
+            display: flex;
+            padding: 12px;
+            background-color: white;
+            border-top: 1px solid #eee;
+        }
+        
+        .penta-chat-input input {
+            flex: 1;
+            padding: 10px 14px;
+            border: 1px solid #ddd;
+            border-radius: 20px;
+            outline: none;
+            font-size: 0.9rem;
+        }
+        
+        .penta-chat-input button {
+            margin-left: 8px;
+            background-color: #4361ee;
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: background-color 0.2s;
+        }
+        
+        .penta-chat-input button:hover {
+            background-color: #3a0ca3;
+        }
+    </style>
+</head>
+<body>
+    <!-- Contenedor del chatbot -->
+    <div class="penta-chatbot-container">
+        <div class="penta-chatbot" id="pentaChatbot">
+            <div class="penta-chat-header">
+                <h3>PENTA Assistant</h3>
+                <button class="penta-close-btn" id="pentaCloseBtn">×</button>
+            </div>
+            
+            <div class="penta-chat-messages" id="pentaChatMessages">
+                <div class="penta-message penta-bot-message">
+                    ¡Hola! Soy tu asistente de PENTA. ¿En qué puedo ayudarte hoy? Puedes preguntarme sobre finanzas, PENTA, o cualquier tema relacionado.
+                </div>
+            </div>
+            
+            <div class="penta-typing-indicator" id="pentaTypingIndicator">PENTA está escribiendo...</div>
+            
+            <div class="penta-suggestions">
+                <div class="penta-suggestion-chip" data-question="What is Penta?">¿Qué es PENTA?</div>
+                <div class="penta-suggestion-chip" data-question="How can Penta help me?">¿Cómo me ayuda PENTA?</div>
+                <div class="penta-suggestion-chip" data-question="What does Penta teach?">¿Qué enseña PENTA?</div>
+            </div>
+            
+            <div class="penta-chat-input">
+                <input type="text" id="pentaUserInput" placeholder="Escribe tu pregunta aquí...">
+                <button id="pentaSendButton">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="22" y1="2" x2="11" y2="13"></line>
+                        <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        
+        <div class="penta-chatbot-toggle" id="pentaChatbotToggle">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+            </svg>
+        </div>
+    </div>
 
+    <script>
+        // Base de datos de preguntas y respuestas corregida
+        const aiFAQ = [
+            { "q": "what is penta?", "a": "Penta is a gamified web platform designed to teach teenagers (ages 14–18) how to manage personal finances through interactive storytelling, roleplay, and practical simulations.\n\nInstead of traditional, boring financial lessons, Penta turns learning into a fun and engaging experience. Teens are placed in realistic financial scenarios — like budgeting, saving, and spending — and must make decisions that mirror real-life consequences." },
+            { "q": "tell me about penta", "a": "Penta is an educational application focused on helping teenagers understand and manage their personal finances to achieve financial success in life." },
+            { "q": "what does penta do?", "a": "Penta teaches financial concepts, saving habits, investing, and responsible use of money, all tailored for young people." },
+            { "q": "how can penta help me?", "a": "Penta helps you learn about real-world finance, how to save, invest, and make smart decisions for your financial future." },
+            { "q": "why should i use penta?", "a": "Using Penta prepares you to face the financial challenges of adult life, avoid common mistakes, and improve your economic well-being." },
+            { "q": "what are some key features of penta?", "a": "Key Features of Penta:\n• Gamified Learning: Roleplay-based stories that simulate everyday financial decisions.\n• Interactive Tools: Quizzes, simulations, and progress tracking to reinforce learning.\n• Real-Life Topics: Banking systems, smart saving, spending control, and personal budgeting.\n• Bilingual Access: Available in both English and Spanish.\n• Safe & Educational: A structured environment that promotes financial independence." },
+            { "q": "who founded penta?", "a": "Penta was founded by a team of educators and technologists passionate about youth financial literacy." },
+            { "q": "when was penta created?", "a": "Penta was launched in 2025 to address the gap in practical financial education for teens." },
+            { "q": "has penta won any awards?", "a": "Penta has been recognized for innovation in financial education and youth empowerment." },
+            { "q": "does penta partner with schools?", "a": "Yes, Penta partners with schools and educational organizations to integrate financial literacy into curricula." },
+            { "q": "is penta available outside panama?", "a": "Penta is designed for Panamanian teens but is scalable and can be adapted for global audiences." },
+            { "q": "how does penta compare to everfi?", "a": "Penta uses gamification and local context for teens, while EverFi offers a broader range of digital courses for all ages." },
+            { "q": "how does penta compare to junior achievement?", "a": "Junior Achievement focuses on entrepreneurship and work readiness globally; Penta specializes in practical financial skills for teens in Panama." },
+            { "q": "what does penta teach?", "a": "Core financial topics:\n\n• Banking Systems: Types of accounts, digital banking.\n• Smart Saving: Emergency funds, interest, goal setting.\n• Spending Control: Needs vs. wants, impulse buying.\n• Personal Budgeting: Creating and managing a budget, tracking expenses.\n\nThese lessons are practical, relatable, and actionable, not just theoretical." },
+            { "q": "who is penta for?", "a": "Teenagers aged 14–18.\n\nThis age group is ideal for developing financial habits and is highly responsive to interactive digital content.\nThe platform is designed to be engaging, age-appropriate, and educational." },
+            { "q": "what is penta's solution?", "a": "A gamified web platform for financial education.\n\nPenta uses interactive storytelling and roleplay to simulate real-life financial decisions.\nTeens face scenarios like managing a budget, choosing between saving or spending, and understanding banking systems.\nIncludes quizzes, simulations, and progress tracking to reinforce learning." },
+            { "q": "what problem does penta solve?", "a": "Teenagers lack financial literacy.\n\nAccording to studies, 75% of teens feel unprepared to manage personal finances.\nIn Panama, many teens enter adulthood without basic financial skills, leading to poor saving habits, impulsive spending, and long-term financial instability.\nTraditional education focuses on theoretical finance, not practical life skills like budgeting or saving." },
+            { "q": "what makes penta different?", "a": "Combines education with entertainment.\nFocuses on real-life application, not just theory.\nOffers bilingual accessibility (English and Spanish).\nDesigned with Panamanian teens in mind, but scalable globally." },
+            { "q": "why should parents invest in penta?", "a": "It's a smart investment in their children's future.\n\nEarly financial education = lifelong benefits.\nHelps teens avoid debt, build savings, and make smart decisions.\nFills the gap left by traditional schooling.\nProvides peace of mind knowing teens are gaining essential life skills." },
+            { "q": "what is penta's mission?", "a": "To build a financially informed generation.\n\nPenta aims to prepare teens for real-life financial challenges, not just business finance taught in schools.\nPromotes financial independence, smart habits, and responsible decision-making.\nEnvisions a future where young adults confidently manage their income, avoid debt, and make informed choices." },
+            { "q": "what is penta's platform like?", "a": "Fun, interactive, and educational.\n\nCombines gamification with real-life relevance.\nOffers a safe space for teens to learn and practice financial skills.\nDesigned to be accessible and engaging, turning financial education into a positive experience." },
+            { "q": "what's penta's purpose", "a": "To empower the next generation with the financial knowledge they need to make smart decisions, avoid debt, and build a stable future — starting from their teenage years." },
+            { "q": "what is penta's purpose", "a": "To empower the next generation with the financial knowledge they need to make smart decisions, avoid debt, and build a stable future — starting from their teenage years." },
+            
+            // Finanzas básicas
+            { "q": "what is a budget?", "a": "A budget is a plan for how to spend and save money based on income and expenses." },
+            { "q": "how do i start saving money?", "a": "Set a savings goal, track your expenses, and set aside a fixed amount regularly in a safe account." },
+            { "q": "what is financial literacy?", "a": "Financial literacy is the ability to understand and use various financial skills, including personal financial management, budgeting, and investing." },
+            { "q": "how can i avoid debt?", "a": "Spend less than you earn, use credit responsibly, and pay your bills on time." },
+            { "q": "what is compound interest?", "a": "Compound interest is interest calculated on both the initial principal and the accumulated interest from previous periods." },
+            
+            // Preguntas adicionales en español
+            { "q": "qué es penta?", "a": "Penta es una plataforma web gamificada diseñada para enseñar a adolescentes (14-18 años) cómo administrar sus finanzas personales a través de narrativas interactivas, juegos de roles y simulaciones prácticas." },
+            { "q": "habla español?", "a": "¡Sí! Penta está disponible tanto en inglés como en español. ¿En qué puedo ayudarte?" },
+            { "q": "cómo funciona penta?", "a": "Penta utiliza juegos, simulaciones y narrativas interactivas para enseñar conceptos financieros de manera divertida y práctica para jóvenes." }
+        ];
 
+        // Función para buscar respuesta
+        function getFAQAnswer(userQuestion) {
+            userQuestion = userQuestion.toLowerCase().trim();
+            
+            // Primero buscar coincidencia exacta
+            let match = aiFAQ.find(item => item.q.toLowerCase() === userQuestion);
+            
+            // Si no hay coincidencia exacta, buscar coincidencias parciales
+            if (!match) {
+                match = aiFAQ.find(item => userQuestion.includes(item.q.toLowerCase()));
+            }
+            
+            // Si aún no hay coincidencia, buscar por palabras clave
+            if (!match) {
+                const keywords = userQuestion.split(' ');
+                for (const keyword of keywords) {
+                    if (keyword.length > 3) { // Solo palabras con más de 3 caracteres
+                        match = aiFAQ.find(item => item.q.toLowerCase().includes(keyword));
+                        if (match) break;
+                    }
+                }
+            }
+            
+            return match ? match.a : "Lo siento, no tengo información sobre eso. ¿Podrías intentar con otra pregunta? Pregúntame sobre PENTA, educación financiera o temas relacionados.";
+        }
 
+        // Elementos del DOM del chatbot
+        const pentaChatbot = document.getElementById('pentaChatbot');
+        const pentaChatbotToggle = document.getElementById('pentaChatbotToggle');
+        const pentaCloseBtn = document.getElementById('pentaCloseBtn');
+        const pentaChatMessages = document.getElementById('pentaChatMessages');
+        const pentaUserInput = document.getElementById('pentaUserInput');
+        const pentaSendButton = document.getElementById('pentaSendButton');
+        const pentaTypingIndicator = document.getElementById('pentaTypingIndicator');
+        const pentaSuggestionChips = document.querySelectorAll('.penta-suggestion-chip');
+
+        // Función para alternar la visibilidad del chatbot
+        function toggleChatbot() {
+            pentaChatbot.classList.toggle('active');
+        }
+
+        // Función para agregar mensaje al chat
+        function addMessage(message, isUser = false) {
+            const messageElement = document.createElement('div');
+            messageElement.classList.add('penta-message');
+            messageElement.classList.add(isUser ? 'penta-user-message' : 'penta-bot-message');
+            messageElement.textContent = message;
+            pentaChatMessages.appendChild(messageElement);
+            pentaChatMessages.scrollTop = pentaChatMessages.scrollHeight;
+        }
+
+        // Función para mostrar indicador de typing
+        function showTypingIndicator() {
+            pentaTypingIndicator.classList.add('active');
+            pentaChatMessages.scrollTop = pentaChatMessages.scrollHeight;
+        }
+
+        // Función para ocultar indicador de typing
+        function hideTypingIndicator() {
+            pentaTypingIndicator.classList.remove('active');
+        }
+
+        // Función para procesar la pregunta del usuario
+        function processQuestion(question) {
+            if (!question.trim()) return;
+            
+            // Agregar mensaje del usuario
+            addMessage(question, true);
+            
+            // Limpiar input
+            pentaUserInput.value = '';
+            
+            // Mostrar que el bot está escribiendo
+            showTypingIndicator();
+            
+            // Simular delay de respuesta
+            setTimeout(() => {
+                hideTypingIndicator();
+                
+                // Obtener respuesta
+                const answer = getFAQAnswer(question);
+                
+                // Agregar respuesta del bot
+                addMessage(answer);
+            }, 1000);
+        }
+
+        // Event Listeners
+        pentaChatbotToggle.addEventListener('click', toggleChatbot);
+        pentaCloseBtn.addEventListener('click', toggleChatbot);
+        
+        pentaSendButton.addEventListener('click', () => {
+            processQuestion(pentaUserInput.value);
+        });
+
+        pentaUserInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+                processQuestion(pentaUserInput.value);
+            }
+        });
+
+        // Agregar event listeners a los chips de sugerencia
+        pentaSuggestionChips.forEach(chip => {
+            chip.addEventListener('click', () => {
+                const question = chip.getAttribute('data-question');
+                processQuestion(question);
+            });
+        });
+    </script>
+</body>
+</html>
 
 
     <!-- SECCIÓN SOBRE NOSOTROS - Contiene:
