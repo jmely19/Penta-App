@@ -124,68 +124,47 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>Penta Assistance Chatbot</title>
-    <link rel="stylesheet" href="css/stylechatbot.css">
-    <style>
-        /* Responsive improvement */
-        @media (max-width: 500px) {
-            .chatbot-window {
-                width: 98vw;
-                height: 80vh;
-                right: 1vw;
-                bottom: 1vh;
-            }
-        }
-    </style>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> PENTA - Financial Education for Youth</title>
+    <link rel="stylesheet" href="css/Bot.css">
 </head>
 <body>
-    <!-- Chatbot UI - Coloca esto antes del cierre de </body> -->
-<div class="chatbot-container">
-    <!-- Botón minimizado (toggler) -->
-    <div class="chatbot-minimized" id="chatbot-toggler">
-        <span class="chatbot-icon">💬</span>
+    <div class="chat-container">
+        <div class="chat-header">
+            <h1>PENTA Assistant</h1>
+            <p>Tu guía para la educación financiera</p>
+        </div>
+        
+        <div class="chat-messages" id="chatMessages">
+            <div class="message bot-message">
+                ¡Hola! Soy tu asistente de PENTA. ¿En qué puedo ayudarte hoy? Puedes preguntarme sobre finanzas, PENTA, o cualquier tema relacionado.
+            </div>
+        </div>
+        
+        <div class="suggestions">
+            <div class="suggestion-chip" data-question="What is Penta?">¿Qué es PENTA?</div>
+            <div class="suggestion-chip" data-question="How can Penta help me?">¿Cómo me ayuda PENTA?</div>
+            <div class="suggestion-chip" data-question="What does Penta teach?">¿Qué enseña PENTA?</div>
+        </div>
+        
+        <div class="typing-indicator" id="typingIndicator">PENTA está escribiendo...</div>
+        
+        <div class="chat-input">
+            <input type="text" id="userInput" placeholder="Escribe tu pregunta aquí...">
+            <button id="sendButton">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="22" y1="2" x2="11" y2="13"></line>
+                    <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+                </svg>
+            </button>
+        </div>
     </div>
 
-    <!-- Ventana principal del chatbot -->
-    <div class="chatbot-window">
-        <div class="chatbot-header">
-            <span class="chatbot-title">Chatbot Penta-App</span>
-            <button class="chatbot-close" id="close-chatbot">&times;</button>
-        </div>
-        <div class="chat-body">
-            <!-- Aquí aparecen los mensajes -->
-        </div>
-        <form class="chat-form chatbot-form" autocomplete="off">
-            <div class="file-upload-wrapper">
-                <img src="" alt="Vista previa archivo" style="display:none;max-width:80px;max-height:80px;">
-                <button type="button" id="file-cancel" title="Cancelar archivo" style="display:none;">✖</button>
-            </div>
-            <input type="file" id="file-input" style="display:none;" />
-            <button type="button" id="file-upload" title="Adjuntar archivo">📎</button>
-            <input type="text" class="message-input chatbot-input" placeholder="Escribe tu mensaje..." autocomplete="off" />
-            <button type="button" id="emoji-picker" title="Emojis">😊</button>
-            <button type="submit" id="send-message" class="chatbot-send">Enviar</button>
-        </form>
-        <!-- Mensajes FAQ modo simple -->
-        <div class="chatbot-messages" style="display:none;"></div>
-    </div>
-</div>
     <script src="js/ai_faq.js"></script>
-    <script src="js/chatbot.js"></script>
-    <script>
-        // Agrega la pregunta inicial en inglés al cargar el chatbot
-        document.addEventListener('DOMContentLoaded', function() {
-            const messages = document.getElementById('chatbotMessages');
-            if (messages) {
-                const initialMsg = document.createElement('div');
-                initialMsg.className = 'chatbot-message bot';
-                initialMsg.textContent = "Hello! How can I assist you today?";
-                messages.appendChild(initialMsg);
-            }
-        });
-    </script>
+    <script src="js/scriptchatbot.js"></script>
 </body>
 </html>
+
 
 
 
