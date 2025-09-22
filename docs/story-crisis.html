@@ -3,36 +3,47 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Crisis Story - Interactive Learning</title>
+    <title>Savings Story - Interactive Learning</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        body, html {
+        * {
             margin: 0;
             padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body, html {
+            width: 100%;
+            height: 100%;
             overflow: hidden;
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
         }
         
         .story-container {
+            position: fixed;
+            top: 0;
+            left: 0;
             width: 100vw;
             height: 100vh;
             background: black;
             display: flex;
             align-items: center;
             justify-content: center;
-            position: relative;
         }
         
         .story-image-container {
             position: relative;
-            width: 100%;
+            width: 100vw;
             height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
         
         .story-image {
-            width: 100%;
-            height: 100%;
+            width: 100vw;
+            height: 100vh;
             object-fit: cover;
             display: none;
         }
@@ -53,11 +64,11 @@
             font-size: 20px;
             font-weight: bold;
             z-index: 100;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.5);
             backdrop-filter: blur(10px);
         }
         
-        /* Go Back button - returns to our-lessons */
+        /* Go Back button */
         .go-back-btn {
             position: fixed;
             top: 20px;
@@ -70,46 +81,77 @@
             cursor: pointer;
             transition: all 0.3s ease;
             z-index: 100;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.5);
             backdrop-filter: blur(10px);
-            border: 2px solid rgba(255,255,255,0.1);
         }
         
         .go-back-btn:hover {
             background: rgba(75, 85, 99, 0.95);
             transform: translateY(-2px);
-            box-shadow: 0 6px 25px rgba(0,0,0,0.4);
         }
         
-        /* Choice buttons for image 6 - HORIZONTAL layout */
+        /* Navigation arrows */
+        .nav-arrow {
+            position: fixed;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(0, 0, 0, 0.8);
+            color: white;
+            padding: 15px;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            z-index: 100;
+            font-size: 24px;
+            width: 60px;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            backdrop-filter: blur(10px);
+        }
+        
+        .nav-arrow:hover {
+            background: rgba(0, 0, 0, 0.95);
+            transform: translateY(-50%) scale(1.1);
+        }
+        
+        .nav-arrow.left {
+            left: 30px;
+        }
+        
+        .nav-arrow.right {
+            right: 30px;
+        }
+        
+        /* Choice buttons - VERTICAL layout in center */
         .choice-buttons {
             position: fixed;
-            bottom: 40px;
+            top: 50%;
             left: 50%;
-            transform: translateX(-50%);
+            transform: translate(-50%, -50%);
             display: none;
+            flex-direction: column;
             gap: 20px;
             z-index: 100;
-            width: 90%;
-            max-width: 1200px;
+            width: 400px;
         }
         
         .choice-btn {
-            flex: 1;
             background: rgba(59, 130, 246, 0.95);
             color: white;
-            padding: 20px 15px;
-            border-radius: 15px;
+            padding: 25px 20px;
+            border-radius: 20px;
             font-weight: 600;
             cursor: pointer;
             transition: all 0.3s ease;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.3);
-            backdrop-filter: blur(10px);
+            box-shadow: 0 6px 25px rgba(0,0,0,0.4);
+            backdrop-filter: blur(15px);
             text-align: center;
-            font-size: 16px;
+            font-size: 18px;
             line-height: 1.4;
-            border: 2px solid rgba(255,255,255,0.1);
-            min-height: 100px;
+            border: 3px solid rgba(255,255,255,0.3);
+            min-height: 80px;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -118,7 +160,8 @@
         .choice-btn:hover {
             background: rgba(37, 99, 235, 0.95);
             transform: translateY(-3px);
-            box-shadow: 0 6px 25px rgba(0,0,0,0.4);
+            box-shadow: 0 10px 35px rgba(0,0,0,0.5);
+            border-color: rgba(255,255,255,0.5);
         }
         
         .choice-btn:disabled {
@@ -138,7 +181,7 @@
             align-items: center;
             justify-content: center;
             z-index: 1000;
-            backdrop-filter: blur(10px);
+            backdrop-filter: blur(15px);
         }
         
         .completion-modal.active {
@@ -152,7 +195,7 @@
             text-align: center;
             max-width: 600px;
             width: 90%;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            box-shadow: 0 20px 60px rgba(0,0,0,0.5);
         }
         
         /* Feedback animations */
@@ -162,14 +205,15 @@
             left: 50%;
             transform: translate(-50%, -50%);
             color: white;
-            padding: 30px 50px;
-            border-radius: 20px;
-            font-size: 24px;
+            padding: 35px 60px;
+            border-radius: 25px;
+            font-size: 26px;
             font-weight: bold;
             z-index: 200;
             text-align: center;
-            min-width: 400px;
-            backdrop-filter: blur(10px);
+            min-width: 450px;
+            backdrop-filter: blur(20px);
+            border: 3px solid rgba(255,255,255,0.3);
         }
         
         .correct-feedback {
@@ -187,13 +231,14 @@
             top: 90px;
             right: 20px;
             color: white;
-            padding: 12px 20px;
-            border-radius: 15px;
-            font-size: 18px;
+            padding: 15px 25px;
+            border-radius: 20px;
+            font-size: 20px;
             font-weight: bold;
             z-index: 110;
             animation: slideDown 2.5s ease-in-out;
-            backdrop-filter: blur(10px);
+            backdrop-filter: blur(15px);
+            border: 2px solid rgba(255,255,255,0.3);
         }
         
         .money-gain {
@@ -203,39 +248,93 @@
         .money-loss {
             background: rgba(239, 68, 68, 0.95);
         }
-        
-        /* Navigation arrows */
-        .nav-arrow {
+
+        /* Game Over Eyelid Animation */
+        .game-over-overlay {
             position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: 2000;
+            pointer-events: none;
+            display: none;
+        }
+
+        .game-over-overlay.active {
+            display: block;
+            pointer-events: all;
+        }
+
+        .eyelid-top, .eyelid-bottom {
+            position: absolute;
+            left: 0;
+            width: 100%;
+            height: 50%;
+            background: #000;
+            z-index: 2001;
+        }
+
+        .eyelid-top {
+            top: 0;
+            transform: translateY(-100%);
+        }
+
+        .eyelid-bottom {
+            bottom: 0;
+            transform: translateY(100%);
+        }
+
+        .eyelid-close .eyelid-top {
+            animation: eyelidCloseTop 1.5s ease-in-out forwards;
+        }
+
+        .eyelid-close .eyelid-bottom {
+            animation: eyelidCloseBottom 1.5s ease-in-out forwards;
+        }
+
+        .game-over-text {
+            position: absolute;
             top: 50%;
-            transform: translateY(-50%);
-            background: rgba(0,0,0,0.7);
-            color: white;
-            padding: 15px;
-            border-radius: 50%;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            z-index: 90;
-            font-size: 24px;
-            width: 60px;
-            height: 60px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            backdrop-filter: blur(10px);
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: #ff4444;
+            font-size: 4rem;
+            font-weight: bold;
+            text-align: center;
+            z-index: 2002;
+            opacity: 0;
+            text-shadow: 0 0 20px rgba(255, 68, 68, 0.8);
+            font-family: 'Arial Black', Arial, sans-serif;
         }
-        
-        .nav-arrow:hover {
-            background: rgba(0,0,0,0.9);
-            transform: translateY(-50%) scale(1.1);
+
+        .game-over-text.show {
+            animation: gameOverTextShow 1s ease-out 1.5s forwards;
         }
-        
-        .nav-arrow.left {
-            left: 30px;
+
+        @keyframes eyelidCloseTop {
+            0% { transform: translateY(-100%); }
+            100% { transform: translateY(0); }
         }
-        
-        .nav-arrow.right {
-            right: 30px;
+
+        @keyframes eyelidCloseBottom {
+            0% { transform: translateY(100%); }
+            100% { transform: translateY(0); }
+        }
+
+        @keyframes gameOverTextShow {
+            0% { 
+                opacity: 0; 
+                transform: translate(-50%, -50%) scale(0.5);
+            }
+            50% { 
+                opacity: 1; 
+                transform: translate(-50%, -50%) scale(1.2);
+            }
+            100% { 
+                opacity: 1; 
+                transform: translate(-50%, -50%) scale(1);
+            }
         }
         
         @keyframes fadeInOut {
@@ -245,29 +344,27 @@
         
         @keyframes shake {
             0%, 100% { transform: translate(-50%, -50%) translateX(0); }
-            25% { transform: translate(-50%, -50%) translateX(-15px); }
-            75% { transform: translate(-50%, -50%) translateX(15px); }
+            25% { transform: translate(-50%, -50%) translateX(-20px); }
+            75% { transform: translate(-50%, -50%) translateX(20px); }
         }
         
         @keyframes slideDown {
-            0% { opacity: 0; transform: translateY(-30px); }
+            0% { opacity: 0; transform: translateY(-40px); }
             20%, 80% { opacity: 1; transform: translateY(0); }
-            100% { opacity: 0; transform: translateY(30px); }
+            100% { opacity: 0; transform: translateY(40px); }
         }
         
         /* Responsive design */
         @media (max-width: 768px) {
             .choice-buttons {
-                flex-direction: column;
+                width: 90%;
                 gap: 15px;
-                bottom: 20px;
-                width: 95%;
             }
             
             .choice-btn {
                 min-height: 70px;
-                font-size: 14px;
-                padding: 15px;
+                font-size: 16px;
+                padding: 20px 15px;
             }
             
             .money-display, .go-back-btn {
@@ -276,15 +373,19 @@
             }
             
             .feedback {
-                font-size: 18px;
-                min-width: 300px;
-                padding: 20px 30px;
+                font-size: 20px;
+                min-width: 350px;
+                padding: 25px 40px;
             }
             
             .nav-arrow {
                 width: 50px;
                 height: 50px;
                 font-size: 20px;
+            }
+
+            .game-over-text {
+                font-size: 2.5rem;
             }
         }
     </style>
@@ -293,13 +394,14 @@
     <div class="story-container">
         <div class="story-image-container">
             <!-- Story Images -->
-            <img id="image1" src="images/crisis1.png" alt="Story Image 1" class="story-image active">
-            <img id="image2" src="images/crisis2.png" alt="Story Image 2" class="story-image">
-            <img id="image3" src="images/crisis3.png" alt="Story Image 3" class="story-image">
-            <img id="image4" src="images/crisis4.png" alt="Story Image 4" class="story-image">
-            <img id="image5" src="images/crisis5.png" alt="Story Image 5" class="story-image">
-            <img id="image6" src="images/crisis6.png" alt="Story Image 6" class="story-image">
-            <img id="image7" src="images/crisis7.png" alt="Story Image 7" class="story-image">
+            <img id="image1" src="images/s1.png" alt="Story Image 1" class="story-image active">
+            <img id="image2" src="images/s2.png" alt="Story Image 2" class="story-image">
+            <img id="image3" src="images/s3.png" alt="Story Image 3" class="story-image">
+            <img id="image4" src="images/s4.png" alt="Story Image 4" class="story-image">
+            <img id="image5" src="images/s5.png" alt="Story Image 5" class="story-image">
+            <img id="image6" src="images/s6.png" alt="Story Image 6" class="story-image">
+            <img id="image7" src="images/s7.png" alt="Story Image 7" class="story-image">
+            <img id="image8" src="images/s8.png" alt="Story Image 8" class="story-image">
         </div>
         
         <!-- Fixed UI Elements -->
@@ -322,18 +424,25 @@
             <i class="fas fa-chevron-right"></i>
         </div>
         
-        <!-- Choice Buttons -->
+        <!-- Choice Buttons - VERTICAL layout -->
         <div id="choiceButtons" class="choice-buttons">
             <div class="choice-btn" onclick="makeChoice(1)">
-                She is drawn to the most beautiful design.
+                Start saving money regularly
             </div>
             <div class="choice-btn" onclick="makeChoice(2)">
-                Make a comparison table of the three cell phones.
+                Spend all money on immediate pleasures
             </div>
             <div class="choice-btn" onclick="makeChoice(3)">
-                Ask on social media which one they recommend.
+                Wait until you have more money to start saving
             </div>
         </div>
+    </div>
+    
+    <!-- Game Over Overlay -->
+    <div id="gameOverOverlay" class="game-over-overlay">
+        <div class="eyelid-top"></div>
+        <div class="eyelid-bottom"></div>
+        <div class="game-over-text">GAME OVER</div>
     </div>
     
     <!-- Completion Modal -->
@@ -342,7 +451,7 @@
             <div class="mb-8">
                 <i class="fas fa-trophy text-yellow-500 text-8xl mb-6"></i>
                 <h2 class="text-3xl font-bold text-gray-800 mb-4">¡Story Completed!</h2>
-                <p class="text-gray-600 text-lg">You have successfully completed this crisis lesson.</p>
+                <p class="text-gray-600 text-lg">You have successfully completed this savings lesson.</p>
                 <p id="finalMoneyDisplay" class="text-2xl font-semibold text-green-600 mt-4"></p>
             </div>
             <div class="space-y-4">
@@ -366,7 +475,7 @@
         
         // Get lesson ID from URL parameter
         const urlParams = new URLSearchParams(window.location.search);
-        const lessonId = urlParams.get('lesson') || 'crisis-1';
+        const lessonId = urlParams.get('lesson') || 'ahorro-1';
         
         function updateMoneyDisplay() {
             document.getElementById('moneyAmount').textContent = currentMoney.toFixed(2);
@@ -389,7 +498,7 @@
             const nextArrow = document.getElementById('nextArrow');
             
             // Show/hide previous arrow
-            if (currentImage > 1 && currentImage < 7) {
+            if (currentImage > 1 && currentImage < 8) {
                 prevArrow.style.display = 'flex';
             } else {
                 prevArrow.style.display = 'none';
@@ -397,6 +506,8 @@
             
             // Show/hide next arrow
             if (currentImage < 6) {
+                nextArrow.style.display = 'flex';
+            } else if (currentImage === 7) {
                 nextArrow.style.display = 'flex';
             } else {
                 nextArrow.style.display = 'none';
@@ -419,11 +530,20 @@
                 if (currentImage === 6) {
                     document.getElementById('choiceButtons').style.display = 'flex';
                 }
+            } else if (currentImage === 7) {
+                // Go from image 7 to final image 8
+                document.getElementById(`image${currentImage}`).classList.remove('active');
+                currentImage = 8;
+                document.getElementById(`image${currentImage}`).classList.add('active');
+                updateNavigation();
+                
+                // Show completion modal after 5 seconds (increased from 3)
+                setTimeout(showCompletionModal, 5000);
             }
         }
         
         function prevImage() {
-            if (currentImage > 1 && currentImage < 7) {
+            if (currentImage > 1 && currentImage < 8) {
                 // Hide current image
                 document.getElementById(`image${currentImage}`).classList.remove('active');
                 
@@ -451,8 +571,8 @@
                 btn.style.opacity = '0.7';
             });
             
-            if (choice === 2) {
-                // Correct choice: "Make a comparison table of the three cell phones"
+            if (choice === 1) {
+                // Correct choice: "Start saving money regularly"
                 choicesDisabled.push(choice);
                 
                 // Add money reward
@@ -463,13 +583,13 @@
                 // Show correct feedback
                 const feedback = document.createElement('div');
                 feedback.className = 'feedback correct-feedback';
-                feedback.innerHTML = '<i class="fas fa-check-circle mb-3"></i><br>¡Excellent! Smart comparison!<br><span style="font-size: 18px;">+$10.00 for making the right choice!</span>';
+                feedback.innerHTML = '<i class="fas fa-check-circle mb-3"></i><br>¡Excellent! Smart saving!<br><span style="font-size: 20px;">+$10.00 for making the right choice!</span>';
                 document.body.appendChild(feedback);
                 
-                // Remove feedback and continue to final image after animation
+                // Remove feedback and continue to image 7 after animation
                 setTimeout(() => {
                     feedback.remove();
-                    goToFinalImage();
+                    goToImage7();
                 }, 2500);
                 
             } else {
@@ -480,12 +600,20 @@
                 currentMoney -= 5.00;
                 updateMoneyDisplay();
                 showMoneyChange(5.00, false);
+
+                // Check for game over (budget reached $0)
+                if (currentMoney <= 0) {
+                    setTimeout(() => {
+                        gameOver();
+                    }, 300);
+                    return;
+                }
                 
                 // Show wrong feedback
                 const feedback = document.createElement('div');
                 feedback.className = 'feedback wrong-feedback';
-                const message = choice === 1 ? 'Think more carefully!' : 'Research is better than opinions!';
-                feedback.innerHTML = `<i class="fas fa-times-circle mb-3"></i><br>${message}<br><span style="font-size: 18px;">-$5.00 for wrong choice</span>`;
+                const message = choice === 2 ? 'Think about your future!' : 'Start saving now, no matter how small!';
+                feedback.innerHTML = `<i class="fas fa-times-circle mb-3"></i><br>${message}<br><span style="font-size: 20px;">-$5.00 for wrong choice</span>`;
                 document.body.appendChild(feedback);
                 
                 // Remove feedback and re-enable buttons
@@ -501,13 +629,13 @@
                     });
                     
                     // Check if both wrong choices have been made
-                    const wrongChoices = choicesDisabled.filter(c => c !== 2);
+                    const wrongChoices = choicesDisabled.filter(c => c !== 1);
                     if (wrongChoices.length === 2) {
                         // Show hint for correct choice
                         setTimeout(() => {
                             const hint = document.createElement('div');
                             hint.className = 'feedback correct-feedback';
-                            hint.innerHTML = '<i class="fas fa-lightbulb mb-3"></i><br>Try comparing the options!<br><span style="font-size: 18px;">Choose the middle option</span>';
+                            hint.innerHTML = '<i class="fas fa-lightbulb mb-3"></i><br>Try starting to save regularly!<br><span style="font-size: 20px;">Choose the first option</span>';
                             document.body.appendChild(hint);
                             
                             setTimeout(() => {
@@ -518,12 +646,32 @@
                 }, 2000);
             }
         }
+
+        function gameOver() {
+            // Show the eyelid animation overlay
+            const overlay = document.getElementById('gameOverOverlay');
+            overlay.classList.add('active');
+            overlay.classList.add('eyelid-close');
+            
+            // Show "GAME OVER" text after eyelids close
+            const gameOverText = overlay.querySelector('.game-over-text');
+            gameOverText.classList.add('show');
+            
+            // Redirect after the full animation completes
+            setTimeout(() => {
+                if (document.referrer) {
+                    history.back();
+                } else {
+                    goToLessons();
+                }
+            }, 4000); // 1.5s eyelid + 1s text + 1.5s pause
+        }
         
-        function goToFinalImage() {
+        function goToImage7() {
             // Hide choice buttons
             document.getElementById('choiceButtons').style.display = 'none';
             
-            // Go to final image
+            // Go to image 7 (shows correct feedback)
             document.getElementById(`image${currentImage}`).classList.remove('active');
             currentImage = 7;
             document.getElementById(`image${currentImage}`).classList.add('active');
@@ -531,8 +679,10 @@
             // Update navigation
             updateNavigation();
             
-            // Show completion modal after 3 seconds
-            setTimeout(showCompletionModal, 3000);
+            // Stay on image 7 for 4 seconds (increased from 3)
+            setTimeout(() => {
+                nextImage(); // This will go to image 8
+            }, 4000);
         }
         
         function showCompletionModal() {
@@ -549,7 +699,7 @@
             progress[lessonId] = {
                 status: 'completed',
                 completedAt: new Date().toISOString(),
-                skill: 'problem-solving',
+                skill: 'financial-decision-making',
                 completedVia: 'story',
                 finalMoney: currentMoney
             };

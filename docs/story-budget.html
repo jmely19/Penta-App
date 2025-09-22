@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Budget Story - Interactive Learning</title>
+    <title>Savings Story - Interactive Learning</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
@@ -45,7 +45,6 @@
             width: 100vw;
             height: 100vh;
             object-fit: cover;
-            object-position: center;
             display: none;
         }
         
@@ -125,21 +124,20 @@
             right: 30px;
         }
         
-        /* Choice buttons - positioned higher and larger */
+        /* Choice buttons - VERTICAL layout in center */
         .choice-buttons {
             position: fixed;
-            bottom: 120px;
+            top: 50%;
             left: 50%;
-            transform: translateX(-50%);
+            transform: translate(-50%, -50%);
             display: none;
-            gap: 25px;
+            flex-direction: column;
+            gap: 20px;
             z-index: 100;
-            width: 90%;
-            max-width: 1400px;
+            width: 400px;
         }
         
         .choice-btn {
-            flex: 1;
             background: rgba(59, 130, 246, 0.95);
             color: white;
             padding: 25px 20px;
@@ -153,7 +151,7 @@
             font-size: 18px;
             line-height: 1.4;
             border: 3px solid rgba(255,255,255,0.3);
-            min-height: 120px;
+            min-height: 80px;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -161,7 +159,7 @@
         
         .choice-btn:hover {
             background: rgba(37, 99, 235, 0.95);
-            transform: translateY(-5px);
+            transform: translateY(-3px);
             box-shadow: 0 10px 35px rgba(0,0,0,0.5);
             border-color: rgba(255,255,255,0.5);
         }
@@ -250,6 +248,94 @@
         .money-loss {
             background: rgba(239, 68, 68, 0.95);
         }
+
+        /* Game Over Eyelid Animation */
+        .game-over-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: 2000;
+            pointer-events: none;
+            display: none;
+        }
+
+        .game-over-overlay.active {
+            display: block;
+            pointer-events: all;
+        }
+
+        .eyelid-top, .eyelid-bottom {
+            position: absolute;
+            left: 0;
+            width: 100%;
+            height: 50%;
+            background: #000;
+            z-index: 2001;
+        }
+
+        .eyelid-top {
+            top: 0;
+            transform: translateY(-100%);
+        }
+
+        .eyelid-bottom {
+            bottom: 0;
+            transform: translateY(100%);
+        }
+
+        .eyelid-close .eyelid-top {
+            animation: eyelidCloseTop 1.5s ease-in-out forwards;
+        }
+
+        .eyelid-close .eyelid-bottom {
+            animation: eyelidCloseBottom 1.5s ease-in-out forwards;
+        }
+
+        .game-over-text {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: #ff4444;
+            font-size: 4rem;
+            font-weight: bold;
+            text-align: center;
+            z-index: 2002;
+            opacity: 0;
+            text-shadow: 0 0 20px rgba(255, 68, 68, 0.8);
+            font-family: 'Arial Black', Arial, sans-serif;
+        }
+
+        .game-over-text.show {
+            animation: gameOverTextShow 1s ease-out 1.5s forwards;
+        }
+
+        @keyframes eyelidCloseTop {
+            0% { transform: translateY(-100%); }
+            100% { transform: translateY(0); }
+        }
+
+        @keyframes eyelidCloseBottom {
+            0% { transform: translateY(100%); }
+            100% { transform: translateY(0); }
+        }
+
+        @keyframes gameOverTextShow {
+            0% { 
+                opacity: 0; 
+                transform: translate(-50%, -50%) scale(0.5);
+            }
+            50% { 
+                opacity: 1; 
+                transform: translate(-50%, -50%) scale(1.2);
+            }
+            100% { 
+                opacity: 1; 
+                transform: translate(-50%, -50%) scale(1);
+            }
+        }
         
         @keyframes fadeInOut {
             0%, 100% { opacity: 0; transform: translate(-50%, -50%) scale(0.8); }
@@ -271,14 +357,12 @@
         /* Responsive design */
         @media (max-width: 768px) {
             .choice-buttons {
-                flex-direction: column;
+                width: 90%;
                 gap: 15px;
-                bottom: 80px;
-                width: 95%;
             }
             
             .choice-btn {
-                min-height: 90px;
+                min-height: 70px;
                 font-size: 16px;
                 padding: 20px 15px;
             }
@@ -299,6 +383,10 @@
                 height: 50px;
                 font-size: 20px;
             }
+
+            .game-over-text {
+                font-size: 2.5rem;
+            }
         }
     </style>
 </head>
@@ -306,12 +394,14 @@
     <div class="story-container">
         <div class="story-image-container">
             <!-- Story Images -->
-            <img id="image1" src="images/b1.png" alt="Story Image 1" class="story-image active">
-            <img id="image2" src="images/b2.png" alt="Story Image 2" class="story-image">
-            <img id="image3" src="images/b3.png" alt="Story Image 3" class="story-image">
-            <img id="image4" src="images/b4.png" alt="Story Image 4" class="story-image">
-            <img id="image5" src="images/b5.png" alt="Story Image 5" class="story-image">
-            <img id="image6" src="images/b6.png" alt="Story Image 6" class="story-image">
+            <img id="image1" src="images/s1.png" alt="Story Image 1" class="story-image active">
+            <img id="image2" src="images/s2.png" alt="Story Image 2" class="story-image">
+            <img id="image3" src="images/s3.png" alt="Story Image 3" class="story-image">
+            <img id="image4" src="images/s4.png" alt="Story Image 4" class="story-image">
+            <img id="image5" src="images/s5.png" alt="Story Image 5" class="story-image">
+            <img id="image6" src="images/s6.png" alt="Story Image 6" class="story-image">
+            <img id="image7" src="images/s7.png" alt="Story Image 7" class="story-image">
+            <img id="image8" src="images/s8.png" alt="Story Image 8" class="story-image">
         </div>
         
         <!-- Fixed UI Elements -->
@@ -334,18 +424,25 @@
             <i class="fas fa-chevron-right"></i>
         </div>
         
-        <!-- Choice Buttons -->
+        <!-- Choice Buttons - VERTICAL layout -->
         <div id="choiceButtons" class="choice-buttons">
             <div class="choice-btn" onclick="makeChoice(1)">
-                Create a list of expenses
+                Start saving money regularly
             </div>
             <div class="choice-btn" onclick="makeChoice(2)">
-                Go shopping for furniture without thinking too much about it.
+                Spend all money on immediate pleasures
             </div>
             <div class="choice-btn" onclick="makeChoice(3)">
-                Order food and relax
+                Wait until you have more money to start saving
             </div>
         </div>
+    </div>
+    
+    <!-- Game Over Overlay -->
+    <div id="gameOverOverlay" class="game-over-overlay">
+        <div class="eyelid-top"></div>
+        <div class="eyelid-bottom"></div>
+        <div class="game-over-text">GAME OVER</div>
     </div>
     
     <!-- Completion Modal -->
@@ -354,7 +451,7 @@
             <div class="mb-8">
                 <i class="fas fa-trophy text-yellow-500 text-8xl mb-6"></i>
                 <h2 class="text-3xl font-bold text-gray-800 mb-4">¡Story Completed!</h2>
-                <p class="text-gray-600 text-lg">You have successfully completed this budget lesson.</p>
+                <p class="text-gray-600 text-lg">You have successfully completed this savings lesson.</p>
                 <p id="finalMoneyDisplay" class="text-2xl font-semibold text-green-600 mt-4"></p>
             </div>
             <div class="space-y-4">
@@ -378,7 +475,7 @@
         
         // Get lesson ID from URL parameter
         const urlParams = new URLSearchParams(window.location.search);
-        const lessonId = urlParams.get('lesson') || 'presupuesto-1';
+        const lessonId = urlParams.get('lesson') || 'ahorro-1';
         
         function updateMoneyDisplay() {
             document.getElementById('moneyAmount').textContent = currentMoney.toFixed(2);
@@ -401,14 +498,16 @@
             const nextArrow = document.getElementById('nextArrow');
             
             // Show/hide previous arrow
-            if (currentImage > 1 && currentImage < 6) {
+            if (currentImage > 1 && currentImage < 8) {
                 prevArrow.style.display = 'flex';
             } else {
                 prevArrow.style.display = 'none';
             }
             
             // Show/hide next arrow
-            if (currentImage < 5) {
+            if (currentImage < 6) {
+                nextArrow.style.display = 'flex';
+            } else if (currentImage === 7) {
                 nextArrow.style.display = 'flex';
             } else {
                 nextArrow.style.display = 'none';
@@ -416,7 +515,7 @@
         }
         
         function nextImage() {
-            if (currentImage < 5) {
+            if (currentImage < 6) {
                 // Hide current image
                 document.getElementById(`image${currentImage}`).classList.remove('active');
                 
@@ -427,20 +526,29 @@
                 // Update navigation
                 updateNavigation();
                 
-                // If we reach image 5, show choice buttons
-                if (currentImage === 5) {
+                // If we reach image 6, show choice buttons
+                if (currentImage === 6) {
                     document.getElementById('choiceButtons').style.display = 'flex';
                 }
+            } else if (currentImage === 7) {
+                // Go from image 7 to final image 8
+                document.getElementById(`image${currentImage}`).classList.remove('active');
+                currentImage = 8;
+                document.getElementById(`image${currentImage}`).classList.add('active');
+                updateNavigation();
+                
+                // Show completion modal after 5 seconds (increased from 3)
+                setTimeout(showCompletionModal, 5000);
             }
         }
         
         function prevImage() {
-            if (currentImage > 1 && currentImage < 6) {
+            if (currentImage > 1 && currentImage < 8) {
                 // Hide current image
                 document.getElementById(`image${currentImage}`).classList.remove('active');
                 
-                // Hide choice buttons if leaving image 5
-                if (currentImage === 5) {
+                // Hide choice buttons if leaving image 6
+                if (currentImage === 6) {
                     document.getElementById('choiceButtons').style.display = 'none';
                 }
                 
@@ -464,7 +572,7 @@
             });
             
             if (choice === 1) {
-                // Correct choice: "Create a list of expenses"
+                // Correct choice: "Start saving money regularly"
                 choicesDisabled.push(choice);
                 
                 // Add money reward
@@ -475,13 +583,13 @@
                 // Show correct feedback
                 const feedback = document.createElement('div');
                 feedback.className = 'feedback correct-feedback';
-                feedback.innerHTML = '<i class="fas fa-check-circle mb-3"></i><br>¡Excellent! Smart budgeting!<br><span style="font-size: 20px;">+$10.00 for making the right choice!</span>';
+                feedback.innerHTML = '<i class="fas fa-check-circle mb-3"></i><br>¡Excellent! Smart saving!<br><span style="font-size: 20px;">+$10.00 for making the right choice!</span>';
                 document.body.appendChild(feedback);
                 
-                // Remove feedback and continue to final image after animation
+                // Remove feedback and continue to image 7 after animation
                 setTimeout(() => {
                     feedback.remove();
-                    goToFinalImage();
+                    goToImage7();
                 }, 2500);
                 
             } else {
@@ -492,11 +600,19 @@
                 currentMoney -= 5.00;
                 updateMoneyDisplay();
                 showMoneyChange(5.00, false);
+
+                // Check for game over (budget reached $0)
+                if (currentMoney <= 0) {
+                    setTimeout(() => {
+                        gameOver();
+                    }, 300);
+                    return;
+                }
                 
                 // Show wrong feedback
                 const feedback = document.createElement('div');
                 feedback.className = 'feedback wrong-feedback';
-                const message = choice === 2 ? 'Plan before you spend!' : 'Focus on priorities first!';
+                const message = choice === 2 ? 'Think about your future!' : 'Start saving now, no matter how small!';
                 feedback.innerHTML = `<i class="fas fa-times-circle mb-3"></i><br>${message}<br><span style="font-size: 20px;">-$5.00 for wrong choice</span>`;
                 document.body.appendChild(feedback);
                 
@@ -519,7 +635,7 @@
                         setTimeout(() => {
                             const hint = document.createElement('div');
                             hint.className = 'feedback correct-feedback';
-                            hint.innerHTML = '<i class="fas fa-lightbulb mb-3"></i><br>Try organizing your expenses!<br><span style="font-size: 20px;">Choose the first option</span>';
+                            hint.innerHTML = '<i class="fas fa-lightbulb mb-3"></i><br>Try starting to save regularly!<br><span style="font-size: 20px;">Choose the first option</span>';
                             document.body.appendChild(hint);
                             
                             setTimeout(() => {
@@ -530,21 +646,43 @@
                 }, 2000);
             }
         }
+
+        function gameOver() {
+            // Show the eyelid animation overlay
+            const overlay = document.getElementById('gameOverOverlay');
+            overlay.classList.add('active');
+            overlay.classList.add('eyelid-close');
+            
+            // Show "GAME OVER" text after eyelids close
+            const gameOverText = overlay.querySelector('.game-over-text');
+            gameOverText.classList.add('show');
+            
+            // Redirect after the full animation completes
+            setTimeout(() => {
+                if (document.referrer) {
+                    history.back();
+                } else {
+                    goToLessons();
+                }
+            }, 4000); // 1.5s eyelid + 1s text + 1.5s pause
+        }
         
-        function goToFinalImage() {
+        function goToImage7() {
             // Hide choice buttons
             document.getElementById('choiceButtons').style.display = 'none';
             
-            // Go to final image
+            // Go to image 7 (shows correct feedback)
             document.getElementById(`image${currentImage}`).classList.remove('active');
-            currentImage = 6;
+            currentImage = 7;
             document.getElementById(`image${currentImage}`).classList.add('active');
             
             // Update navigation
             updateNavigation();
             
-            // Show completion modal after 3 seconds
-            setTimeout(showCompletionModal, 3000);
+            // Stay on image 7 for 4 seconds (increased from 3)
+            setTimeout(() => {
+                nextImage(); // This will go to image 8
+            }, 4000);
         }
         
         function showCompletionModal() {
@@ -561,7 +699,7 @@
             progress[lessonId] = {
                 status: 'completed',
                 completedAt: new Date().toISOString(),
-                skill: 'critical-thinking',
+                skill: 'financial-decision-making',
                 completedVia: 'story',
                 finalMoney: currentMoney
             };

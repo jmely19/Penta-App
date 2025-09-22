@@ -248,6 +248,94 @@
         .money-loss {
             background: rgba(239, 68, 68, 0.95);
         }
+
+        /* Game Over Eyelid Animation */
+        .game-over-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: 2000;
+            pointer-events: none;
+            display: none;
+        }
+
+        .game-over-overlay.active {
+            display: block;
+            pointer-events: all;
+        }
+
+        .eyelid-top, .eyelid-bottom {
+            position: absolute;
+            left: 0;
+            width: 100%;
+            height: 50%;
+            background: #000;
+            z-index: 2001;
+        }
+
+        .eyelid-top {
+            top: 0;
+            transform: translateY(-100%);
+        }
+
+        .eyelid-bottom {
+            bottom: 0;
+            transform: translateY(100%);
+        }
+
+        .eyelid-close .eyelid-top {
+            animation: eyelidCloseTop 1.5s ease-in-out forwards;
+        }
+
+        .eyelid-close .eyelid-bottom {
+            animation: eyelidCloseBottom 1.5s ease-in-out forwards;
+        }
+
+        .game-over-text {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: #ff4444;
+            font-size: 4rem;
+            font-weight: bold;
+            text-align: center;
+            z-index: 2002;
+            opacity: 0;
+            text-shadow: 0 0 20px rgba(255, 68, 68, 0.8);
+            font-family: 'Arial Black', Arial, sans-serif;
+        }
+
+        .game-over-text.show {
+            animation: gameOverTextShow 1s ease-out 1.5s forwards;
+        }
+
+        @keyframes eyelidCloseTop {
+            0% { transform: translateY(-100%); }
+            100% { transform: translateY(0); }
+        }
+
+        @keyframes eyelidCloseBottom {
+            0% { transform: translateY(100%); }
+            100% { transform: translateY(0); }
+        }
+
+        @keyframes gameOverTextShow {
+            0% { 
+                opacity: 0; 
+                transform: translate(-50%, -50%) scale(0.5);
+            }
+            50% { 
+                opacity: 1; 
+                transform: translate(-50%, -50%) scale(1.2);
+            }
+            100% { 
+                opacity: 1; 
+                transform: translate(-50%, -50%) scale(1);
+            }
+        }
         
         @keyframes fadeInOut {
             0%, 100% { opacity: 0; transform: translate(-50%, -50%) scale(0.8); }
@@ -294,6 +382,10 @@
                 width: 50px;
                 height: 50px;
                 font-size: 20px;
+            }
+
+            .game-over-text {
+                font-size: 2.5rem;
             }
         }
     </style>
@@ -344,6 +436,13 @@
                 Wait until you have more money to start saving
             </div>
         </div>
+    </div>
+    
+    <!-- Game Over Overlay -->
+    <div id="gameOverOverlay" class="game-over-overlay">
+        <div class="eyelid-top"></div>
+        <div class="eyelid-bottom"></div>
+        <div class="game-over-text">GAME OVER</div>
     </div>
     
     <!-- Completion Modal -->
@@ -501,6 +600,14 @@
                 currentMoney -= 5.00;
                 updateMoneyDisplay();
                 showMoneyChange(5.00, false);
+
+                // Check for game over (budget reached $0)
+                if (currentMoney <= 0) {
+                    setTimeout(() => {
+                        gameOver();
+                    }, 300);
+                    return;
+                }
                 
                 // Show wrong feedback
                 const feedback = document.createElement('div');
@@ -538,6 +645,26 @@
                     }
                 }, 2000);
             }
+        }
+
+        function gameOver() {
+            // Show the eyelid animation overlay
+            const overlay = document.getElementById('gameOverOverlay');
+            overlay.classList.add('active');
+            overlay.classList.add('eyelid-close');
+            
+            // Show "GAME OVER" text after eyelids close
+            const gameOverText = overlay.querySelector('.game-over-text');
+            gameOverText.classList.add('show');
+            
+            // Redirect after the full animation completes
+            setTimeout(() => {
+                if (document.referrer) {
+                    history.back();
+                } else {
+                    goToLessons();
+                }
+            }, 4000); // 1.5s eyelid + 1s text + 1.5s pause
         }
         
         function goToImage7() {
