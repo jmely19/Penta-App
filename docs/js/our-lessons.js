@@ -2,20 +2,20 @@
 let currentTemaIndex = 0;
 const totalTemas = 3;
 
-// Mapeo de lecciones a ejercicios - ACTUALIZADO
+// Mapeo de lecciones a ejercicios - CORREGIDO SEGÚN ARCHIVOS EXISTENTES
 const lessonToExerciseMap = {
     'presupuesto-1': 'exercise1.html',
     'presupuesto-2': 'exercise2.html',
     'presupuesto-3': 'exercise3.html',
-    'ahorro-1': 'exercise1.html',
+    'ahorro-1': 'exercise-ahorro1.html',
     'ahorro-2': 'exercise-ahorro2.html',
-    'ahorro-3': 'exercise3.html',
+    'ahorro-3': 'exercise-ahorro3.html',
     'crisis-1': 'exercise-crisis1.html',
-    'crisis-2': 'exercise2.html',
+    'crisis-2': 'exercise-crisis2.html',
     'crisis-3': 'exercise-crisis3.html'
 };
 
-// Mapeo de lecciones a historias - ACTUALIZADO PARA CRISIS, BUDGET Y SAVINGS
+// Mapeo de lecciones a historias - CORREGIDO PARA USAR ARCHIVOS EXISTENTES
 const lessonToStoryMap = {
     'presupuesto-1': 'story-budget.html?lesson=presupuesto-1',
     'presupuesto-2': 'story-budget.html?lesson=presupuesto-2',
@@ -26,6 +26,19 @@ const lessonToStoryMap = {
     'crisis-1': 'story-crisis.html?lesson=crisis-1',
     'crisis-2': 'story-crisis.html?lesson=crisis-2',
     'crisis-3': 'story-crisis.html?lesson=crisis-3'
+};
+
+// Mapeo de lecciones a teorías - NUEVO
+const lessonToTheoryMap = {
+    'presupuesto-1': 'theory-budget.html',
+    'presupuesto-2': 'theory-budget.html',
+    'presupuesto-3': 'theory-budget.html',
+    'ahorro-1': 'theory-savings.html',
+    'ahorro-2': 'theory-savings.html',
+    'ahorro-3': 'theory-savings.html',
+    'crisis-1': 'theory-crisis.html',
+    'crisis-2': 'theory-crisis.html',
+    'crisis-3': 'theory-crisis.html'
 };
 
 // Mapeo de lecciones a habilidades
@@ -275,10 +288,11 @@ let currentLessonId = null;
 function startLesson(lessonId) {
     const exerciseFile = lessonToExerciseMap[lessonId];
     const storyFile = lessonToStoryMap[lessonId];
+    const theoryFile = lessonToTheoryMap[lessonId];
 
     currentLessonId = lessonId;
 
-    if (exerciseFile || storyFile) {
+    if (exerciseFile || storyFile || theoryFile) {
         document.getElementById('learning-modal').classList.remove('hidden');
     }
 }
@@ -329,8 +343,8 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 
-    // Botones del modal para redirigir según la lección activa
-    document.querySelector('#learning-modal a.bg-blue-600').addEventListener('click', function(e) {
+    // Botón Story del modal
+    document.getElementById('story-btn').addEventListener('click', function(e) {
         e.preventDefault();
         if (currentLessonId && lessonToStoryMap[currentLessonId]) {
             // Marcar como completada al iniciar
@@ -339,7 +353,18 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
     
-    document.querySelector('#learning-modal a.bg-indigo-600').addEventListener('click', function(e) {
+    // Botón Theory del modal - NUEVO
+    document.getElementById('theory-btn').addEventListener('click', function(e) {
+        e.preventDefault();
+        if (currentLessonId && lessonToTheoryMap[currentLessonId]) {
+            // Marcar como completada al iniciar
+            markLessonCompleted(currentLessonId);
+            window.location.href = lessonToTheoryMap[currentLessonId];
+        }
+    });
+    
+    // Botón Exercise del modal
+    document.getElementById('exercise-btn').addEventListener('click', function(e) {
         e.preventDefault();
         if (currentLessonId && lessonToExerciseMap[currentLessonId]) {
             // Marcar como completada al iniciar

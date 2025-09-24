@@ -1,58 +1,58 @@
 const questions = [
     {
-        question: "What is a common sign of a financial scam?",
+        question: "What is compound interest?",
         options: [
-            "They ask for detailed financial information upfront",
-            "They promise guaranteed high returns with no risk",
-            "They provide detailed written contracts",
-            "They encourage you to research before investing"
+            "Interest earned only on the original amount invested",
+            "Interest earned on both the original amount and previously earned interest",
+            "A type of bank fee",
+            "Interest that decreases over time"
         ],
         correct: 1,
-        explanation: "Promises of guaranteed high returns with no risk are classic red flags. All legitimate investments carry some level of risk."
+        explanation: "Compound interest is interest earned on both your original investment and on the interest that has already been earned, creating exponential growth over time."
     },
     {
-        question: "What should you do if someone calls claiming to be from your bank asking for your PIN?",
+        question: "What makes compound interest so powerful for long-term wealth building?",
         options: [
-            "Give them the PIN since they're from your bank",
-            "Ask them to verify their identity first",
-            "Hang up and call your bank directly using the official number",
-            "Give them a fake PIN to test them"
+            "It guarantees you'll never lose money",
+            "The growth accelerates over time as interest earns interest",
+            "It only works with large amounts of money",
+            "Banks pay higher rates for compound interest"
+        ],
+        correct: 1,
+        explanation: "Compound interest becomes more powerful over time because your money grows exponentially - you earn interest on your interest, creating a snowball effect."
+    },
+    {
+        question: "If you invest $1,000 at 10% annual compound interest, approximately how much will you have after 10 years?",
+        options: [
+            "$2,000",
+            "$2,594",
+            "$1,500",
+            "$3,000"
+        ],
+        correct: 1,
+        explanation: "With compound interest at 10% annually, $1,000 grows to approximately $2,594 after 10 years. This demonstrates the power of compounding over time."
+    },
+    {
+        question: "What is the most important factor for maximizing compound interest?",
+        options: [
+            "Starting with a large amount of money",
+            "Finding the highest interest rate possible",
+            "Starting early and giving time for compounding to work",
+            "Checking your account balance daily"
         ],
         correct: 2,
-        explanation: "Banks will never ask for your PIN over the phone. Always hang up and call your bank directly using the official number to verify any suspicious calls."
+        explanation: "Time is the most critical factor in compound interest. Starting early, even with small amounts, gives your money more time to compound and grow exponentially."
     },
     {
-        question: "Which of these is a common characteristic of Ponzi schemes?",
+        question: "How does compound interest differ from simple interest?",
         options: [
-            "They invest in legitimate businesses only",
-            "They pay early investors with money from new investors",
-            "They guarantee losses to teach lessons",
-            "They require no initial investment"
+            "Simple interest is calculated on the original amount only",
+            "Compound interest is always lower than simple interest",
+            "There is no difference between them",
+            "Simple interest is only for savings accounts"
         ],
-        correct: 1,
-        explanation: "Ponzi schemes pay early investors with money from new investors rather than from legitimate business profits, creating an unsustainable cycle."
-    },
-    {
-        question: "What is the best way to verify if an investment opportunity is legitimate?",
-        options: [
-            "Trust the person selling it if they seem nice",
-            "Research the company, check regulatory databases, and consult professionals",
-            "Invest a small amount first to test it",
-            "Ask your friends on social media for their opinion"
-        ],
-        correct: 1,
-        explanation: "Always research thoroughly by checking regulatory databases, verifying company credentials, and consulting with licensed financial professionals."
-    },
-    {
-        question: "What should you be suspicious of in online shopping or investment ads?",
-        options: [
-            "Professional-looking websites",
-            "Pressure to 'act now' or 'limited time offers'",
-            "Customer service contact information",
-            "Detailed product descriptions"
-        ],
-        correct: 1,
-        explanation: "High-pressure tactics like 'act now' or 'limited time offers' are designed to prevent you from thinking carefully or doing proper research."
+        correct: 0,
+        explanation: "Simple interest is calculated only on the original principal amount, while compound interest is calculated on the principal plus any previously earned interest."
     }
 ];
 
@@ -179,7 +179,7 @@ function showGameOver() {
     const performanceMessage = document.getElementById('performanceMessage');
     performanceMessage.innerHTML = `
         <div class="performance-icon">🔄</div>
-        <p class="performance-text">Practice makes perfect! Try again to master fraud protection.</p>
+        <p class="performance-text">Practice makes perfect! Try again to master compound interest.</p>
     `;
 }
 
@@ -196,17 +196,17 @@ function showFinalScreen() {
     if (percentage >= 80) {
         performanceMessage.innerHTML = `
             <div class="performance-icon">🏆</div>
-            <p class="performance-text">Excellent! You're well-protected against financial fraud.</p>
+            <p class="performance-text">Excellent! You're ready to harness the power of compound growth.</p>
         `;
     } else if (percentage >= 60) {
         performanceMessage.innerHTML = `
-            <div class="performance-icon">🛡️</div>
-            <p class="performance-text">Good job! You can spot most fraud red flags.</p>
+            <div class="performance-icon">📈</div>
+            <p class="performance-text">Good job! You understand the basics of compound interest.</p>
         `;
     } else {
         performanceMessage.innerHTML = `
             <div class="performance-icon">📚</div>
-            <p class="performance-text">Keep learning! Fraud protection is essential for financial security.</p>
+            <p class="performance-text">Keep learning! Compound interest is your best friend for wealth building.</p>
         `;
     }
 }
@@ -221,9 +221,9 @@ function restartQuiz() {
     document.getElementById('questionScreen').classList.remove('hidden');
 
     // Reset final screen elements
-    document.querySelector('.final-icon').textContent = '🛡️';
-    document.querySelector('.final-title').textContent = 'Fraud Protection Mastered!';
-    document.querySelector('.final-subtitle').textContent = 'You now know how to protect your money from scams and fraud';
+    document.querySelector('.final-icon').textContent = '📈';
+    document.querySelector('.final-title').textContent = 'Compound Interest Mastered!';
+    document.querySelector('.final-subtitle').textContent = 'You now understand how to make your money work for you';
 
     loadQuestion();
 }

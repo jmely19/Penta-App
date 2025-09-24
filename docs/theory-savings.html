@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Savings Theory - Build Your Wealth</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .theory-container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            font-family: 'Inter', sans-serif;
+        }
+        .theory-header {
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+            color: white;
+            padding: 40px 30px;
+            border-radius: 20px;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .theory-section {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 25px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            border-left: 5px solid #10b981;
+        }
+        .theory-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #10b981, #059669);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 24px;
+            margin: 0 auto 20px;
+        }
+        .progress-bar {
+            width: 100%;
+            height: 8px;
+            background: #e5e7eb;
+            border-radius: 4px;
+            overflow: hidden;
+            margin: 20px 0;
+        }
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #10b981, #059669);
+            width: 0%;
+            transition: width 1s ease;
+        }
+        .example-box {
+            background: #f0fdf4;
+            border: 2px dashed #22c55e;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+        .tip-box {
+            background: linear-gradient(135deg, #d1fae5, #10b981);
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+            color: white;
+        }
+        .compound-chart {
+            background: linear-gradient(135deg, #f0fdf4, #dcfce7);
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <div class="theory-container">
+        <button onclick="window.history.back()" class="mb-4 px-4 py-2 bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-300 transition">
+            <i class="fas fa-arrow-left mr-2"></i>Back to Lessons
+        </button>
+
+        <div class="theory-header">
+            <div class="theory-icon">
+                <i class="fas fa-piggy-bank"></i>
+            </div>
+            <h1 class="text-3xl font-bold mb-4">Savings Theory: Build Your Wealth</h1>
+            <p class="text-lg opacity-90">Master the art of saving money and discover how small amounts can grow into life-changing wealth</p>
+            <div class="progress-bar">
+                <div class="progress-fill" id="readingProgress"></div>
+            </div>
+        </div>
+
+        <div class="theory-section">
+            <h2 class="text-2xl font-bold text-gray-800 mb-4">
+                <i class="fas fa-seedling text-green-500 mr-3"></i>
+                Why Saving Money is Like Planting Seeds
+            </h2>
+            <p class="text-gray-700 text-lg leading-relaxed mb-4">
+                Think of saving money like planting seeds in a garden. At first, you can't see much happening - just like when you put $50 in a savings account, it doesn't feel like much. But over time, with patience and consistency, those seeds grow into something amazing.
+            </p>
+            <div class="example-box">
+                <h3 class="font-bold text-gray-800 mb-2">The Magic of Small Amounts:</h3>
+                <p class="text-gray-700 mb-3">
+                    Sarah saves just $5 per day (the cost of a coffee). In one year, she has $1,825. In 10 years, with compound interest, she could have over $25,000! That's the power of consistent small savings.
+                </p>
+                <div class="bg-white p-4 rounded-lg">
+                    <div class="grid grid-cols-3 gap-4 text-center">
+                        <div>
+                            <div class="text-2xl font-bold text-green-600">$5</div>
+                            <div class="text-sm text-gray-600">Per Day</div>
+                        </div>
+                        <div>
+                            <div class="text-2xl font-bold text-green-600">$1,825</div>
+                            <div class="text-sm text-gray-600">After 1 Year</div>
+                        </div>
+                        <div>
+                            <div class="text-2xl font-bold text-green-600">$25,000+</div>
+                            <div class="text-sm text-gray-600">After 10 Years</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="theory-section">
+            <h2 class="text-2xl font-bold text-gray-800 mb-4">
+                <i class="fas fa-chart-line text-blue-500 mr-3"></i>
+                The Three Pillars of Smart Saving
+            </h2>
+            
+            <div class="grid md:grid-cols-3 gap-6 mb-6">
+                <div class="bg-blue-50 p-6 rounded-lg text-center">
+                    <i class="fas fa-rocket text-blue-500 text-3xl mb-3"></i>
+                    <h3 class="font-bold text-gray-800 mb-2">Pay Yourself First</h3>
+                    <p class="text-gray-700 text-sm">Save money before you spend on anything else. Treat savings like your most important bill.</p>
+                </div>
+                <div class="bg-green-50 p-6 rounded-lg text-center">
+                    <i class="fas fa-target text-green-500 text-3xl mb-3"></i>
+                    <h3 class="font-bold text-gray-800 mb-2">Set Clear Goals</h3>
+                    <p class="text-gray-700 text-sm">Know exactly what you're saving for and when you want to achieve it. Goals make saving exciting!</p>
+                </div>
+                <div class="bg-purple-50 p-6 rounded-lg text-center">
+                    <i class="fas fa-snowflake text-purple-500 text-3xl mb-3"></i>
+                    <h3 class="font-bold text-gray-800 mb-2">Compound Interest</h3>
+                    <p class="text-gray-700 text-sm">Let your money make money. The earlier you start, the more powerful this becomes.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="theory-section">
+            <h2 class="text-2xl font-bold text-gray-800 mb-4">
+                <i class="fas fa-magic text-purple-500 mr-3"></i>
+                The Compound Interest Miracle
+            </h2>
+            <p class="text-gray-700 text-lg leading-relaxed mb-4">
+                Compound interest is often called the "eighth wonder of the world." It's when your money earns money, and then that money earns money too. It's like a snowball rolling down a hill - it starts small but gets bigger and bigger!
+            </p>
+            
+            <div class="compound-chart">
+                <h3 class="font-bold text-gray-800 mb-4 text-center">The Power of Starting Early</h3>
+                <div class="grid md:grid-cols-2 gap-6">
+                    <div class="bg-white p-4 rounded-lg">
+                        <h4 class="font-bold text-green-600 mb-2">Early Bird Emma (starts at 25)</h4>
+                        <ul class="text-sm text-gray-700 space-y-1">
+                            <li>• Saves $200/month for 10 years</li>
+                            <li>• Total invested: $24,000</li>
+                            <li>• Stops saving at 35</li>
+                            <li>• <strong>At 65: $1,035,000</strong></li>
+                        </ul>
+                    </div>
+                    <div class="bg-white p-4 rounded-lg">
+                        <h4 class="font-bold text-orange-600 mb-2">Late Starter Larry (starts at 35)</h4>
+                        <ul class="text-sm text-gray-700 space-y-1">
+                            <li>• Saves $200/month for 30 years</li>
+                            <li>• Total invested: $72,000</li>
+                            <li>• Saves until 65</li>
+                            <li>• <strong>At 65: $678,000</strong></li>
+                        </ul>
+                    </div>
+                </div>
+                <p class="text-center text-gray-700 mt-4 font-semibold">
+                    Emma invested $48,000 LESS but ended up with $357,000 MORE! That's the power of starting early.
+                </p>
+            </div>
+        </div>
+
+        <div class="theory-section">
+            <h2 class="text-2xl font-bold text-gray-800 mb-4">
+                <i class="fas fa-bullseye text-red-500 mr-3"></i>
+                Types of Savings Goals
+            </h2>
+            
+            <div class="space-y-4">
+                <div class="bg-red-50 p-4 rounded-lg border-l-4 border-red-400">
+                    <h3 class="font-bold text-red-700 mb-2">Emergency Fund (Priority #1)</h3>
+                    <p class="text-gray-700">3-6 months of expenses for unexpected situations like job loss or medical bills. This is your financial safety net.</p>
+                    <div class="text-sm text-red-600 mt-2">Goal: $5,000 - $15,000 (depending on your expenses)</div>
+                </div>
+                
+                <div class="bg-yellow-50 p-4 rounded-lg border-l-4 border-yellow-400">
+                    <h3 class="font-bold text-yellow-700 mb-2">Short-term Goals (1-2 years)</h3>
+                    <p class="text-gray-700">Vacation, new phone, car down payment, wedding, or home repairs.</p>
+                    <div class="text-sm text-yellow-600 mt-2">Strategy: High-yield savings account or CDs</div>
+                </div>
+                
+                <div class="bg-blue-50 p-4 rounded-lg border-l-4 border-blue-400">
+                    <h3 class="font-bold text-blue-700 mb-2">Medium-term Goals (2-10 years)</h3>
+                    <p class="text-gray-700">House down payment, starting a business, children's education.</p>
+                    <div class="text-sm text-blue-600 mt-2">Strategy: Mix of savings and conservative investments</div>
+                </div>
+                
+                <div class="bg-green-50 p-4 rounded-lg border-l-4 border-green-400">
+                    <h3 class="font-bold text-green-700 mb-2">Long-term Goals (10+ years)</h3>
+                    <p class="text-gray-700">Retirement, children's college fund, financial independence.</p>
+                    <div class="text-sm text-green-600 mt-2">Strategy: Investments with higher growth potential</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="theory-section">
+            <h2 class="text-2xl font-bold text-gray-800 mb-4">
+                <i class="fas fa-lightbulb text-yellow-500 mr-3"></i>
+                Smart Saving Strategies That Actually Work
+            </h2>
+            
+            <div class="grid md:grid-cols-2 gap-6">
+                <div class="space-y-4">
+                    <div class="bg-gray-50 p-4 rounded-lg">
+                        <h3 class="font-bold text-gray-800 mb-2">1. The 24-Hour Rule</h3>
+                        <p class="text-gray-700 text-sm">Before buying anything over $100, wait 24 hours. You'll be surprised how often you change your mind!</p>
+                    </div>
+                    
+                    <div class="bg-gray-50 p-4 rounded-lg">
+                        <h3 class="font-bold text-gray-800 mb-2">2. Automate Everything</h3>
+                        <p class="text-gray-700 text-sm">Set up automatic transfers to savings. If you don't see it, you won't spend it.</p>
+                    </div>
+                    
+                    <div class="bg-gray-50 p-4 rounded-lg">
+                        <h3 class="font-bold text-gray-800 mb-2">3. The Envelope Method</h3>
+                        <p class="text-gray-700 text-sm">Use cash for discretionary spending. When the envelope is empty, you're done spending in that category.</p>
+                    </div>
+                </div>
+                
+                <div class="space-y-4">
+                    <div class="bg-gray-50 p-4 rounded-lg">
+                        <h3 class="font-bold text-gray-800 mb-2">4. Save Windfalls</h3>
+                        <p class="text-gray-700 text-sm">Tax refunds, bonuses, or gifts should go straight to savings. Treat them as a bonus to your future self.</p>
+                    </div>
+                    
+                    <div class="bg-gray-50 p-4 rounded-lg">
+                        <h3 class="font-bold text-gray-800 mb-2">5. The 1% Challenge</h3>
+                        <p class="text-gray-700 text-sm">Increase your savings rate by 1% every few months. Small increases add up to big results.</p>
+                    </div>
+                    
+                    <div class="bg-gray-50 p-4 rounded-lg">
+                        <h3 class="font-bold text-gray-800 mb-2">6. Visual Motivation</h3>
+                        <p class="text-gray-700 text-sm">Create a visual representation of your goal. Seeing progress keeps you motivated!</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="tip-box">
+            <h3 class="font-bold mb-3 flex items-center">
+                <i class="fas fa-star mr-2"></i>
+                The Savings Mindset Shift
+            </h3>
+            <div class="grid md:grid-cols-2 gap-6">
+                <div>
+                    <h4 class="font-semibold mb-2">❌ Old Thinking:</h4>
+                    <ul class="space-y-1 text-sm opacity-90">
+                        <li>• "I'll save what's left over"</li>
+                        <li>• "I don't earn enough to save"</li>
+                        <li>• "Saving is boring"</li>
+                        <li>• "I need that money now"</li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-semibold mb-2">✅ New Thinking:</h4>
+                    <ul class="space-y-1 text-sm opacity-90">
+                        <li>• "I save first, then spend"</li>
+                        <li>• "Every dollar counts"</li>
+                        <li>• "Saving is investing in my dreams"</li>
+                        <li>• "Future me will thank present me"</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="theory-section">
+            <h2 class="text-2xl font-bold text-gray-800 mb-4">
+                <i class="fas fa-graduation-cap text-purple-500 mr-3"></i>
+                Key Takeaways
+            </h2>
+            <div class="bg-gradient-to-r from-green-100 to-blue-100 p-6 rounded-lg">
+                <ul class="text-gray-800 space-y-3 text-lg">
+                    <li class="flex items-start">
+                        <i class="fas fa-check-circle text-green-500 mr-3 mt-1"></i>
+                        Small, consistent savings grow into significant wealth through compound interest
+                    </li>
+                    <li class="flex items-start">
+                        <i class="fas fa-check-circle text-green-500 mr-3 mt-1"></i>
+                        Pay yourself first - save before you spend on anything else
+                    </li>
+                    <li class="flex items-start">
+                        <i class="fas fa-check-circle text-green-500 mr-3 mt-1"></i>
+                        Set specific, measurable goals to stay motivated and focused
+                    </li>
+                    <li class="flex items-start">
+                        <i class="fas fa-check-circle text-green-500 mr-3 mt-1"></i>
+                        Time is your greatest asset - the earlier you start, the more you'll have
+                    </li>
+                    <li class="flex items-start">
+                        <i class="fas fa-check-circle text-green-500 mr-3 mt-1"></i>
+                        Automate your savings to remove temptation and ensure consistency
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="text-center mt-8">
+            <button onclick="completeTheory()" class="bg-gradient-to-r from-green-500 to-blue-500 text-white px-8 py-4 rounded-full text-lg font-semibold hover:from-green-600 hover:to-blue-600 transition transform hover:scale-105">
+                <i class="fas fa-check mr-2"></i>Mark Theory as Completed
+            </button>
+        </div>
+    </div>
+
+    <script>
+        // Scroll progress tracking
+        window.addEventListener('scroll', () => {
+            const scrolled = (window.scrollY / (document.body.scrollHeight - window.innerHeight)) * 100;
+            document.getElementById('readingProgress').style.width = scrolled + '%';
+        });
+
+        // Complete theory function
+        function completeTheory() {
+            // Save progress for all savings lessons
+            let progress = JSON.parse(localStorage.getItem('lessonsProgress')) || {};
+            
+            const savingsLessons = ['ahorro-1', 'ahorro-2', 'ahorro-3'];
+            savingsLessons.forEach(lessonId => {
+                if (!progress[lessonId]) {
+                    progress[lessonId] = {};
+                }
+                progress[lessonId].theoryCompleted = true;
+                progress[lessonId].theoryCompletedAt = new Date().toISOString();
+            });
+            
+            localStorage.setItem('lessonsProgress', JSON.stringify(progress));
+            
+            // Show completion message
+            showCompletionMessage();
+        }
+
+        function showCompletionMessage() {
+            const modal = document.createElement('div');
+            modal.className = 'fixed inset-0 bg-black bg-opacity-60 flex items-center justify-center p-4 z-50';
+            modal.innerHTML = `
+                <div class="bg-white rounded-2xl shadow-2xl w-full max-w-md p-8 text-center">
+                    <div class="mb-6">
+                        <i class="fas fa-piggy-bank text-green-500 text-6xl mb-4"></i>
+                        <h2 class="text-2xl font-bold text-gray-800 mb-2">Theory Completed!</h2>
+                        <p class="text-gray-600">You've mastered the fundamentals of saving and wealth building.</p>
+                        <p class="text-sm text-green-600 mt-2">Now complete the stories and exercises to master each lesson!</p>
+                    </div>
+                    <div class="space-y-3">
+                        <button onclick="goToLessons()" class="w-full bg-green-600 text-white py-3 rounded-lg font-semibold hover:bg-green-700 transition">
+                            <i class="fas fa-book mr-2"></i>Back to Lessons
+                        </button>
+                        <button onclick="closeModal()" class="w-full bg-gray-300 text-gray-700 py-3 rounded-lg font-semibold hover:bg-gray-400 transition">
+                            Close
+                        </button>
+                    </div>
+                </div>
+            `;
+            
+            document.body.appendChild(modal);
+            window.currentModal = modal;
+        }
+
+        function goToLessons() {
+            window.location.href = 'our-lessons.html';
+        }
+
+        function closeModal() {
+            if (window.currentModal) {
+                document.body.removeChild(window.currentModal);
+                window.currentModal = null;
+            }
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Budget Theory - Master Your Money</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .theory-container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            font-family: 'Inter', sans-serif;
+        }
+        .theory-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 40px 30px;
+            border-radius: 20px;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .theory-section {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 25px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            border-left: 5px solid #667eea;
+        }
+        .theory-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 24px;
+            margin: 0 auto 20px;
+        }
+        .progress-bar {
+            width: 100%;
+            height: 8px;
+            background: #e5e7eb;
+            border-radius: 4px;
+            overflow: hidden;
+            margin: 20px 0;
+        }
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #667eea, #764ba2);
+            width: 0%;
+            transition: width 1s ease;
+        }
+        .example-box {
+            background: #f8fafc;
+            border: 2px dashed #cbd5e1;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+        .tip-box {
+            background: linear-gradient(135deg, #fef3c7, #fbbf24);
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <div class="theory-container">
+        <button onclick="window.history.back()" class="mb-4 px-4 py-2 bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-300 transition">
+            <i class="fas fa-arrow-left mr-2"></i>Back to Lessons
+        </button>
+
+        <div class="theory-header">
+            <div class="theory-icon">
+                <i class="fas fa-calculator"></i>
+            </div>
+            <h1 class="text-3xl font-bold mb-4">Budget Theory: Master Your Money</h1>
+            <p class="text-lg opacity-90">Learn the fundamental principles of budgeting and take control of your financial future</p>
+            <div class="progress-bar">
+                <div class="progress-fill" id="readingProgress"></div>
+            </div>
+        </div>
+
+        <div class="theory-section">
+            <h2 class="text-2xl font-bold text-gray-800 mb-4">
+                <i class="fas fa-lightbulb text-yellow-500 mr-3"></i>
+                What is a Budget?
+            </h2>
+            <p class="text-gray-700 text-lg leading-relaxed mb-4">
+                A budget is simply a plan for your money. Think of it as a roadmap that shows you where your money comes from and where it goes. Just like you wouldn't take a road trip without knowing your destination, you shouldn't manage your money without a clear plan.
+            </p>
+            <div class="example-box">
+                <h3 class="font-bold text-gray-800 mb-2">Simple Example:</h3>
+                <p class="text-gray-700">
+                    Imagine you earn $3,000 per month. A budget helps you decide: "I'll spend $1,200 on rent, $400 on food, $300 on transportation, $500 on savings, and $600 on other expenses." Now you have a clear plan instead of wondering where your money went!
+                </p>
+            </div>
+        </div>
+
+        <div class="theory-section">
+            <h2 class="text-2xl font-bold text-gray-800 mb-4">
+                <i class="fas fa-balance-scale text-blue-500 mr-3"></i>
+                The 50/30/20 Rule: Your Budget Foundation
+            </h2>
+            <p class="text-gray-700 text-lg leading-relaxed mb-4">
+                This is the most popular and easiest budgeting method. It divides your after-tax income into three simple categories:
+            </p>
+            
+            <div class="grid md:grid-cols-3 gap-4 mb-6">
+                <div class="bg-green-100 p-4 rounded-lg text-center">
+                    <div class="text-3xl font-bold text-green-600">50%</div>
+                    <div class="font-semibold text-green-800">NEEDS</div>
+                    <div class="text-sm text-green-700">Rent, utilities, groceries, minimum debt payments</div>
+                </div>
+                <div class="bg-blue-100 p-4 rounded-lg text-center">
+                    <div class="text-3xl font-bold text-blue-600">30%</div>
+                    <div class="font-semibold text-blue-800">WANTS</div>
+                    <div class="text-sm text-blue-700">Entertainment, dining out, hobbies, subscriptions</div>
+                </div>
+                <div class="bg-purple-100 p-4 rounded-lg text-center">
+                    <div class="text-3xl font-bold text-purple-600">20%</div>
+                    <div class="font-semibold text-purple-800">SAVINGS</div>
+                    <div class="text-sm text-purple-700">Emergency fund, retirement, debt payoff</div>
+                </div>
+            </div>
+
+            <div class="example-box">
+                <h3 class="font-bold text-gray-800 mb-2">Real Example with $4,000 monthly income:</h3>
+                <ul class="text-gray-700 space-y-1">
+                    <li>• <strong>$2,000 for NEEDS:</strong> $1,200 rent + $300 groceries + $200 utilities + $300 car payment</li>
+                    <li>• <strong>$1,200 for WANTS:</strong> $400 dining out + $300 entertainment + $200 shopping + $300 hobbies</li>
+                    <li>• <strong>$800 for SAVINGS:</strong> $400 emergency fund + $400 retirement/investments</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="theory-section">
+            <h2 class="text-2xl font-bold text-gray-800 mb-4">
+                <i class="fas fa-chart-line text-green-500 mr-3"></i>
+                Why Budgeting Changes Your Life
+            </h2>
+            <div class="grid md:grid-cols-2 gap-6">
+                <div>
+                    <h3 class="font-bold text-gray-800 mb-3">Before Budgeting:</h3>
+                    <ul class="text-gray-700 space-y-2">
+                        <li class="flex items-center"><i class="fas fa-times text-red-500 mr-2"></i>Money disappears mysteriously</li>
+                        <li class="flex items-center"><i class="fas fa-times text-red-500 mr-2"></i>Constant financial stress</li>
+                        <li class="flex items-center"><i class="fas fa-times text-red-500 mr-2"></i>No savings for emergencies</li>
+                        <li class="flex items-center"><i class="fas fa-times text-red-500 mr-2"></i>Living paycheck to paycheck</li>
+                        <li class="flex items-center"><i class="fas fa-times text-red-500 mr-2"></i>Unable to reach financial goals</li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="font-bold text-gray-800 mb-3">After Budgeting:</h3>
+                    <ul class="text-gray-700 space-y-2">
+                        <li class="flex items-center"><i class="fas fa-check text-green-500 mr-2"></i>Every dollar has a purpose</li>
+                        <li class="flex items-center"><i class="fas fa-check text-green-500 mr-2"></i>Peace of mind about money</li>
+                        <li class="flex items-center"><i class="fas fa-check text-green-500 mr-2"></i>Growing emergency fund</li>
+                        <li class="flex items-center"><i class="fas fa-check text-green-500 mr-2"></i>Money left over each month</li>
+                        <li class="flex items-center"><i class="fas fa-check text-green-500 mr-2"></i>Clear path to financial goals</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="theory-section">
+            <h2 class="text-2xl font-bold text-gray-800 mb-4">
+                <i class="fas fa-tools text-orange-500 mr-3"></i>
+                How to Create Your First Budget (Step by Step)
+            </h2>
+            
+            <div class="space-y-4">
+                <div class="flex items-start space-x-4">
+                    <div class="bg-blue-500 text-white rounded-full w-8 h-8 flex items-center justify-center font-bold">1</div>
+                    <div>
+                        <h3 class="font-bold text-gray-800">Calculate Your Monthly Income</h3>
+                        <p class="text-gray-700">Add up all money coming in: salary, side hustles, benefits. Use your take-home pay (after taxes).</p>
+                    </div>
+                </div>
+                
+                <div class="flex items-start space-x-4">
+                    <div class="bg-blue-500 text-white rounded-full w-8 h-8 flex items-center justify-center font-bold">2</div>
+                    <div>
+                        <h3 class="font-bold text-gray-800">List All Your Expenses</h3>
+                        <p class="text-gray-700">Write down everything you spend money on: rent, food, transportation, entertainment, subscriptions, etc.</p>
+                    </div>
+                </div>
+                
+                <div class="flex items-start space-x-4">
+                    <div class="bg-blue-500 text-white rounded-full w-8 h-8 flex items-center justify-center font-bold">3</div>
+                    <div>
+                        <h3 class="font-bold text-gray-800">Categorize: Needs vs Wants</h3>
+                        <p class="text-gray-700">Separate essential expenses (needs) from optional ones (wants). Be honest with yourself!</p>
+                    </div>
+                </div>
+                
+                <div class="flex items-start space-x-4">
+                    <div class="bg-blue-500 text-white rounded-full w-8 h-8 flex items-center justify-center font-bold">4</div>
+                    <div>
+                        <h3 class="font-bold text-gray-800">Apply the 50/30/20 Rule</h3>
+                        <p class="text-gray-700">Allocate your income: 50% needs, 30% wants, 20% savings. Adjust if necessary.</p>
+                    </div>
+                </div>
+                
+                <div class="flex items-start space-x-4">
+                    <div class="bg-blue-500 text-white rounded-full w-8 h-8 flex items-center justify-center font-bold">5</div>
+                    <div>
+                        <h3 class="font-bold text-gray-800">Track and Adjust</h3>
+                        <p class="text-gray-700">Monitor your spending throughout the month and adjust as needed. It's normal to tweak your budget!</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="tip-box">
+            <h3 class="font-bold text-gray-800 mb-3 flex items-center">
+                <i class="fas fa-star text-yellow-600 mr-2"></i>
+                Pro Tips for Budget Success
+            </h3>
+            <ul class="text-gray-700 space-y-2">
+                <li>• <strong>Start simple:</strong> Don't overcomplicate your first budget</li>
+                <li>• <strong>Be realistic:</strong> Don't cut all fun expenses - you'll give up quickly</li>
+                <li>• <strong>Use apps or spreadsheets:</strong> Find tools that make tracking easier</li>
+                <li>• <strong>Review monthly:</strong> Your budget should evolve with your life</li>
+                <li>• <strong>Celebrate small wins:</strong> Acknowledge when you stick to your budget</li>
+            </ul>
+        </div>
+
+        <div class="theory-section">
+            <h2 class="text-2xl font-bold text-gray-800 mb-4">
+                <i class="fas fa-graduation-cap text-purple-500 mr-3"></i>
+                Key Takeaways
+            </h2>
+            <div class="bg-gradient-to-r from-purple-100 to-blue-100 p-6 rounded-lg">
+                <ul class="text-gray-800 space-y-3 text-lg">
+                    <li class="flex items-start">
+                        <i class="fas fa-check-circle text-green-500 mr-3 mt-1"></i>
+                        A budget is simply a plan that tells your money where to go instead of wondering where it went
+                    </li>
+                    <li class="flex items-start">
+                        <i class="fas fa-check-circle text-green-500 mr-3 mt-1"></i>
+                        The 50/30/20 rule is a simple starting point: 50% needs, 30% wants, 20% savings
+                    </li>
+                    <li class="flex items-start">
+                        <i class="fas fa-check-circle text-green-500 mr-3 mt-1"></i>
+                        Budgeting reduces financial stress and helps you achieve your goals faster
+                    </li>
+                    <li class="flex items-start">
+                        <i class="fas fa-check-circle text-green-500 mr-3 mt-1"></i>
+                        Your first budget won't be perfect - and that's okay! Adjust as you learn
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="text-center mt-8">
+            <button onclick="completeTheory()" class="bg-gradient-to-r from-purple-500 to-blue-500 text-white px-8 py-4 rounded-full text-lg font-semibold hover:from-purple-600 hover:to-blue-600 transition transform hover:scale-105">
+                <i class="fas fa-check mr-2"></i>Mark Theory as Completed
+            </button>
+        </div>
+    </div>
+
+    <script>
+        // Scroll progress tracking
+        window.addEventListener('scroll', () => {
+            const scrolled = (window.scrollY / (document.body.scrollHeight - window.innerHeight)) * 100;
+            document.getElementById('readingProgress').style.width = scrolled + '%';
+        });
+
+        // Complete theory function
+        function completeTheory() {
+            // Save progress for all budget lessons
+            let progress = JSON.parse(localStorage.getItem('lessonsProgress')) || {};
+            
+            const budgetLessons = ['presupuesto-1', 'presupuesto-2', 'presupuesto-3'];
+            budgetLessons.forEach(lessonId => {
+                if (!progress[lessonId]) {
+                    progress[lessonId] = {};
+                }
+                progress[lessonId].theoryCompleted = true;
+                progress[lessonId].theoryCompletedAt = new Date().toISOString();
+            });
+            
+            localStorage.setItem('lessonsProgress', JSON.stringify(progress));
+            
+            // Show completion message
+            showCompletionMessage();
+        }
+
+        function showCompletionMessage() {
+            const modal = document.createElement('div');
+            modal.className = 'fixed inset-0 bg-black bg-opacity-60 flex items-center justify-center p-4 z-50';
+            modal.innerHTML = `
+                <div class="bg-white rounded-2xl shadow-2xl w-full max-w-md p-8 text-center">
+                    <div class="mb-6">
+                        <i class="fas fa-book-open text-blue-500 text-6xl mb-4"></i>
+                        <h2 class="text-2xl font-bold text-gray-800 mb-2">Theory Completed!</h2>
+                        <p class="text-gray-600">You've mastered the fundamentals of budgeting.</p>
+                        <p class="text-sm text-blue-600 mt-2">Now complete the stories and exercises to master each lesson!</p>
+                    </div>
+                    <div class="space-y-3">
+                        <button onclick="goToLessons()" class="w-full bg-blue-600 text-white py-3 rounded-lg font-semibold hover:bg-blue-700 transition">
+                            <i class="fas fa-book mr-2"></i>Back to Lessons
+                        </button>
+                        <button onclick="closeModal()" class="w-full bg-gray-300 text-gray-700 py-3 rounded-lg font-semibold hover:bg-gray-400 transition">
+                            Close
+                        </button>
+                    </div>
+                </div>
+            `;
+            
+            document.body.appendChild(modal);
+            window.currentModal = modal;
+        }
+
+        function goToLessons() {
+            window.location.href = 'our-lessons.html';
+        }
+
+        function closeModal() {
+            if (window.currentModal) {
+                document.body.removeChild(window.currentModal);
+                window.currentModal = null;
+            }
+        }
+    </script>
+</body>
+</html>

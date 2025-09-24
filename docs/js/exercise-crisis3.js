@@ -1,58 +1,58 @@
 const questions = [
     {
-        question: "What is a common sign of a financial scam?",
+        question: "What is inflation?",
         options: [
-            "They ask for detailed financial information upfront",
-            "They promise guaranteed high returns with no risk",
-            "They provide detailed written contracts",
-            "They encourage you to research before investing"
+            "When prices of goods and services decrease over time",
+            "When prices of goods and services increase over time",
+            "When your salary increases automatically",
+            "When banks give you more interest"
         ],
         correct: 1,
-        explanation: "Promises of guaranteed high returns with no risk are classic red flags. All legitimate investments carry some level of risk."
+        explanation: "Inflation is the general increase in prices of goods and services over time, which reduces the purchasing power of money."
     },
     {
-        question: "What should you do if someone calls claiming to be from your bank asking for your PIN?",
+        question: "How does inflation affect your savings?",
         options: [
-            "Give them the PIN since they're from your bank",
-            "Ask them to verify their identity first",
-            "Hang up and call your bank directly using the official number",
-            "Give them a fake PIN to test them"
+            "It makes your savings grow faster",
+            "It has no effect on savings",
+            "It reduces the purchasing power of your saved money",
+            "It only affects checking accounts"
         ],
         correct: 2,
-        explanation: "Banks will never ask for your PIN over the phone. Always hang up and call your bank directly using the official number to verify any suspicious calls."
+        explanation: "Inflation reduces the purchasing power of your savings. Money saved today will buy less in the future if inflation exceeds your savings growth rate."
     },
     {
-        question: "Which of these is a common characteristic of Ponzi schemes?",
+        question: "What is a good strategy to protect against inflation?",
         options: [
-            "They invest in legitimate businesses only",
-            "They pay early investors with money from new investors",
-            "They guarantee losses to teach lessons",
-            "They require no initial investment"
+            "Keep all money in cash under your mattress",
+            "Invest in assets that typically grow faster than inflation",
+            "Stop saving money completely",
+            "Only buy things when prices are high"
         ],
         correct: 1,
-        explanation: "Ponzi schemes pay early investors with money from new investors rather than from legitimate business profits, creating an unsustainable cycle."
+        explanation: "Investing in assets like stocks, real estate, or inflation-protected bonds that historically grow faster than inflation helps preserve purchasing power."
     },
     {
-        question: "What is the best way to verify if an investment opportunity is legitimate?",
+        question: "What typically happens to fixed-rate debt during inflation?",
         options: [
-            "Trust the person selling it if they seem nice",
-            "Research the company, check regulatory databases, and consult professionals",
-            "Invest a small amount first to test it",
-            "Ask your friends on social media for their opinion"
+            "The debt becomes more expensive to pay off",
+            "The debt becomes easier to pay off with inflated dollars",
+            "The debt disappears automatically",
+            "Interest rates on the debt increase"
         ],
         correct: 1,
-        explanation: "Always research thoroughly by checking regulatory databases, verifying company credentials, and consulting with licensed financial professionals."
+        explanation: "Fixed-rate debt becomes easier to pay off during inflation because you're paying back with dollars that are worth less than when you borrowed them."
     },
     {
-        question: "What should you be suspicious of in online shopping or investment ads?",
+        question: "Which group is most hurt by unexpected inflation?",
         options: [
-            "Professional-looking websites",
-            "Pressure to 'act now' or 'limited time offers'",
-            "Customer service contact information",
-            "Detailed product descriptions"
+            "People with variable-rate mortgages",
+            "People with fixed incomes and cash savings",
+            "People who own real estate",
+            "People with student loans"
         ],
         correct: 1,
-        explanation: "High-pressure tactics like 'act now' or 'limited time offers' are designed to prevent you from thinking carefully or doing proper research."
+        explanation: "People with fixed incomes and cash savings are hurt most by inflation because their purchasing power decreases while their income stays the same."
     }
 ];
 
@@ -179,7 +179,7 @@ function showGameOver() {
     const performanceMessage = document.getElementById('performanceMessage');
     performanceMessage.innerHTML = `
         <div class="performance-icon">🔄</div>
-        <p class="performance-text">Practice makes perfect! Try again to master fraud protection.</p>
+        <p class="performance-text">Practice makes perfect! Try again to master inflation protection.</p>
     `;
 }
 
@@ -196,17 +196,17 @@ function showFinalScreen() {
     if (percentage >= 80) {
         performanceMessage.innerHTML = `
             <div class="performance-icon">🏆</div>
-            <p class="performance-text">Excellent! You're well-protected against financial fraud.</p>
+            <p class="performance-text">Excellent! You're prepared to protect your purchasing power.</p>
         `;
     } else if (percentage >= 60) {
         performanceMessage.innerHTML = `
-            <div class="performance-icon">🛡️</div>
-            <p class="performance-text">Good job! You can spot most fraud red flags.</p>
+            <div class="performance-icon">📈</div>
+            <p class="performance-text">Good job! You understand the basics of inflation protection.</p>
         `;
     } else {
         performanceMessage.innerHTML = `
             <div class="performance-icon">📚</div>
-            <p class="performance-text">Keep learning! Fraud protection is essential for financial security.</p>
+            <p class="performance-text">Keep learning! Understanding inflation is crucial for financial planning.</p>
         `;
     }
 }
@@ -221,9 +221,9 @@ function restartQuiz() {
     document.getElementById('questionScreen').classList.remove('hidden');
 
     // Reset final screen elements
-    document.querySelector('.final-icon').textContent = '🛡️';
-    document.querySelector('.final-title').textContent = 'Fraud Protection Mastered!';
-    document.querySelector('.final-subtitle').textContent = 'You now know how to protect your money from scams and fraud';
+    document.querySelector('.final-icon').textContent = '📈';
+    document.querySelector('.final-title').textContent = 'Inflation Mastered!';
+    document.querySelector('.final-subtitle').textContent = 'You now understand how to protect your money from inflation';
 
     loadQuestion();
 }

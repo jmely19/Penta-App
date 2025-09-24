@@ -1,20 +1,20 @@
-// Script para manejar el progreso en las páginas de ejercicios
-// Este archivo debe ser incluido en exercise1.html, exercise2.html, exercise3.html
+// Script to handle progress in exercise pages
+// This file should be included in exercise1.html, exercise2.html, exercise3.html
 
-// Función para marcar ejercicio como completado
+// Function to mark exercise as completed
 function completeExercise() {
-    // Obtener el ID de la lección desde la URL o parámetros
+    // Get lesson ID from URL or parameters
     const urlParams = new URLSearchParams(window.location.search);
     let lessonId = urlParams.get('lesson');
     
-    // Si no hay parámetro, intentar determinar desde el referrer o usar un mapeo por defecto
+    // If no parameter, try to determine from referrer or use default mapping
     if (!lessonId) {
         const referrer = document.referrer;
         if (referrer.includes('our-lessons.html')) {
-            // Mapeo por defecto basado en el archivo actual
+            // Default mapping based on current file
             const currentFile = window.location.pathname.split('/').pop();
             const exerciseToLessonMap = {
-                'exercise1.html': 'presupuesto-1', // Por defecto, puede ser modificado
+                'exercise1.html': 'presupuesto-1', // Default, can be modified
                 'exercise2.html': 'presupuesto-2',
                 'exercise3.html': 'presupuesto-3'
             };
@@ -26,12 +26,12 @@ function completeExercise() {
         window.markLessonCompleted(lessonId);
         showCompletionMessage(lessonId);
     } else {
-        // Fallback: guardar progreso directamente
+        // Fallback: save progress directly
         saveLessonProgressLocal(lessonId || 'unknown-lesson');
     }
 }
 
-// Función local para guardar progreso si no está disponible la función global
+// Local function to save progress if global function is not available
 function saveLessonProgressLocal(lessonId) {
     let progress = JSON.parse(localStorage.getItem('lessonsProgress')) || {};
     progress[lessonId] = {
@@ -42,7 +42,7 @@ function saveLessonProgressLocal(lessonId) {
     localStorage.setItem('lessonsProgress', JSON.stringify(progress));
 }
 
-// Mostrar mensaje de finalización
+// Show completion message
 function showCompletionMessage(lessonId) {
     const modal = document.createElement('div');
     modal.className = 'fixed inset-0 bg-black bg-opacity-60 flex items-center justify-center p-4 z-50';
@@ -50,18 +50,18 @@ function showCompletionMessage(lessonId) {
         <div class="bg-white rounded-2xl shadow-2xl w-full max-w-md p-8 text-center">
             <div class="mb-6">
                 <i class="fas fa-trophy text-yellow-500 text-6xl mb-4"></i>
-                <h2 class="text-2xl font-bold text-gray-800 mb-2">¡Excelente trabajo!</h2>
-                <p class="text-gray-600">Has completado esta lección exitosamente.</p>
+                <h2 class="text-2xl font-bold text-gray-800 mb-2">Excellent work!</h2>
+                <p class="text-gray-600">You have successfully completed this lesson.</p>
             </div>
             <div class="space-y-3">
                 <button onclick="goToProfile()" class="w-full bg-blue-600 text-white py-3 rounded-lg font-semibold hover:bg-blue-700 transition">
-                    <i class="fas fa-user mr-2"></i>Ver mi progreso
+                    <i class="fas fa-user mr-2"></i>View my progress
                 </button>
                 <button onclick="goToLessons()" class="w-full bg-orange-500 text-white py-3 rounded-lg font-semibold hover:bg-orange-600 transition">
-                    <i class="fas fa-book mr-2"></i>Continuar aprendiendo
+                    <i class="fas fa-book mr-2"></i>Continue learning
                 </button>
                 <button onclick="closeCompletionModal()" class="w-full bg-gray-300 text-gray-700 py-3 rounded-lg font-semibold hover:bg-gray-400 transition">
-                    Cerrar
+                    Close
                 </button>
             </div>
         </div>
@@ -71,7 +71,7 @@ function showCompletionMessage(lessonId) {
     window.currentCompletionModal = modal;
 }
 
-// Funciones de navegación
+// Navigation functions
 function goToProfile() {
     window.location.href = 'profile.html';
 }
@@ -87,25 +87,25 @@ function closeCompletionModal() {
     }
 }
 
-// Función para agregar botón de completar a cualquier ejercicio
+// Function to add complete button to any exercise
 function addCompleteButton(containerId = 'exercise-container') {
     const container = document.getElementById(containerId) || document.body;
     
     const completeButton = document.createElement('button');
     completeButton.id = 'complete-exercise-btn';
     completeButton.className = 'fixed bottom-6 right-6 bg-green-500 text-white px-6 py-3 rounded-full shadow-lg hover:bg-green-600 transition transform hover:scale-105 z-40';
-    completeButton.innerHTML = '<i class="fas fa-check mr-2"></i>Completar Lección';
+    completeButton.innerHTML = '<i class="fas fa-check mr-2"></i>Complete Lesson';
     completeButton.onclick = completeExercise;
     
     document.body.appendChild(completeButton);
 }
 
-// Auto-inicialización
+// Auto-initialization
 document.addEventListener('DOMContentLoaded', function() {
-    // Agregar botón de completar automáticamente
+    // Add complete button automatically
     addCompleteButton();
     
-    // Escuchar tecla Enter para completar rápidamente
+    // Listen for Enter key to complete quickly
     document.addEventListener('keydown', function(e) {
         if (e.ctrlKey && e.key === 'Enter') {
             completeExercise();
@@ -113,7 +113,7 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 });
 
-// Exportar funciones para uso global
+// Export functions for global use
 window.completeExercise = completeExercise;
 window.goToProfile = goToProfile;
 window.goToLessons = goToLessons;

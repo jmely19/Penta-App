@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz: The Power of Paying Yourself First</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/exercise1.css">
+    <style>
+        .back-to-lessons-btn {
+            background-color: #f0f0f0;
+            color: #333;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 14px;
+            margin-bottom: 10px;
+            display: inline-flex;
+            align-items: center;
+        }
+        .back-to-lessons-btn:hover {
+            background-color: #e0e0e0;
+        }
+    </style>
+</head>
+<body>
+    <div class="quiz-container">
+        <!-- Question Screen -->
+        <div id="questionScreen">
+            <div class="header">
+                <button class="back-to-lessons-btn" onclick="window.history.back()">
+                    <i class="fas fa-arrow-left"></i> Back to Lessons
+                </button>
+                <div class="progress"><span id="progressText">1/5</span></div>
+                <h1 id="questionTitle">The Power of Paying Yourself First!</h1>
+                <p id="questionSubtitle">Learn the fundamental principle of building wealth: prioritizing your savings before any other expenses.</p>
+                <div class="budget-badge" id="budgetBadge">Priority: Save First</div>
+            </div>
+            <div class="money-icon">
+                <div class="icon-circle"></div>
+            </div>
+            <div class="content">
+                <h2 class="question" id="currentQuestion">Question 1/5: What does "paying yourself first" mean?</h2>
+                <div class="options" id="optionsContainer">
+                    <!-- Options will be populated by JavaScript -->
+                </div>
+                <button class="next-btn" id="nextBtn" onclick="nextQuestion()" disabled>
+                    Next →
+                </button>
+            </div>
+        </div>
+        <!-- Result Screen -->
+        <div id="resultScreen" class="hidden">
+            <div class="result-screen">
+                <button class="back-to-lessons-btn" onclick="window.history.back()">
+                    <i class="fas fa-arrow-left"></i> Back to Lessons
+                </button>
+                <div class="result-icon" id="resultIcon">
+                    ✓
+                </div>
+                <h2 class="result-title" id="resultTitle">Correct!</h2>
+                <p class="result-text" id="resultText">Great! You understand the power of prioritizing savings.</p>
+            </div>
+        </div>
+        <!-- Final Screen -->
+        <div id="finalScreen" class="hidden">
+            <div class="final-screen">
+                <button class="back-to-lessons-btn" onclick="window.history.back()">
+                    <i class="fas fa-arrow-left"></i> Back to Lessons
+                </button>
+                <div class="final-icon">💰</div>
+                <h2 class="final-title">Savings Priority Mastered!</h2>
+                <p class="final-subtitle">You now understand the power of paying yourself first</p>
+                <div class="score-card">
+                    <h3 class="score-title">Your Score</h3>
+                    <p class="score-number" id="finalScore">0/5</p>
+                    <p class="score-percentage" id="finalPercentage">0% Correct</p>
+                </div>
+                <div class="performance" id="performanceMessage">
+                    <div class="performance-icon">🎯</div>
+                    <p class="performance-text">Amazing! You've mastered the foundation of wealth building.</p>
+                </div>
+                <div class="mt-6 space-y-3">
+                    <button class="restart-btn" onclick="restartQuiz()">Restart Quiz</button>
+                    <button class="w-full bg-green-500 text-white py-3 px-6 rounded-lg font-semibold hover:bg-green-600 transition" onclick="completeExercise()">
+                        <i class="fas fa-check mr-2"></i>Mark as Completed
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="js/exercise-ahorro1.js"></script>
+    <script src="js/exercise-progress.js"></script>
+    <script>
+        // Set the lesson ID for this exercise
+        window.currentLessonId = 'ahorro-1';
+        
+        // Override the completeExercise function to use the specific lesson ID
+        function completeExercise() {
+            // Save progress
+            let progress = JSON.parse(localStorage.getItem('lessonsProgress')) || {};
+            progress[window.currentLessonId] = {
+                status: 'completed',
+                completedAt: new Date().toISOString(),
+                skill: 'financial-decision-making',
+                completedVia: 'exercise'
+            };
+            localStorage.setItem('lessonsProgress', JSON.stringify(progress));
+            
+            // Update skills
+            updateSkillProgress();
+            
+            // Show completion message
+            showCompletionMessage(window.currentLessonId);
+        }
+        
+        // Function to update skill progress
+        function updateSkillProgress() {
+            const progress = JSON.parse(localStorage.getItem('lessonsProgress')) || {};
+            const skills = {
+                'critical-thinking': 0,
+                'problem-solving': 0,
+                'financial-decision-making': 0
+            };
+            
+            const skillCounts = {
+                'critical-thinking': 0,
+                'problem-solving': 0,
+                'financial-decision-making': 0
+            };
+            
+            const skillTotals = {
+                'critical-thinking': 3,
+                'problem-solving': 3,
+                'financial-decision-making': 3
+            };
+            
+            const lessonToSkillMap = {
+                'presupuesto-1': 'critical-thinking',
+                'presupuesto-2': 'critical-thinking',
+                'presupuesto-3': 'financial-decision-making',
+                'ahorro-1': 'financial-decision-making',
+                'ahorro-2': 'problem-solving',
+                'ahorro-3': 'financial-decision-making',
+                'crisis-1': 'problem-solving',
+                'crisis-2': 'critical-thinking',
+                'crisis-3': 'problem-solving'
+            };
+            
+            Object.keys(progress).forEach(lessonId => {
+                if (progress[lessonId].status === 'completed') {
+                    const skill = lessonToSkillMap[lessonId];
+                    if (skill) {
+                        skillCounts[skill]++;
+                    }
+                }
+            });
+            
+            Object.keys(skills).forEach(skill => {
+                skills[skill] = Math.round((skillCounts[skill] / skillTotals[skill]) * 100);
+            });
+            
+            let pentaProgress = JSON.parse(localStorage.getItem('pentaProgress')) || {};
+            pentaProgress.skills = skills;
+            localStorage.setItem('pentaProgress', JSON.stringify(pentaProgress));
+        }
+        
+        // Show completion message
+        function showCompletionMessage(lessonId) {
+            const modal = document.createElement('div');
+            modal.className = 'fixed inset-0 bg-black bg-opacity-60 flex items-center justify-center p-4 z-50';
+            modal.innerHTML = `
+                <div class="bg-white rounded-2xl shadow-2xl w-full max-w-md p-8 text-center">
+                    <div class="mb-6">
+                        <i class="fas fa-trophy text-yellow-500 text-6xl mb-4"></i>
+                        <h2 class="text-2xl font-bold text-gray-800 mb-2">Excellent work!</h2>
+                        <p class="text-gray-600">You have successfully completed this lesson.</p>
+                        <p class="text-sm text-blue-600 mt-2">Financial Decision-Making skill improved!</p>
+                    </div>
+                    <div class="space-y-3">
+                        <button onclick="goToProfile()" class="w-full bg-blue-600 text-white py-3 rounded-lg font-semibold hover:bg-blue-700 transition">
+                            <i class="fas fa-user mr-2"></i>View my progress
+                        </button>
+                        <button onclick="goToLessons()" class="w-full bg-orange-500 text-white py-3 rounded-lg font-semibold hover:bg-orange-600 transition">
+                            <i class="fas fa-book mr-2"></i>Continue learning
+                        </button>
+                        <button onclick="closeCompletionModal()" class="w-full bg-gray-300 text-gray-700 py-3 rounded-lg font-semibold hover:bg-gray-400 transition">
+                            Close
+                        </button>
+                    </div>
+                </div>
+            `;
+            
+            document.body.appendChild(modal);
+            window.currentCompletionModal = modal;
+        }
+        
+        function goToProfile() {
+            window.location.href = 'profile.html';
+        }
+        
+        function goToLessons() {
+            window.location.href = 'our-lessons.html';
+        }
+        
+        function closeCompletionModal() {
+            if (window.currentCompletionModal) {
+                document.body.removeChild(window.currentCompletionModal);
+                window.currentCompletionModal = null;
+            }
+        }
+    </script>
+</body>
+</html>
