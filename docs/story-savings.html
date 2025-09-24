@@ -33,23 +33,71 @@
         }
         
         .story-image-container {
-            position: relative;
+            position: absolute;
+            top: 0;
+            left: 0;
             width: 100vw;
             height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            overflow: hidden;
         }
         
         .story-image {
+            position: absolute;
+            top: 0;
+            left: 0;
             width: 100vw;
             height: 100vh;
             object-fit: cover;
+            object-position: center;
             display: none;
         }
         
         .story-image.active {
             display: block;
+        }
+        
+        /* Game Over Screen */
+        .game-over-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: linear-gradient(135deg, #1a1a2e, #16213e);
+            display: none;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            z-index: 2000;
+            color: white;
+            text-align: center;
+        }
+        
+        .game-over-screen.active {
+            display: flex;
+            animation: eyelidClose 2s ease-in-out;
+        }
+        
+        .game-over-content {
+            opacity: 0;
+            animation: fadeInContent 1s ease-in-out 1.5s forwards;
+        }
+        
+        @keyframes eyelidClose {
+            0% {
+                clip-path: ellipse(100% 100% at 50% 50%);
+            }
+            50% {
+                clip-path: ellipse(100% 5% at 50% 50%);
+            }
+            100% {
+                clip-path: ellipse(100% 100% at 50% 50%);
+            }
+        }
+        
+        @keyframes fadeInContent {
+            0% { opacity: 0; transform: translateY(20px); }
+            100% { opacity: 1; transform: translateY(0); }
         }
         
         /* Money display */
@@ -135,6 +183,7 @@
             gap: 20px;
             z-index: 100;
             width: 400px;
+            max-width: 90vw;
         }
         
         .choice-btn {
@@ -248,94 +297,6 @@
         .money-loss {
             background: rgba(239, 68, 68, 0.95);
         }
-
-        /* Game Over Eyelid Animation */
-        .game-over-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100vw;
-            height: 100vh;
-            z-index: 2000;
-            pointer-events: none;
-            display: none;
-        }
-
-        .game-over-overlay.active {
-            display: block;
-            pointer-events: all;
-        }
-
-        .eyelid-top, .eyelid-bottom {
-            position: absolute;
-            left: 0;
-            width: 100%;
-            height: 50%;
-            background: #000;
-            z-index: 2001;
-        }
-
-        .eyelid-top {
-            top: 0;
-            transform: translateY(-100%);
-        }
-
-        .eyelid-bottom {
-            bottom: 0;
-            transform: translateY(100%);
-        }
-
-        .eyelid-close .eyelid-top {
-            animation: eyelidCloseTop 1.5s ease-in-out forwards;
-        }
-
-        .eyelid-close .eyelid-bottom {
-            animation: eyelidCloseBottom 1.5s ease-in-out forwards;
-        }
-
-        .game-over-text {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            color: #ff4444;
-            font-size: 4rem;
-            font-weight: bold;
-            text-align: center;
-            z-index: 2002;
-            opacity: 0;
-            text-shadow: 0 0 20px rgba(255, 68, 68, 0.8);
-            font-family: 'Arial Black', Arial, sans-serif;
-        }
-
-        .game-over-text.show {
-            animation: gameOverTextShow 1s ease-out 1.5s forwards;
-        }
-
-        @keyframes eyelidCloseTop {
-            0% { transform: translateY(-100%); }
-            100% { transform: translateY(0); }
-        }
-
-        @keyframes eyelidCloseBottom {
-            0% { transform: translateY(100%); }
-            100% { transform: translateY(0); }
-        }
-
-        @keyframes gameOverTextShow {
-            0% { 
-                opacity: 0; 
-                transform: translate(-50%, -50%) scale(0.5);
-            }
-            50% { 
-                opacity: 1; 
-                transform: translate(-50%, -50%) scale(1.2);
-            }
-            100% { 
-                opacity: 1; 
-                transform: translate(-50%, -50%) scale(1);
-            }
-        }
         
         @keyframes fadeInOut {
             0%, 100% { opacity: 0; transform: translate(-50%, -50%) scale(0.8); }
@@ -357,14 +318,14 @@
         /* Responsive design */
         @media (max-width: 768px) {
             .choice-buttons {
-                width: 90%;
+                width: 95%;
                 gap: 15px;
             }
             
             .choice-btn {
                 min-height: 70px;
                 font-size: 16px;
-                padding: 20px 15px;
+                padding: 20px 25px;
             }
             
             .money-display, .go-back-btn {
@@ -383,17 +344,13 @@
                 height: 50px;
                 font-size: 20px;
             }
-
-            .game-over-text {
-                font-size: 2.5rem;
-            }
         }
     </style>
 </head>
 <body>
     <div class="story-container">
         <div class="story-image-container">
-            <!-- Story Images -->
+            <!-- Story Images - 8 total -->
             <img id="image1" src="images/s1.png" alt="Story Image 1" class="story-image active">
             <img id="image2" src="images/s2.png" alt="Story Image 2" class="story-image">
             <img id="image3" src="images/s3.png" alt="Story Image 3" class="story-image">
@@ -438,11 +395,22 @@
         </div>
     </div>
     
-    <!-- Game Over Overlay -->
-    <div id="gameOverOverlay" class="game-over-overlay">
-        <div class="eyelid-top"></div>
-        <div class="eyelid-bottom"></div>
-        <div class="game-over-text">GAME OVER</div>
+    <!-- Game Over Screen -->
+    <div id="gameOverScreen" class="game-over-screen">
+        <div class="game-over-content">
+            <i class="fas fa-times-circle text-red-500 text-8xl mb-6"></i>
+            <h2 class="text-4xl font-bold mb-4">Game Over!</h2>
+            <p class="text-xl mb-6">You made too many wrong choices.</p>
+            <p class="text-lg mb-8 opacity-75">Better luck next time!</p>
+            <div class="space-y-4">
+                <button onclick="restartStory()" class="bg-blue-600 text-white px-8 py-4 rounded-lg font-semibold hover:bg-blue-700 transition text-lg">
+                    <i class="fas fa-redo mr-2"></i>Try Again
+                </button>
+                <button onclick="goToLessons()" class="bg-gray-600 text-white px-8 py-4 rounded-lg font-semibold hover:bg-gray-700 transition text-lg ml-4">
+                    <i class="fas fa-arrow-left mr-2"></i>Back to Lessons
+                </button>
+            </div>
+        </div>
     </div>
     
     <!-- Completion Modal -->
@@ -493,6 +461,10 @@
             }, 2500);
         }
         
+        function showGameOver() {
+            document.getElementById('gameOverScreen').classList.add('active');
+        }
+        
         function updateNavigation() {
             const prevArrow = document.getElementById('prevArrow');
             const nextArrow = document.getElementById('nextArrow');
@@ -537,7 +509,7 @@
                 document.getElementById(`image${currentImage}`).classList.add('active');
                 updateNavigation();
                 
-                // Show completion modal after 5 seconds (increased from 3)
+                // Show completion modal after 5 seconds
                 setTimeout(showCompletionModal, 5000);
             }
         }
@@ -600,14 +572,6 @@
                 currentMoney -= 5.00;
                 updateMoneyDisplay();
                 showMoneyChange(5.00, false);
-
-                // Check for game over (budget reached $0)
-                if (currentMoney <= 0) {
-                    setTimeout(() => {
-                        gameOver();
-                    }, 300);
-                    return;
-                }
                 
                 // Show wrong feedback
                 const feedback = document.createElement('div');
@@ -615,6 +579,17 @@
                 const message = choice === 2 ? 'Think about your future!' : 'Start saving now, no matter how small!';
                 feedback.innerHTML = `<i class="fas fa-times-circle mb-3"></i><br>${message}<br><span style="font-size: 20px;">-$5.00 for wrong choice</span>`;
                 document.body.appendChild(feedback);
+                
+                // Check if two wrong choices have been made
+                const wrongChoices = choicesDisabled.filter(c => c !== 1);
+                if (wrongChoices.length === 2) {
+                    // Show game over after feedback
+                    setTimeout(() => {
+                        feedback.remove();
+                        showGameOver();
+                    }, 2000);
+                    return;
+                }
                 
                 // Remove feedback and re-enable buttons
                 setTimeout(() => {
@@ -628,10 +603,8 @@
                         }
                     });
                     
-                    // Check if both wrong choices have been made
-                    const wrongChoices = choicesDisabled.filter(c => c !== 1);
-                    if (wrongChoices.length === 2) {
-                        // Show hint for correct choice
+                    // Show hint for correct choice if one wrong choice made
+                    if (wrongChoices.length === 1) {
                         setTimeout(() => {
                             const hint = document.createElement('div');
                             hint.className = 'feedback correct-feedback';
@@ -646,26 +619,6 @@
                 }, 2000);
             }
         }
-
-        function gameOver() {
-            // Show the eyelid animation overlay
-            const overlay = document.getElementById('gameOverOverlay');
-            overlay.classList.add('active');
-            overlay.classList.add('eyelid-close');
-            
-            // Show "GAME OVER" text after eyelids close
-            const gameOverText = overlay.querySelector('.game-over-text');
-            gameOverText.classList.add('show');
-            
-            // Redirect after the full animation completes
-            setTimeout(() => {
-                if (document.referrer) {
-                    history.back();
-                } else {
-                    goToLessons();
-                }
-            }, 4000); // 1.5s eyelid + 1s text + 1.5s pause
-        }
         
         function goToImage7() {
             // Hide choice buttons
@@ -679,7 +632,7 @@
             // Update navigation
             updateNavigation();
             
-            // Stay on image 7 for 4 seconds (increased from 3)
+            // Stay on image 7 for 4 seconds
             setTimeout(() => {
                 nextImage(); // This will go to image 8
             }, 4000);
@@ -689,24 +642,32 @@
             document.getElementById('finalMoneyDisplay').textContent = `Final Amount: $${currentMoney.toFixed(2)}`;
             document.getElementById('completionModal').classList.add('active');
             
-            // Mark lesson as completed
-            markLessonCompleted();
+            // Mark lesson as completed ONLY for story (not full lesson)
+            markStoryCompleted();
         }
         
-        function markLessonCompleted() {
-            // Save progress
+        function markStoryCompleted() {
+            // Save story progress only - NOT full lesson completion
             let progress = JSON.parse(localStorage.getItem('lessonsProgress')) || {};
-            progress[lessonId] = {
-                status: 'completed',
-                completedAt: new Date().toISOString(),
-                skill: 'financial-decision-making',
-                completedVia: 'story',
-                finalMoney: currentMoney
-            };
-            localStorage.setItem('lessonsProgress', JSON.stringify(progress));
+            if (!progress[lessonId]) {
+                progress[lessonId] = {};
+            }
+            progress[lessonId].storyCompleted = true;
+            progress[lessonId].storyCompletedAt = new Date().toISOString();
+            progress[lessonId].finalMoney = currentMoney;
             
-            // Update skills
-            updateSkillProgress();
+            // Check if both story and exercise are completed
+            if (progress[lessonId].storyCompleted && progress[lessonId].exerciseCompleted) {
+                progress[lessonId].status = 'completed';
+                progress[lessonId].completedAt = new Date().toISOString();
+                progress[lessonId].skill = 'financial-decision-making';
+                progress[lessonId].completedVia = 'both';
+                
+                // Update skills only when fully completed
+                updateSkillProgress();
+            }
+            
+            localStorage.setItem('lessonsProgress', JSON.stringify(progress));
         }
         
         function updateSkillProgress() {
