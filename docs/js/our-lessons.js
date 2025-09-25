@@ -271,13 +271,27 @@ function updateNavigationButtons() {
 
 // Ir al siguiente tema
 function nextTema() {
-    // Verificar si estamos en plan2 y si hemos alcanzado el límite de clics
+    // Verificar si estamos en plan1 o plan2
+    const isPlan1 = window.location.pathname.includes('plan1');
     const isPlan2 = window.location.pathname.includes('plan2');
+    
+    if (isPlan1) {
+        // En plan1, no permitir avanzar más allá de Budget (índice 0)
+        nextButtonClickCount++;
+        
+        // Deshabilitar el botón inmediatamente en plan1
+        const nextBtn = document.getElementById('next-btn');
+        nextBtn.disabled = true;
+        nextBtn.classList.add('opacity-50', 'cursor-not-allowed');
+        nextBtn.classList.remove('hover:bg-orange-600');
+        nextBtn.textContent = 'No more content';
+        return;
+    }
     
     if (isPlan2) {
         nextButtonClickCount++;
         
-        // Si hemos alcanzado el límite máximo, deshabilitar el botón
+        // Si hemos alcanzado el límite máximo en plan2, deshabilitar el botón
         if (nextButtonClickCount >= maxNextClicks) {
             const nextBtn = document.getElementById('next-btn');
             nextBtn.disabled = true;
@@ -300,9 +314,18 @@ function prevTema() {
         currentTemaIndex--;
         showTema(currentTemaIndex);
         
-        // Si estamos en plan2 y retrocedemos, decrementar el contador
+        // Si estamos en plan1 o plan2 y retrocedemos, decrementar el contador
+        const isPlan1 = window.location.pathname.includes('plan1');
         const isPlan2 = window.location.pathname.includes('plan2');
-        if (isPlan2 && nextButtonClickCount > 0) {
+        
+        if (isPlan1) {
+            // En plan1, restaurar el botón Next si retrocedemos
+            const nextBtn = document.getElementById('next-btn');
+            nextBtn.disabled = false;
+            nextBtn.classList.remove('opacity-50', 'cursor-not-allowed');
+            nextBtn.classList.add('hover:bg-orange-600');
+            nextBtn.textContent = 'Next';
+        } else if (isPlan2 && nextButtonClickCount > 0) {
             nextButtonClickCount--;
             
             // Restaurar el botón si no está en el límite
@@ -424,9 +447,10 @@ document.addEventListener('DOMContentLoaded', function() {
     // Inicializar navegación
     showTema(0);
     
-    // Si estamos en plan2, reiniciar el contador del botón Next
+    // Si estamos en plan1 o plan2, reiniciar el contador del botón Next
+    const isPlan1 = window.location.pathname.includes('plan1');
     const isPlan2 = window.location.pathname.includes('plan2');
-    if (isPlan2) {
+    if (isPlan1 || isPlan2) {
         resetNextButtonCounter();
     }
 
