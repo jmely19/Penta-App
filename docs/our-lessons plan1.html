@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+
+<html lang="es">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>PENTA - Our Lessons</title>
+
+    <link rel="icon" type="image/png" href="images/logo.png">
+
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <link rel="stylesheet" href="css/our-lessons.css">
+
+</head>
+
+<body class="bg-gray-100">
+
+    <!-- NAVEGACIÓN CONSISTENTE PARA USUARIO LOGUEADO -->
+
+   <nav class="bg-white shadow-md sticky top-0 z-50 border-b border-gray-200">
+
+        <div class="container mx-auto px-6 py-4">
+
+            <div class="flex items-center justify-between">
+
+                <div class="flex items-center space-x-2">
+
+                                         <img src="images/logo.png" alt="PENTA Logo" class="h-12 w-12">
+
+                    <span class="text-2xl font-bold ml-2">PENTA</span>
+
+                </div>
+
+                <!-- Enlaces de navegación -->
+
+                <div class="hidden md:flex items-center space-x-8">
+
+                    <a href="index.html" class="nav-link text-gray-800 hover:text-orange-500 font-medium">Home</a>
+
+                    <a href="our-lessons.html" class="nav-link text-orange-500 border-b-2 border-orange-500 font-medium">Our lessons</a>
+
+                    <a href="profile.html" class="nav-link text-gray-800 hover:text-orange-500 font-medium">Profile</a>
+
+                    <a href="index.html#contact" class="nav-link text-gray-800 hover:text-orange-500 font-medium">Contact us</a>
+
+                </div>
+
+                <!-- Cerrar Sesión -->
+
+                <div class="hidden md:flex">
+
+                    <a href="sign.in.html" class="bg-gray-200 text-gray-700 px-4 py-2 rounded-full hover:bg-gray-300 transition duration-300 text-sm font-semibold">Cerrar Sesión</a>
+
+                </div>
+
+                
+
+                <button class="md:hidden focus:outline-none">
+
+                    <i class="fas fa-bars text-gray-800 text-xl"></i>
+
+                </button>
+
+            </div>
+
+        </div>
+
+    </nav>
+
+    <!-- CONTENIDO PRINCIPAL: MÓDULOS DE APRENDIZAJE -->
+
+    <main>
+
+        <section id="modulos" class="py-16" style="background-color:#05052b;">
+
+            <div class="container mx-auto px-6">
+
+                <h2 class="text-3xl lg:text-4xl font-bold text-center mb-16 text-white">Our Learning Modules</h2>
+
+
+
+                <div id="temas-container">
+
+                    <!-- PRESUPUESTO -->
+
+                    <div class="tema" data-index="0">
+
+                        <h3 class="text-3xl font-bold text-gray-800 mb-8 text-center bg-white py-4 rounded-lg shadow-lg">Budget</h3>
+
+                        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+
+                            <!-- Lecciones -->
+
+                            <div class="bg-white rounded-xl shadow-lg flex flex-col relative" data-lesson-id="presupuesto-1">
+
+                                <div class="completed-badge hidden">Completed</div>
+
+                                <img class="w-full h-48 object-cover" src="images/leccion 11.png">
+
+                                <div class="p-6 flex-grow flex flex-col">
+
+                                    <h4 class="text-xl font-bold mb-2">Lesson 1</h4>
+
+                                    <p class="text-gray-600 flex-grow">Know where your money goes: The truth behind every expense.</p>
+
+                                    <button class="start-lesson-btn mt-4 bg-orange-500 text-white py-2 rounded-full font-bold hover:bg-orange-600">Start</button>
+
+                                </div>
+
+                            </div>
+
+                            <div class="bg-white rounded-xl shadow-lg flex flex-col relative" data-lesson-id="presupuesto-2">
+
+                                <div class="completed-badge hidden">Completed</div>
+
+                                <img class="w-full h-48 object-cover" src="images/Leccion 2-Tema1.png">
+
+                                <div class="p-6 flex-grow flex flex-col">
+
+                                    <h4 class="text-xl font-bold mb-2">Lesson 2</h4>
+
+                                    <p class="text-gray-600 flex-grow">Needs vs. Wants: The Art of Conscious Choice.</p>
+
+                                    <button class="start-lesson-btn mt-4 bg-orange-500 text-white py-2 rounded-full font-bold hover:bg-orange-600">Start</button>
+
+                                </div>
+
+                            </div>
+
+                            <div class="bg-white rounded-xl shadow-lg flex flex-col relative" data-lesson-id="presupuesto-3">
+
+                                <div class="completed-badge hidden">Completed</div>
+
+                                <img class="w-full h-48 object-cover" src="images/Leccion31.png">
+
+                                <div class="p-6 flex-grow flex flex-col">
+
+                                    <h4 class="text-xl font-bold mb-2">Lesson 3</h4>
+
+                                    <p class="text-gray-600 flex-grow">A budget is a map: Navigating your expenses and making choices.</p>
+
+                                    <button class="start-lesson-btn mt-4 bg-orange-500 text-white py-2 rounded-full font-bold hover:bg-orange-600">Start</button>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+
+                    
+                <!-- Botones -->
+
+                <div class="flex justify-between mt-10">
+
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+
+    <!-- MODAL CON TEORÍA AGREGADA -->
+
+    <div id="learning-modal" class="fixed inset-0 bg-black bg-opacity-60 flex items-center justify-center p-4 z-50 hidden">
+
+        <div class="modal-content bg-white rounded-2xl shadow-2xl w-full max-w-md p-8 text-center relative">
+
+            <button id="close-modal-btn" class="absolute top-4 right-4 text-gray-400 hover:text-gray-700"><i class="fas fa-times fa-2x"></i></button>
+
+            <h3 class="text-2xl font-bold mb-4">Select your learning style</h3>
+
+            <p class="text-gray-600 mb-8">Everyone learns differently. Choose the option you like best!</p>
+
+            <div class="space-y-4">
+
+                <a href="#" class="block w-full bg-blue-600 text-white py-3 rounded-lg font-semibold text-lg hover:bg-blue-700" id="story-btn"><i class="fas fa-book-open mr-2"></i> Story</a>
+
+                <a href="#" class="block w-full bg-green-600 text-white py-3 rounded-lg font-semibold text-lg hover:bg-green-700" id="theory-btn"><i class="fas fa-lightbulb mr-2"></i> Theory</a>
+
+                <a href="#" class="block w-full bg-indigo-600 text-white py-3 rounded-lg font-semibold text-lg hover:bg-indigo-700" id="exercise-btn"><i class="fas fa-pencil-ruler mr-2"></i> Exercises</a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- FOOTER - Dividido en 4 columnas:
+
+         1. Logo y descripción + redes
+
+         2. Enlaces rápidos (navegación)
+
+         3. Recursos educativos
+
+         4. Legal (términos, privacidad)
+
+         + Copyright en la parte inferior -->
+
+    <footer class="bg-gray-900 text-white py-12">
+
+        <div class="container mx-auto px-6">
+
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+
+                <div>
+
+                    <div class="flex items-center mb-4">
+
+                                                 <img src="images/logo.png" alt="PENTA Logo" class="h-8 w-8 mr-2">
+
+                        <span class="text-xl font-bold">PENTA</span>
+
+                    </div>
+
+                    <p class="text-gray-400 mb-4">Helping young people take control of their financial future since 2024. More than 50,000 students trust us.</p>
+
+                    <p class="text-sm text-gray-500 mb-4">Certified by the Financial Education Association.</p>
+
+                    <div class="flex space-x-4">
+
+                        <a href="#" class="text-gray-400 hover:text-white transition duration-300 relative group">
+
+                            <i class="fab fa-facebook-f"></i>
+
+                            <span class="absolute -bottom-8 left-1/2 transform -translate-x-1/2 bg-gray-800 text-white text-xs px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity duration-200 whitespace-nowrap">Síguenos en Facebook</span>
+
+                        </a>
+
+                        <a href="#" class="text-gray-400 hover:text-white transition duration-300">
+
+                            <i class="fab fa-twitter"></i>
+
+                        </a>
+
+                        <a href="#" class="text-gray-400 hover:text-white transition duration-300">
+
+                            <i class="fab fa-instagram"></i>
+
+                        </a>
+
+                        <a href="#" class="text-gray-400 hover:text-white transition duration-300">
+
+                            <i class="fab fa-linkedin-in"></i>
+
+                        </a>
+
+                    </div>
+
+                </div>
+
+                
+
+                <div>
+
+                    <h3 class="text-lg font-bold mb-4">Quick Links</h3>
+
+                    <ul class="space-y-2">
+
+                        <li><a href="#home" class="text-gray-400 hover:text-white transition duration-300">Home</a></li>
+
+                        <li><a href="#about" class="text-gray-400 hover:text-white transition duration-300">About Us</a></li>
+
+                        <li><a href="#plans" class="text-gray-400 hover:text-white transition duration-300">Plans</a></li>
+
+                        <li><a href="#contact" class="text-gray-400 hover:text-white transition duration-300">Contact</a></li>
+
+                        <li><a href="#" class="text-gray-400 hover:text-white transition duration-300">Blog</a></li>
+
+                    </ul>
+
+                </div>
+
+                
+
+                <div>
+
+                    <h3 class="text-lg font-bold mb-4">Resources</h3>
+
+                    <ul class="space-y-2">
+
+                        <li><a href="#" class="text-gray-400 hover:text-white transition duration-300">Financial Calculators</a></li>
+
+                        <li><a href="#" class="text-gray-400 hover:text-white transition duration-300">Learning Modules</a></li>
+
+                        <li><a href="#" class="text-gray-400 hover:text-white transition duration-300">Glossary</a></li>
+
+                        <li><a href="#" class="text-gray-400 hover:text-white transition duration-300">FAQs</a></li>
+
+                        <li><a href="#" class="text-gray-400 hover:text-white transition duration-300">Support</a></li>
+
+                    </ul>
+
+                </div>
+
+                
+
+                <div>
+
+                    <h3 class="text-lg font-bold mb-4">Legal</h3>
+
+                    <ul class="space-y-2">
+
+                        <li><a href="#" class="text-gray-400 hover:text-white transition duration-300">Terms of Service</a></li>
+
+                        <li><a href="#" class="text-gray-400 hover:text-white transition duration-300">Privacy Policy</a></li>
+
+                        <li><a href="#" class="text-gray-400 hover:text-white transition duration-300">Cookie Policy</a></li>
+
+                        <li><a href="#" class="text-gray-400 hover:text-white transition duration-300">GDPR</a></li>
+
+                    </ul>
+
+                </div>
+
+            </div>
+
+            
+
+            <div class="border-t border-gray-800 mt-12 pt-8 text-center text-gray-400">
+
+                <p>&copy; 2024 PENTA Financial Education. All rights reserved.</p>
+
+            </div>
+
+        </div>
+
+    </footer>
+
+
+
+    <script src="js/our-lessons.js"></script>
+
+    <script src="scriptchatbot.js"></script>
+
+</body>
+
+</html>

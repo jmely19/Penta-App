@@ -2,6 +2,10 @@
 let currentTemaIndex = 0;
 const totalTemas = 3;
 
+// Contador de clics para el botón Next (específico para plan2)
+let nextButtonClickCount = 0;
+const maxNextClicks = 2;
+
 // Mapeo de lecciones a ejercicios - CORREGIDO SEGÚN ARCHIVOS EXISTENTES
 const lessonToExerciseMap = {
     'presupuesto-1': 'exercise1.html',
@@ -267,6 +271,23 @@ function updateNavigationButtons() {
 
 // Ir al siguiente tema
 function nextTema() {
+    // Verificar si estamos en plan2 y si hemos alcanzado el límite de clics
+    const isPlan2 = window.location.pathname.includes('plan2');
+    
+    if (isPlan2) {
+        nextButtonClickCount++;
+        
+        // Si hemos alcanzado el límite máximo, deshabilitar el botón
+        if (nextButtonClickCount >= maxNextClicks) {
+            const nextBtn = document.getElementById('next-btn');
+            nextBtn.disabled = true;
+            nextBtn.classList.add('opacity-50', 'cursor-not-allowed');
+            nextBtn.classList.remove('hover:bg-orange-600');
+            nextBtn.textContent = 'No more content';
+            return;
+        }
+    }
+    
     if (currentTemaIndex < totalTemas - 1) {
         currentTemaIndex++;
         showTema(currentTemaIndex);
@@ -278,6 +299,33 @@ function prevTema() {
     if (currentTemaIndex > 0) {
         currentTemaIndex--;
         showTema(currentTemaIndex);
+        
+        // Si estamos en plan2 y retrocedemos, decrementar el contador
+        const isPlan2 = window.location.pathname.includes('plan2');
+        if (isPlan2 && nextButtonClickCount > 0) {
+            nextButtonClickCount--;
+            
+            // Restaurar el botón si no está en el límite
+            const nextBtn = document.getElementById('next-btn');
+            if (nextButtonClickCount < maxNextClicks) {
+                nextBtn.disabled = false;
+                nextBtn.classList.remove('opacity-50', 'cursor-not-allowed');
+                nextBtn.classList.add('hover:bg-orange-600');
+                nextBtn.textContent = 'Next';
+            }
+        }
+    }
+}
+
+// Función para reiniciar el contador (útil si se recarga la página)
+function resetNextButtonCounter() {
+    nextButtonClickCount = 0;
+    const nextBtn = document.getElementById('next-btn');
+    if (nextBtn) {
+        nextBtn.disabled = false;
+        nextBtn.classList.remove('opacity-50', 'cursor-not-allowed');
+        nextBtn.classList.add('hover:bg-orange-600');
+        nextBtn.textContent = 'Next';
     }
 }
 
@@ -375,6 +423,12 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Inicializar navegación
     showTema(0);
+    
+    // Si estamos en plan2, reiniciar el contador del botón Next
+    const isPlan2 = window.location.pathname.includes('plan2');
+    if (isPlan2) {
+        resetNextButtonCounter();
+    }
 
     // Mostrar progreso visual en las lecciones
     const progress = getAllLessonProgress();
