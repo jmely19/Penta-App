@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PENTA - Pricing Plans</title>
+    <link rel="icon" type="image/png" href="images/logo.png">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/index.css">
+</head>
+<body class="bg-white">
+    <!-- Navigation -->
+    <nav class="bg-white shadow-md sticky top-0 z-50 border-b border-gray-200">
+        <div class="container mx-auto px-6 py-4">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center space-x-2">
+                    <img src="images/logo.png" alt="PENTA Logo" class="h-12 w-12">
+                    <span class="text-2xl font-bold ml-2">PENTA</span>
+                </div>
+                <div class="hidden md:flex space-x-6">
+                    <a href="index.html" class="px-3 py-2 font-medium text-gray-700 hover:text-orange-500 transition">Home</a>
+                    <a href="index.html#about" class="px-3 py-2 font-medium text-gray-700 hover:text-orange-500 transition">About Us</a>
+                    <a href="pricing.html" class="px-3 py-2 font-medium text-orange-500 border-b-2 border-orange-500">Plans</a>
+                    <a href="index.html#contact" class="px-3 py-2 font-medium text-gray-700 hover:text-orange-500 transition">Contact Us</a>
+                </div>
+                <div class="hidden md:flex items-center space-x-4">
+                    <a href="sign.in.html" class="px-4 py-2 text-gray-700 hover:text-orange-500 transition">Login</a>
+                    <a href="sign.up.html" class="bg-orange-500 text-white px-4 py-2 rounded-lg hover:bg-orange-600 transition">Sign Up</a>
+                </div>
+                <button class="md:hidden focus:outline-none">
+                    <i class="fas fa-bars text-gray-800 text-xl"></i>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section for Pricing -->
+    <section class="py-16 bg-gradient-to-r from-blue-900 to-purple-900 text-white">
+        <div class="container mx-auto px-6 text-center">
+            <h1 class="text-4xl md:text-5xl font-bold mb-6">Choose Your Perfect Plan</h1>
+            <p class="text-xl mb-8 max-w-2xl mx-auto">Start your financial education journey with the plan that fits your needs</p>
+        </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section class="py-16" style="background-color: #05052b;">
+        <div class="container mx-auto px-6">
+            <h2 class="text-3xl font-bold text-center mb-12 text-white">Choose Your Plan</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- FREE Plan -->
+                <div class="plan-card bg-white rounded-xl shadow-lg overflow-hidden transition duration-300">
+                    <div class="bg-gray-100 p-6">
+                        <h3 class="text-2xl font-bold text-center text-gray-800">Basic</h3>
+                        <div class="text-center mt-4">
+                            <span class="text-4xl font-bold text-green-600">FREE</span>
+                            <span class="text-gray-600">/month</span>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <ul class="space-y-3">
+                            <li class="flex items-center">
+                                <i class="fas fa-check text-green-500 mr-2"></i>
+                                <span>2GB Storage</span>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check text-green-500 mr-2"></i>
+                                <span>4 Language Domains</span>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check text-green-500 mr-2"></i>
+                                <span>2 Accounts</span>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check text-green-500 mr-2"></i>
+                                <span>Email Support</span>
+                            </li>
+                        </ul>
+                        <button onclick="showFreeTrialModal()" class="w-full mt-6 bg-green-500 text-white py-2 rounded-full font-semibold hover:bg-green-600 transition duration-300">
+                            Get Started
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- ADVANCED Plan -->
+                <div class="plan-card bg-white rounded-xl shadow-xl overflow-hidden transition duration-300 transform hover:scale-105 relative border-4 border-orange-400">
+                    <div class="absolute top-0 right-0 bg-orange-500 text-white px-4 py-1 text-sm font-bold rounded-bl-lg">
+                        POPULAR
+                    </div>
+                    <div class="bg-gradient-to-r from-orange-400 to-orange-500 p-6">
+                        <h3 class="text-2xl font-bold text-center text-white">Advanced</h3>
+                        <div class="text-center mt-4">
+                            <span class="text-4xl font-bold text-white">$40</span>
+                            <span class="text-white opacity-80">/month</span>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <ul class="space-y-3">
+                            <li class="flex items-center">
+                                <i class="fas fa-check text-orange-500 mr-2"></i>
+                                <span class="font-medium">4GB Storage</span>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check text-orange-500 mr-2"></i>
+                                <span class="font-medium">5 Language Domains</span>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check text-orange-500 mr-2"></i>
+                                <span class="font-medium">3 Accounts</span>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check text-orange-500 mr-2"></i>
+                                <span class="font-medium">Priority Support</span>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check text-orange-500 mr-2"></i>
+                                <span class="font-medium">Advanced Tools</span>
+                            </li>
+                        </ul>
+                        <button onclick="redirectToStripe()" class="w-full mt-6 bg-orange-500 text-white py-2 rounded-full font-semibold hover:bg-orange-600 transition duration-300">
+                            Get Started Now <i class="fas fa-arrow-right ml-2"></i>
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- PREMIUM Plan -->
+                <div class="plan-card bg-white rounded-xl shadow-lg overflow-hidden transition duration-300">
+                    <div class="bg-gray-100 p-6">
+                        <h3 class="text-2xl font-bold text-center text-gray-800">Premium</h3>
+                        <div class="text-center mt-4">
+                            <span class="text-4xl font-bold text-blue-800">$60</span>
+                            <span class="text-gray-600">/month</span>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <ul class="space-y-3">
+                            <li class="flex items-center">
+                                <i class="fas fa-check text-green-500 mr-2"></i>
+                                <span>8GB Storage</span>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check text-green-500 mr-2"></i>
+                                <span>Unlimited Domains</span>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check text-green-500 mr-2"></i>
+                                <span>5 Accounts</span>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check text-green-500 mr-2"></i>
+                                <span>24/7 Support</span>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check text-green-500 mr-2"></i>
+                                <span>All Features</span>
+                            </li>
+                        </ul>
+                        <button onclick="showComingSoonModal()" class="w-full mt-6 bg-blue-600 text-white py-2 rounded-full font-semibold hover:bg-blue-700 transition duration-300">
+                            Coming Soon
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="mt-12 text-center text-white">
+                <h3 class="text-2xl font-bold mb-4">Not sure which plan is right for you?</h3>
+                <p class="mb-6">Contact our team and we'll help you find the perfect solution for your needs.</p>
+                <a href="index.html#contact" class="inline-block bg-orange-500 text-white px-6 py-3 rounded-full font-semibold hover:bg-orange-600 transition duration-300">
+                    Contact Us <i class="fas fa-envelope ml-2"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Free Trial Modal -->
+    <div id="freeTrialModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 hidden">
+        <div class="bg-white rounded-xl p-8 max-w-md mx-4">
+            <div class="text-center">
+                <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <i class="fas fa-gift text-green-500 text-2xl"></i>
+                </div>
+                <h3 class="text-2xl font-bold mb-4">Free Trial - 1 Month</h3>
+                <p class="text-gray-600 mb-6">
+                    Great choice! You'll get access to our Basic plan features for <strong>one month completely free</strong>. 
+                    After the trial period, you can choose to upgrade or continue with limited access.
+                </p>
+                <div class="flex space-x-4">
+                    <button onclick="closeFreeTrialModal()" class="flex-1 px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 transition">
+                        Cancel
+                    </button>
+                    <button onclick="startFreeTrial()" class="flex-1 px-4 py-2 bg-green-500 text-white rounded-lg hover:bg-green-600 transition">
+                        Start Free Trial
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Coming Soon Modal -->
+    <div id="comingSoonModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 hidden">
+        <div class="bg-white rounded-xl p-8 max-w-md mx-4">
+            <div class="text-center">
+                <div class="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <i class="fas fa-clock text-blue-500 text-2xl"></i>
+                </div>
+                <h3 class="text-2xl font-bold mb-4">Premium Plan Coming Soon</h3>
+                <p class="text-gray-600 mb-6">
+                    We're working hard to bring you the Premium plan with even more amazing features. 
+                    Stay tuned for updates!
+                </p>
+                <button onclick="closeComingSoonModal()" class="w-full px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition">
+                    Got it
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-12">
+        <div class="container mx-auto px-6">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div>
+                    <div class="flex items-center mb-4">
+                        <img src="images/logo.png" alt="PENTA Logo" class="h-8 w-8 mr-2">
+                        <span class="text-xl font-bold">PENTA</span>
+                    </div>
+                    <p class="text-gray-400 mb-4">Helping young people take control of their financial future since 2024.</p>
+                </div>
+                
+                <div>
+                    <h3 class="text-lg font-bold mb-4">Quick Links</h3>
+                    <ul class="space-y-2">
+                        <li><a href="index.html" class="text-gray-400 hover:text-white transition duration-300">Home</a></li>
+                        <li><a href="index.html#about" class="text-gray-400 hover:text-white transition duration-300">About Us</a></li>
+                        <li><a href="pricing.html" class="text-gray-400 hover:text-white transition duration-300">Plans</a></li>
+                        <li><a href="index.html#contact" class="text-gray-400 hover:text-white transition duration-300">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="text-lg font-bold mb-4">Resources</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-400 hover:text-white transition duration-300">Financial Calculators</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition duration-300">Learning Modules</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition duration-300">FAQs</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition duration-300">Support</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="text-lg font-bold mb-4">Legal</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-400 hover:text-white transition duration-300">Terms of Service</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition duration-300">Privacy Policy</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition duration-300">Cookie Policy</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-800 mt-12 pt-8 text-center text-gray-400">
+                <p>&copy; 2024 PENTA Financial Education. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Free Trial Modal Functions
+        function showFreeTrialModal() {
+            document.getElementById('freeTrialModal').classList.remove('hidden');
+        }
+
+        function closeFreeTrialModal() {
+            document.getElementById('freeTrialModal').classList.add('hidden');
+        }
+
+        function startFreeTrial() {
+            // Here you would typically integrate with your backend to start the trial
+            alert('Free trial activated! Welcome to PENTA!');
+            closeFreeTrialModal();
+        }
+
+        // Coming Soon Modal Functions
+        function showComingSoonModal() {
+            document.getElementById('comingSoonModal').classList.remove('hidden');
+        }
+
+        function closeComingSoonModal() {
+            document.getElementById('comingSoonModal').classList.add('hidden');
+        }
+
+        // Stripe Redirect Function
+        function redirectToStripe() {
+            window.open('https://buy.stripe.com/test_14AcN4gHPdJS3nJ3LseAg02', '_blank');
+        }
+
+        // Close modals when clicking outside
+        window.onclick = function(event) {
+            const freeTrialModal = document.getElementById('freeTrialModal');
+            const comingSoonModal = document.getElementById('comingSoonModal');
+            
+            if (event.target === freeTrialModal) {
+                closeFreeTrialModal();
+            }
+            if (event.target === comingSoonModal) {
+                closeComingSoonModal();
+            }
+        }
+    </script>
+</body>
+</html>
