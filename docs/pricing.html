@@ -133,12 +133,12 @@
                 </div>
                 
                 <!-- PREMIUM Plan -->
-                <div class="plan-card bg-white rounded-xl shadow-lg overflow-hidden transition duration-300">
+<div class="plan-card bg-white rounded-xl shadow-lg overflow-hidden transition duration-300">
                     <div class="bg-gray-100 p-6">
                         <h3 class="text-2xl font-bold text-center text-gray-800">Premium</h3>
                         <div class="text-center mt-4">
                             <span class="text-4xl font-bold text-blue-800">$60</span>
-                            <span class="text-gray-600">/month</span>
+                            <span class="text-gray-600">/quarterly</span>
                         </div>
                     </div>
                     <div class="p-6">
@@ -168,65 +168,11 @@
                                 <span>9 Lessons</span>
                             </li>
                         </ul>
-                        <button onclick="showComingSoonModal()" class="w-full mt-6 bg-blue-600 text-white py-2 rounded-full font-semibold hover:bg-blue-700 transition duration-300">
-                            Coming Soon
+                        <button class="w-full mt-6 bg-blue-600 text-white py-2 rounded-full font-semibold transition duration-300 block text-center" disabled="">
+                            Get Started
                         </button>
                     </div>
                 </div>
-            </div>
-            
-            <div class="mt-12 text-center text-white">
-                <h3 class="text-2xl font-bold mb-4">Not sure which plan is right for you?</h3>
-                <p class="mb-6">Contact our team and we'll help you find the perfect solution for your needs.</p>
-                <a href="index.html#contact" class="inline-block bg-orange-500 text-white px-6 py-3 rounded-full font-semibold hover:bg-orange-600 transition duration-300">
-                    Contact Us <i class="fas fa-envelope ml-2"></i>
-                </a>
-            </div>
-        </div>
-    </section>
-
-    <!-- Free Trial Modal -->
-    <div id="freeTrialModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 hidden">
-        <div class="bg-white rounded-xl p-8 max-w-md mx-4">
-            <div class="text-center">
-                <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                    <i class="fas fa-gift text-green-500 text-2xl"></i>
-                </div>
-                <h3 class="text-2xl font-bold mb-4">Free Trial - 1 Month</h3>
-                <p class="text-gray-600 mb-6">
-                    Great choice! You'll get access to our Basic plan features for <strong>one month completely free</strong>. 
-                    After the trial period, you can choose to upgrade or continue with limited access.
-                </p>
-                <div class="flex space-x-4">
-                    <button onclick="closeFreeTrialModal()" class="flex-1 px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 transition">
-                        Cancel
-                    </button>
-                    <button onclick="startFreeTrial()" class="flex-1 px-4 py-2 bg-green-500 text-white rounded-lg hover:bg-green-600 transition">
-                        Start Free Trial
-                    </button>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Coming Soon Modal -->
-    <div id="comingSoonModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 hidden">
-        <div class="bg-white rounded-xl p-8 max-w-md mx-4">
-            <div class="text-center">
-                <div class="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                    <i class="fas fa-clock text-blue-500 text-2xl"></i>
-                </div>
-                <h3 class="text-2xl font-bold mb-4">Premium Plan Coming Soon</h3>
-                <p class="text-gray-600 mb-6">
-                    We're working hard to bring you the Premium plan with even more amazing features. 
-                    Stay tuned for updates!
-                </p>
-                <button onclick="closeComingSoonModal()" class="w-full px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition">
-                    Got it
-                </button>
-            </div>
-        </div>
-    </div>
 
     <!-- Footer -->
     <footer class="bg-gray-900 text-white py-12">
