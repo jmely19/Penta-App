@@ -12,6 +12,42 @@ body {
     align-items: center;
     justify-content: center;
     padding: 20px;
+    position: relative;
+}
+
+/* Botón de regreso al home */
+.back-to-home {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    z-index: 1000;
+}
+
+.home-btn {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 16px;
+    background: rgba(255, 255, 255, 0.9);
+    color: #333;
+    text-decoration: none;
+    border-radius: 25px;
+    font-size: 14px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(10px);
+}
+
+.home-btn:hover {
+    background: white;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+}
+
+.home-btn svg {
+    width: 20px;
+    height: 20px;
 }
 
 .signup-container {
@@ -270,6 +306,21 @@ h1 {
 }
 
 @media (max-width: 768px) {
+    .back-to-home {
+        top: 15px;
+        left: 15px;
+    }
+    
+    .home-btn {
+        padding: 8px 12px;
+        font-size: 12px;
+    }
+    
+    .home-btn svg {
+        width: 16px;
+        height: 16px;
+    }
+    
     .signup-container {
         padding: 20px 16px;
         margin: 12px;
